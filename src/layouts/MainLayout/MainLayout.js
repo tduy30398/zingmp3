@@ -1,5 +1,12 @@
+import { Sidebar } from '../components';
+
 function MainLayout({ children }) {
-    return <div>{children}</div>;
+    return (
+        <div className="flex">
+            <Sidebar />
+            <div>{children}</div>
+        </div>
+    );
 }
 
 export default MainLayout;
