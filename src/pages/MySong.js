@@ -1,8 +1,8 @@
 import { TabTitle } from '../utils';
 
-function Personal() {
+function MySong() {
     TabTitle('Nhạc cá nhân | Xem bài hát, album, MV đang hot nhất hiện tại');
-    return <div>Personal</div>;
+    return <div>MySong</div>;
 }
 
-export default Personal;
+export default MySong;

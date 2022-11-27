@@ -1,22 +1,28 @@
 import { Link } from 'react-router-dom';
 
-import logo1 from '../../assets/images/logos/main-logo.svg';
+import mainLogo from '../../assets/images/logos/main-logo.svg';
+import { SongIcon, PlaylistIcon, HistoryIcon } from '../../assets/images/svgIcons';
 import routes from '../../config';
 import { MenuItem } from '../../components';
 import {
     MdOutlineLibraryMusic,
-    BsPieChart,
-    GiChart,
-    BiRadio,
+    TfiPieChart,
+    HiOutlineChartBar,
+    IoIosRadio,
     BsNewspaper,
+    FiMusic,
+    BiCategoryAlt,
+    AiOutlineStar,
+    BsCameraVideo,
+    HiOutlinePlus,
 } from '../../assets/icons';
 
 function Sidebar() {
     return (
-        <div className="w-[240px] flex-col bg-primary-color-4">
+        <div className="w-[240px] h-[calc(100vh-90px)] flex-col bg-primary-color-4 fixed left-0 top-0">
             <div className="w-full h-[70px] pr-[25px] pl-7 flex items-center justify-start">
                 <Link to={routes.home}>
-                    <img src={logo1} alt="Logo" className="w-[120px] h-10" />
+                    <img src={mainLogo} alt="Logo" className="w-[120px] h-10" />
                 </Link>
             </div>
             <div className="mb-[15px]">
@@ -25,12 +31,48 @@ function Sidebar() {
                     to={routes.mymusic}
                     icon={<MdOutlineLibraryMusic size={24} />}
                 />
-                <MenuItem title="Khám Phá" to={routes.home} icon={<BsPieChart size={24} />} />
-                <MenuItem title="#zingchart" to={routes.zingchart} icon={<GiChart size={24} />} />
-                <MenuItem title="Radio" to={routes.radio} icon={<BiRadio size={24} />} />
+                <MenuItem title="Khám Phá" to={routes.home} icon={<TfiPieChart size={24} />} />
+                <MenuItem
+                    title="#zingchart"
+                    to={routes.zingchart}
+                    icon={<HiOutlineChartBar size={24} />}
+                />
+                <MenuItem title="Radio" to={routes.radio} icon={<IoIosRadio size={24} />} />
                 <MenuItem title="Theo Dõi" to={routes.following} icon={<BsNewspaper size={24} />} />
             </div>
             <div className="w-[190px] h-[1px] bg-[#5D3953] mx-auto"></div>
+            <div className="mt-[10px] h-[342px] overflow-x-hidden overflow-y-scroll overflow-y-overlay scrollbar">
+                <MenuItem title="Nhạc Mới" to={routes.new} icon={<FiMusic size={24} />} />
+                <MenuItem title="Thể Loại" to={routes.hub} icon={<BiCategoryAlt size={24} />} />
+                <MenuItem title="Top 100" to={routes.top100} icon={<AiOutlineStar size={24} />} />
+                <MenuItem title="MV" to={routes.mv} icon={<BsCameraVideo size={24} />} />
+                <div className="text-center bg-gradient-to-r from-[#5a4be7] to-[#c86dd7] my-[10px] mx-5 py-[15px] px-2 rounded-lg">
+                    <div className="text-text-color-2 mb-[10px] text-xs font-extrabold leading-[1.67]">
+                        Nghe nhạc không quảng cáo cùng kho nhạc VIP
+                    </div>
+                    <a
+                        className="bg-[#ffdb00] border-[1px] border-[#ffdb00] py-[6px] px-[35px] text-xs font-bold rounded-full text-[#32323d] hover:bg-[#E6C500] hover:border-[#E6C500]"
+                        href="https://zingmp3.vn/vip?utm_source=desktop&utm_campaign=VIP&utm_medium=sidebar"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        NÂNG CẤP VIP
+                    </a>
+                </div>
+                <div className="pt-[15px]">
+                    <div className="mx-7 mb-2 font-bold text-xs text-text-color-2 ">THƯ VIỆN</div>
+                    <MenuItem title="Bài hát" to={routes.mysong} icon={<SongIcon />} />
+                    <MenuItem title="Playlist" to={routes.playlist} icon={<PlaylistIcon />} />
+                    <MenuItem title="Gần đây" to={routes.history} icon={<HistoryIcon />} />
+                </div>
+            </div>
+            <div className="w-full h-[1px] bg-[#5D3953] mx-auto"></div>
+            <div className="flex items-center h-[52px] text-text-color-2 hover:text-text-color-1 px-7 cursor-pointer">
+                <span className="mr-[10px]">
+                    <HiOutlinePlus size={19} />
+                </span>
+                <span className="text-[14px] font-bold">Tạo playlist mới</span>
+            </div>
         </div>
     );
 }

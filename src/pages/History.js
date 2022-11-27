@@ -1,8 +1,8 @@
 import { TabTitle } from '../utils';
 
-function Personal() {
+function History() {
     TabTitle('Nhạc cá nhân | Xem bài hát, album, MV đang hot nhất hiện tại');
-    return <div>Personal</div>;
+    return <div>History</div>;
 }
 
-export default Personal;
+export default History;

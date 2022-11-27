@@ -1,11 +1,13 @@
-import { Sidebar } from '../components';
+import { Sidebar, MusicPlayer, Playlist } from '../components';
 
 function MainLayout({ children }) {
     return (
-        <div className="flex">
+        <>
             <Sidebar />
             <div>{children}</div>
-        </div>
+            <MusicPlayer />
+            <Playlist />
+        </>
     );
 }
 

@@ -1,7 +1,27 @@
 import { MdOutlineLibraryMusic } from 'react-icons/md';
-import { BsPieChart } from 'react-icons/bs';
-import { GiChart } from 'react-icons/gi';
-import { BiRadio } from 'react-icons/bi';
-import { BsNewspaper } from 'react-icons/bs';
+import { TfiPieChart, TfiSettings } from 'react-icons/tfi';
+import { HiOutlineChartBar, HiOutlinePlus, HiOutlineUpload } from 'react-icons/hi';
+import { IoIosRadio } from 'react-icons/io';
+import { BsNewspaper, BsCameraVideo, BsArrowLeft, BsArrowRight } from 'react-icons/bs';
+import { FiMusic } from 'react-icons/fi';
+import { BiCategoryAlt } from 'react-icons/bi';
+import { AiOutlineStar } from 'react-icons/ai';
+import { RiVipDiamondLine } from 'react-icons/ri';
 
-export { MdOutlineLibraryMusic, BsPieChart, GiChart, BiRadio, BsNewspaper };
+export {
+    MdOutlineLibraryMusic,
+    TfiPieChart,
+    HiOutlineChartBar,
+    IoIosRadio,
+    BsNewspaper,
+    FiMusic,
+    BiCategoryAlt,
+    AiOutlineStar,
+    BsCameraVideo,
+    HiOutlinePlus,
+    BsArrowLeft,
+    BsArrowRight,
+    TfiSettings,
+    HiOutlineUpload,
+    RiVipDiamondLine,
+};
