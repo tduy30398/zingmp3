@@ -31,7 +31,7 @@ function Search() {
                 <span className="text-[#6E4D65] mr-[20px]">
                     <BsArrowRight size={24} />
                 </span>
-                <div className="flex items-center w-[540px] bg-[#5D3953] rounded-[20px] text-sm">
+                <div className="flex items-center w-[440px] bg-[#5D3953] rounded-[20px] text-sm">
                     <span className="text-text-color-2 ml-2 mr-1 cursor-pointer">
                         <MagnifyingGlassIcon />
                     </span>
@@ -43,7 +43,7 @@ function Search() {
                         placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát..."
                     />
                     {!!searchText && (
-                        <button onClick={handleClearSearch} className="ml-4 mb-1">
+                        <button onClick={handleClearSearch} className="mr-4 mb-1">
                             <ClearIcon />
                         </button>
                     )}
@@ -73,7 +73,7 @@ function Search() {
                 <button className="w-[38px] h-[38px] hover:opacity-80">
                     <img
                         className="rounded-[50%]"
-                        src="https://yt3.ggpht.com/ytc/AMLnZu-iQRFE3plQHVvY0cjlcb1My0eULzsCEZ87WPN2=s48-c-k-c0x00ffffff-no-rj"
+                        src="https://avatar.talk.zdn.vn/default.jpg"
                         alt="logo"
                     />
                 </button>

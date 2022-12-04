@@ -1,9 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
-import { publicRoutes } from './routes';
 import MainLayout from './layouts/MainLayout/MainLayout';
+import { publicRoutes } from './routes';
+import * as actions from './redux/actions';
 
 function App() {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(actions.getHome());
+    }, []);
     return (
         <Router>
             <Routes>

@@ -2,7 +2,14 @@ import { MdOutlineLibraryMusic } from 'react-icons/md';
 import { TfiPieChart, TfiSettings } from 'react-icons/tfi';
 import { HiOutlineChartBar, HiOutlinePlus, HiOutlineUpload } from 'react-icons/hi';
 import { IoIosRadio } from 'react-icons/io';
-import { BsNewspaper, BsCameraVideo, BsArrowLeft, BsArrowRight } from 'react-icons/bs';
+import {
+    BsNewspaper,
+    BsCameraVideo,
+    BsArrowLeft,
+    BsArrowRight,
+    BsChevronLeft,
+    BsChevronRight,
+} from 'react-icons/bs';
 import { FiMusic } from 'react-icons/fi';
 import { BiCategoryAlt } from 'react-icons/bi';
 import { AiOutlineStar } from 'react-icons/ai';
@@ -24,4 +31,6 @@ export {
     TfiSettings,
     HiOutlineUpload,
     RiVipDiamondLine,
+    BsChevronLeft,
+    BsChevronRight,
 };
