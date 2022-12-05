@@ -1,1 +1,3 @@
-export * from './home';
+import { getHomeApi } from './homeApi';
+
+export { getHomeApi };

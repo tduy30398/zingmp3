@@ -5,12 +5,12 @@ import { useEffect } from 'react';
 
 import MainLayout from './layouts/MainLayout/MainLayout';
 import { publicRoutes } from './routes';
-import * as actions from './redux/actions';
+import { getHome } from './redux/actions';
 
 function App() {
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(actions.getHome());
+        dispatch(getHome());
     }, []);
     return (
         <Router>

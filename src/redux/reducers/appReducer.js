@@ -9,7 +9,7 @@ const appReducer = (state = initState, action) => {
         case actionTypes.GET_HOME:
             return {
                 ...state,
-                banners: action.homeData?.find((item) => item.sectionType === 'banner').items,
+                banners: action.homeApi?.find((item) => item.sectionType === 'banner').items,
             };
 
         default:

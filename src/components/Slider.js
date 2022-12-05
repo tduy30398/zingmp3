@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { BsChevronLeft, BsChevronRight } from '../assets/icons';
+import { setCurrentSongId } from '../redux/actions';
 
 function Slider() {
     const { banners } = useSelector((state) => state.app);
+    const dispatch = useDispatch();
 
     const getArrSlider = (start, end, number) => {
         const limit = start > end ? number : end;
@@ -53,6 +55,13 @@ function Slider() {
             intervalId && clearInterval(intervalId);
         };
     }, []);
+
+    const handleClickBanner = (banner) => {
+        if (banner?.type === 1) {
+            dispatch(setCurrentSongId(banner.encodeId));
+        }
+    };
+
     return (
         <div className="w-full overflow-hidden px-[59px]">
             <div className="flex gap-8 pt-8 relative group">
@@ -61,6 +70,7 @@ function Slider() {
                         key={banner.encodeId}
                         src={banner.banner}
                         alt="banner"
+                        onClick={() => handleClickBanner(banner)}
                         className={`slider-item cursor-pointer flex-1 object-contain w-[30%] rounded-lg ${
                             index <= 2 ? 'block' : 'hidden'
                         }`}
