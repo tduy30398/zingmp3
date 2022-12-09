@@ -8,11 +8,13 @@ module.exports = {
                 'primary-color-2': '#411636',
                 'primary-color-3': '#4C1A3F',
                 'primary-color-4': '#4B2240',
+                'primary-color-5': '#542E4A',
                 'opacity-color-1': 'hsla(0,0%,100%,.15);',
             },
             textColor: {
                 'text-color-1': '#DADADA',
                 'text-color-2': '#FFFFFF',
+                'text-color-3': '#FFFFFF80',
             },
             keyframes: {
                 'slide-right': {

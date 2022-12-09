@@ -1,3 +1,4 @@
 import { getHomeApi } from './homeApi';
+import { getDetailSongApi, getSongApi } from './musicApi';
 
-export { getHomeApi };
+export { getHomeApi, getDetailSongApi, getSongApi };

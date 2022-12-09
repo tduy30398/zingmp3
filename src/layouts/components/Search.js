@@ -23,35 +23,40 @@ function Search() {
     };
 
     return (
-        <div className="fixed h-[70px] w-[calc(100%-570px)] px-[59px] flex items-center justify-between">
-            <div className="flex items-center">
-                <span className="text-[#6E4D65] mr-[20px]">
-                    <BsArrowLeft size={24} />
-                </span>
-                <span className="text-[#6E4D65] mr-[20px]">
-                    <BsArrowRight size={24} />
-                </span>
-                <div className="flex items-center w-[440px] bg-[#5D3953] rounded-[20px] text-sm">
-                    <span className="text-text-color-2 ml-2 mr-1 cursor-pointer">
-                        <MagnifyingGlassIcon />
+        <div className="w-full flex items-center justify-between">
+            <div className="flex w-full items-center">
+                <div className="flex">
+                    <span className="text-[#6E4D65] mr-[20px]">
+                        <BsArrowLeft size={24} />
                     </span>
-                    <input
-                        value={searchText}
-                        onChange={handleSearchChange}
-                        ref={inputRef}
-                        className="outline-none h-10 bg-transparent caret-white w-10/12 py-[5px] text-[#ebe6e9] placeholder-[#b8b0b5]"
-                        placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát..."
-                    />
-                    {!!searchText && (
-                        <button onClick={handleClearSearch} className="mr-4 mb-1">
-                            <ClearIcon />
-                        </button>
-                    )}
+                    <span className="text-[#6E4D65] mr-[20px]">
+                        <BsArrowRight size={24} />
+                    </span>
+                </div>
+                <div className="w-1/2">
+                    <div className="w-full flex items-center text-sm text-text-color-2 bg-primary-color-5 rounded-[20px]">
+                        <span className="h-10 pl-2 flex items-center justify-center text-text-color-2">
+                            <MagnifyingGlassIcon />
+                        </span>
+                        <input
+                            value={searchText}
+                            onChange={handleSearchChange}
+                            ref={inputRef}
+                            className="outline-none px-1 bg-primary-color-5 py-2 w-full caret-white h-10 placeholder-[#dbd0d9] rounded-r-[20px]"
+                            placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát..."
+                        />
+                        {!!searchText && (
+                            <button onClick={handleClearSearch} className="mr-4 mb-1">
+                                <ClearIcon />
+                            </button>
+                        )}
+                    </div>
                 </div>
             </div>
             <div className="flex items-center">
-                <button className="w-[38px] h-[38px] bg-[#542E4A] rounded-[50%] hover:opacity-80 mr-3">
+                <button className="w-[38px] h-[38px] bg-primary-color-5 rounded-[50%] hover:opacity-80 mr-3">
                     <a
+                        title="Nâng cấp VIP"
                         href="https://zingmp3.vn/vip?utm_source=desktop&utm_campaign=VIP&utm_medium=icon-header"
                         target="_blank"
                         rel="noreferrer"
@@ -60,13 +65,19 @@ function Search() {
                         <RiVipDiamondLine size={20} />
                     </a>
                 </button>
-                <button className="w-[38px] h-[38px] bg-[#542E4A] rounded-[50%] hover:opacity-80 mr-3">
-                    <span className="text-text-color-2 flex items-center justify-center">
+                <button className="w-[38px] h-[38px] bg-primary-color-5 rounded-[50%] hover:opacity-80 mr-3">
+                    <span
+                        title="Tải lên"
+                        className="text-text-color-2 flex items-center justify-center"
+                    >
                         <HiOutlineUpload size={20} />
                     </span>
                 </button>
-                <button className="w-[38px] h-[38px] bg-[#542E4A] rounded-[50%] hover:opacity-80 mr-3">
-                    <span className="text-text-color-2 flex items-center justify-center">
+                <button className="w-[38px] h-[38px] bg-primary-color-5 rounded-[50%] hover:opacity-80 mr-3">
+                    <span
+                        title="Cài đặt"
+                        className="text-text-color-2 flex items-center justify-center"
+                    >
                         <TfiSettings size={20} />
                     </span>
                 </button>
