@@ -10,6 +10,7 @@ import MV from './MV';
 import MySong from './MySong';
 import Playlist from './Playlist';
 import History from './History';
+import Album from './Album';
 
 export {
     Personal,
@@ -24,4 +25,5 @@ export {
     MySong,
     Playlist,
     History,
+    Album,
 };

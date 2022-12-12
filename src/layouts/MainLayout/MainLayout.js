@@ -8,16 +8,16 @@ function MainLayout({ children }) {
                     <Sidebar />
                 </div>
                 <div className="flex-auto">
-                    <div className="h-[70px] px-[59px] flex items-center mb-5">
+                    <div className="h-[70px] px-[59px] flex items-center">
                         <Search />
                     </div>
                     <div>{children}</div>
                 </div>
-                <div className="w-[330px] hidden 2xl:flex animate-slide-left flex-none border-l-[1px] border-[#5D3953]">
+                <div className="w-[330px] hidden 2xl:flex animate-slide-left flex-none border-l-[1px] border-border-color-1">
                     <Playlist />
                 </div>
             </div>
-            <div className="fixed bottom-0 left-0 right-0 h-[90px] border-t-[1px] border-[#5D3953]">
+            <div className="fixed bottom-0 left-0 right-0 h-[90px] border-t-[1px] border-border-color-1">
                 <MusicPlayer />
             </div>
         </div>

@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { BsChevronLeft, BsChevronRight } from '../assets/icons';
-import { setCurrentSongId } from '../redux/actions';
+import { setCurrentSongId, isPlay, setAlbumSongs } from '../redux/actions';
 
 function Slider() {
     const { banners } = useSelector((state) => state.app);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const getArrSlider = (start, end, number) => {
         const limit = start > end ? number : end;
@@ -59,6 +61,12 @@ function Slider() {
     const handleClickBanner = (banner) => {
         if (banner?.type === 1) {
             dispatch(setCurrentSongId(banner.encodeId));
+            dispatch(setAlbumSongs(null));
+            dispatch(isPlay(true));
+        } else if (banner?.type === 4) {
+            navigate(banner.link);
+        } else {
+            dispatch(setAlbumSongs(null));
         }
     };
 

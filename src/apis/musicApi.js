@@ -27,3 +27,17 @@ export const getDetailSongApi = (songId) =>
             reject(error);
         }
     });
+
+export const getDetailPlaylistApi = (playlistId) =>
+    new Promise(async (resolve, reject) => {
+        try {
+            const response = await httpRequest({
+                url: '/detailplaylist',
+                method: 'get',
+                params: { id: playlistId },
+            });
+            resolve(response);
+        } catch (error) {
+            reject(error);
+        }
+    });

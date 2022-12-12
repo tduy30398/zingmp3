@@ -40,7 +40,7 @@ function Sidebar() {
                 <MenuItem title="Radio" to={routes.radio} icon={<IoIosRadio size={24} />} />
                 <MenuItem title="Theo Dõi" to={routes.following} icon={<BsNewspaper size={24} />} />
             </div>
-            <div className="w-[190px] h-[1px] bg-[#5D3953] mx-auto"></div>
+            <div className="w-[190px] h-[1px] border-border-color-1 mx-auto"></div>
             <div className="mt-[10px] h-[342px] overflow-x-hidden overflow-y-scroll overflow-y-overlay scrollbar">
                 <MenuItem title="Nhạc Mới" to={routes.new} icon={<FiMusic size={24} />} />
                 <MenuItem title="Thể Loại" to={routes.hub} icon={<BiCategoryAlt size={24} />} />
@@ -66,7 +66,7 @@ function Sidebar() {
                     <MenuItem title="Gần đây" to={routes.history} icon={<HistoryIcon />} />
                 </div>
             </div>
-            <div className="w-full h-[1px] bg-[#5D3953] mx-auto"></div>
+            <div className="w-full h-[1px] border-border-color-1 mx-auto"></div>
             <div className="flex items-center h-[52px] text-text-color-2 hover:text-text-color-1 px-7 cursor-pointer">
                 <span className="mr-[10px]">
                     <HiOutlinePlus size={19} />

@@ -12,12 +12,15 @@ import {
     BsThreeDots,
     BsPlayCircle,
     BsPauseCircle,
+    BsMusicNoteBeamed,
+    BsSortDownAlt,
 } from 'react-icons/bs';
 import { FiMusic } from 'react-icons/fi';
 import { BiCategoryAlt, BiShuffle } from 'react-icons/bi';
 import { AiOutlineStar, AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { RiVipDiamondLine } from 'react-icons/ri';
 import { CiRepeat } from 'react-icons/ci';
+import { FaPlay } from 'react-icons/fa';
 
 export {
     MdOutlineLibraryMusic,
@@ -37,6 +40,7 @@ export {
     RiVipDiamondLine,
     BsChevronLeft,
     BsChevronRight,
+    BsMusicNoteBeamed,
     AiFillHeart,
     AiOutlineHeart,
     BsThreeDots,
@@ -46,4 +50,6 @@ export {
     BsPauseCircle,
     MdSkipNext,
     CiRepeat,
+    BsSortDownAlt,
+    FaPlay,
 };

@@ -11,4 +11,6 @@ export const routes = {
     mysong: '/mysong',
     playlist: '/playlist',
     history: '/history',
+    album: '/album/:title/:playlistId.html',
+    playlistAlbum: '/playlist/:title/:playlistId.html',
 };
