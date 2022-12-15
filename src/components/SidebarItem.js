@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
 
 const activeStyle =
-    'flex items-center h-10 px-[25px] py-2 text-text-color-2 border-border-color-1 border-l-[3px] border-[#CA4974] text-[13px] font-bold';
+    'flex items-center h-10 px-[25px] py-2 text-[13px] font-bold border-l-[3px] text-text-color-2 border-border-color-1 border-[#CA4974] bg-[#5D3954]';
 const nonActiveStyle =
-    'flex items-center h-10 px-[25px] py-2 text-text-color-1 hover:text-text-color-2 border-l-[3px] border-transparent text-[13px] font-bold';
-function MenuItem({ to, icon, title }) {
+    'flex items-center h-10 px-[25px] py-2 text-[13px] font-bold border-l-[3px] text-text-color-1 hover:text-text-color-2 border-transparent';
+function SidebarItem({ to, icon, title }) {
     return (
         <NavLink
             title={title}
@@ -17,4 +17,4 @@ function MenuItem({ to, icon, title }) {
     );
 }
 
-export default MenuItem;
+export default SidebarItem;

@@ -11,6 +11,7 @@ module.exports = {
                 'primary-color-5': '#542E4A',
                 'primary-color-6': '#825F79',
                 'primary-color-7': '#FFFFFF',
+                'overlay-40': 'rgba(0,0,0,0.4)',
                 'opacity-color-1': 'hsla(0,0%,100%,.15);',
             },
             textColor: {
@@ -30,6 +31,16 @@ module.exports = {
             },
             keyframes: {
                 'slide-right': {
+                    '0%': {
+                        '-webkit-transform': ' translateX(-500px);',
+                        transform: 'translateX(-500px);',
+                    },
+                    '100%': {
+                        '-webkit-transform': 'translateX(0);',
+                        transform: 'translateX(0);',
+                    },
+                },
+                'slide-right2': {
                     '0%': {
                         '-webkit-transform': ' translateX(-500px);',
                         transform: 'translateX(-500px);',
@@ -59,11 +70,35 @@ module.exports = {
                         transform: 'translateX(0);',
                     },
                 },
+                'rotate-center': {
+                    '0%': {
+                        '-webkit-transform': ' rotate(0);',
+                        transform: 'rotate(0);',
+                    },
+                    '100%': {
+                        '-webkit-transform': ' rotate(360deg);',
+                        transform: 'rotate(360deg);',
+                    },
+                },
+                'rotate-center-pause': {
+                    '0%': {
+                        '-webkit-transform': ' rotate(0);',
+                        transform: 'rotate(0);',
+                        'border-radius': '9999px',
+                    },
+                    '100%': {
+                        '-webkit-transform': ' rotate(360deg);',
+                        transform: 'rotate(360deg);',
+                    },
+                },
             },
             animation: {
-                'slide-right': 'slide-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;',
-                'slide-left': 'slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;',
-                'slide-left2': 'slide-left2 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;',
+                'slide-right': 'slide-right 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;',
+                'slide-right2': 'slide-right2 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;',
+                'slide-left': 'slide-left 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;',
+                'slide-left2': 'slide-left2 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;',
+                'rotate-center': 'rotate-center 10s linear infinite;',
+                'rotate-center-pause': 'rotate-center-pause 0.5s linear 1 both;',
             },
         },
     },

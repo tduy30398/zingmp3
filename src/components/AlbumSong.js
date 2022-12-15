@@ -17,15 +17,12 @@ function AlbumSong({ songInfo }) {
         dispatch(isPlay(true));
     };
 
-    const nonActiveStyle =
-        'flex justify-between p-[10px] border-b-[1px] border-border-color-2 hover:bg-[#542D4A] rounded-[4px] group';
-    const activeStyle =
-        'flex justify-between p-[10px] border-b-[1px] border-border-color-2 bg-[#542D4A] rounded-[4px] group';
-
     return (
         <div
             onDoubleClick={handleClickSong}
-            className={songInfo?.encodeId === currentSongId ? activeStyle : nonActiveStyle}
+            className={`flex justify-between p-[10px] border-b-[1px] border-border-color-2 rounded-[4px] group ${
+                songInfo?.encodeId === currentSongId ? 'bg-[#542D4A]' : 'hover:bg-[#542D4A]'
+            }`}
         >
             <div className="flex items-center flex-5">
                 <span className="mr-[10px] cursor-pointer">

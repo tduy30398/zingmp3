@@ -1,15 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
 
 import { getDetailPlaylistApi } from '../apis';
 import { TabTitle } from '../utils';
-import { AlbumPlaylist } from '../components';
+import { AlbumPlaylist, AudioLoading } from '../components';
 import { setAlbumSongs } from '../redux/actions';
+import { BsPlayCircle } from '../assets/icons';
 
 function Album() {
+    const { isPlaying } = useSelector((state) => state.music);
     const dispatch = useDispatch();
     const { playlistId } = useParams();
     const [playlistDetail, setPlaylistDetail] = useState({});
@@ -30,14 +32,32 @@ function Album() {
     }, [playlistId]);
 
     return (
-        <div className="flex gap-8 px-[59px] pt-5 w-full h-[calc(100vh-160px)] overflow-x-hidden overflow-y-scroll overflow-y-overlay scrollbar">
+        <div className="flex gap-8 px-[59px] pt-5 w-full h-[calc(100vh-160px)] overflow-x-hidden overflow-y-auto overflow-y-overlay scrollbar">
             {playlistDetail.artistsNames && (
                 <div className="flex-none w-[29.5%] flex flex-col">
-                    <img
-                        className="w-full object-contain rounded-lg shadow-lg cursor-pointer"
-                        src={playlistDetail?.thumbnailM}
-                        alt={playlistDetail?.artistsNames}
-                    />
+                    <div className="w-full relative">
+                        <img
+                            className={`w-full object-contain shadow-lg cursor-pointer ${
+                                isPlaying
+                                    ? `rounded-full animate-rotate-center`
+                                    : `rounded-lg animate-rotate-center-pause`
+                            }`}
+                            src={playlistDetail?.thumbnailM}
+                            alt={playlistDetail?.artistsNames}
+                        />
+                        <div className="absolute top-0 bottom-0 left-0 right-0 cursor-pointer hover:bg-overlay-40 group">
+                            {isPlaying ? (
+                                <div className="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] p-[10px] border-[1px] border-[#FFFFFF] rounded-full">
+                                    <AudioLoading height={'25'} width={'25'} color={'#FFFFFF'} />
+                                </div>
+                            ) : (
+                                ''
+                            )}
+                            <div className="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] text-text-color-2 opacity-0 group-hover:opacity-100">
+                                <BsPlayCircle size={45} />
+                            </div>
+                        </div>
+                    </div>
                     <div className="mt-3 text-center flex flex-col">
                         <h3 className="text-text-color-2 text-xl font-bold select-none">
                             {playlistDetail?.title}
@@ -46,7 +66,9 @@ function Album() {
                             .unix(playlistDetail?.contentLastUpdate)
                             .format('DD/MM/YYYY')}`}</span>
                         <span className="text-text-color-3 text-xs leading-5">
-                            {playlistDetail?.artistsNames}
+                            <span className="cursor-pointer hover:underline hover:text-text-color-primary-2">
+                                {playlistDetail?.artistsNames}
+                            </span>
                         </span>
                         <span className="text-text-color-3 text-xs leading-5 select-none">{`${Math.round(
                             playlistDetail?.like / 1000,

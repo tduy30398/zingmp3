@@ -1,15 +1,22 @@
-import { useEffect } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { BsChevronLeft, BsChevronRight } from '../assets/icons';
 import { setCurrentSongId, isPlay, setAlbumSongs } from '../redux/actions';
 
+var intervalId;
 function Slider() {
     const { banners } = useSelector((state) => state.app);
+    const [min, setMin] = useState(0);
+    const [max, setMax] = useState(2);
+    const [isAuto, setIsAuto] = useState(true);
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    // Lấy ra array các banner hiện lên màn hình
     const getArrSlider = (start, end, number) => {
         const limit = start > end ? number : end;
         const output = [];
@@ -25,39 +32,79 @@ function Slider() {
     };
 
     useEffect(() => {
-        const sliderEls = document.getElementsByClassName('slider-item');
-        let min = 0;
-        let max = 2;
-        const intervalId = setInterval(() => {
-            const list = getArrSlider(min, max, sliderEls.length - 1);
-            for (let i = 0; i < sliderEls.length; i++) {
-                sliderEls[i].classList.remove('animate-slide-right', 'order-last', 'z-0');
-                sliderEls[i].classList.remove('animate-slide-left', 'order-first', 'z-10');
-                sliderEls[i].classList.remove('animate-slide-left2', 'order-2', 'z-10');
-
-                if (list.some((item) => item === i)) {
-                    sliderEls[i].style.cssText = 'display: block';
-                } else {
-                    sliderEls[i].style.cssText = 'display: none';
-                }
-            }
-            list.forEach((item) => {
-                if (item === max) {
-                    sliderEls[item]?.classList.add('animate-slide-right', 'order-last', 'z-0');
-                } else if (item === min) {
-                    sliderEls[item]?.classList.add('animate-slide-left', 'order-first', 'z-10');
-                } else {
-                    sliderEls[item]?.classList.add('animate-slide-left2', 'order-2', 'z-10');
-                }
-            });
-            min = min === sliderEls.length - 1 ? 0 : min + 1;
-            max = max === sliderEls.length - 1 ? 0 : max + 1;
-        }, 4000);
+        // Ở lần đầu hoặc sau khi leave chuột khỏi các banner, các banner sẽ
+        // slide theo chiều tăng dần
+        if (isAuto) {
+            intervalId = setInterval(() => {
+                slideNextBanner();
+            }, 4000);
+        }
         return () => {
             intervalId && clearInterval(intervalId);
         };
-    }, []);
+    }, [min, max, isAuto]);
 
+    const slideNextBanner = () => {
+        const sliderEls = document.getElementsByClassName('slider-item');
+        const list = getArrSlider(min, max, sliderEls.length - 1);
+        for (let i = 0; i < sliderEls.length; i++) {
+            sliderEls[i].classList.remove('animate-slide-left', 'order-0', 'z-0');
+            sliderEls[i].classList.remove('animate-slide-right', 'order-2', 'z-10');
+            sliderEls[i].classList.remove('animate-slide-right2', 'order-1', 'z-10');
+            sliderEls[i].classList.remove('animate-slide-right', 'order-2', 'z-0');
+            sliderEls[i].classList.remove('animate-slide-left', 'order-0', 'z-10');
+            sliderEls[i].classList.remove('animate-slide-left2', 'order-1', 'z-10');
+
+            if (list.some((item) => item === i)) {
+                sliderEls[i].style.cssText = 'display: block';
+            } else {
+                sliderEls[i].style.cssText = 'display: none';
+            }
+        }
+        list.forEach((item) => {
+            if (item === max) {
+                sliderEls[item]?.classList.add('animate-slide-right', 'order-2', 'z-0');
+            } else if (item === min) {
+                sliderEls[item]?.classList.add('animate-slide-left', 'order-0', 'z-10');
+            } else {
+                sliderEls[item]?.classList.add('animate-slide-left2', 'order-1', 'z-10');
+            }
+        });
+        setMin((prev) => (prev === sliderEls.length - 1 ? 0 : prev + 1));
+        setMax((prev) => (prev === sliderEls.length - 1 ? 0 : prev + 1));
+    };
+
+    const slidePrevBanner = () => {
+        const sliderEls = document.getElementsByClassName('slider-item');
+        const list = getArrSlider(min, max, sliderEls.length - 1);
+        for (let i = 0; i < sliderEls.length; i++) {
+            sliderEls[i].classList.remove('animate-slide-left', 'order-0', 'z-0');
+            sliderEls[i].classList.remove('animate-slide-right', 'order-2', 'z-10');
+            sliderEls[i].classList.remove('animate-slide-right2', 'order-1', 'z-10');
+            sliderEls[i].classList.remove('animate-slide-right', 'order-2', 'z-0');
+            sliderEls[i].classList.remove('animate-slide-left', 'order-0', 'z-10');
+            sliderEls[i].classList.remove('animate-slide-left2', 'order-1', 'z-10');
+
+            if (list.some((item) => item === i)) {
+                sliderEls[i].style.cssText = 'display: block';
+            } else {
+                sliderEls[i].style.cssText = 'display: none';
+            }
+        }
+        list.forEach((item) => {
+            if (item === min) {
+                sliderEls[item]?.classList.add('animate-slide-left', 'order-0', 'z-0');
+            } else if (item === max) {
+                sliderEls[item]?.classList.add('animate-slide-right', 'order-2', 'z-10');
+            } else {
+                sliderEls[item]?.classList.add('animate-slide-right2', 'order-1', 'z-10');
+            }
+        });
+        setMin((prev) => (prev === 0 ? sliderEls.length - 1 : prev - 1));
+        setMax((prev) => (prev === 0 ? sliderEls.length - 1 : prev - 1));
+    };
+
+    // Handle when click on banner
     const handleClickBanner = (banner) => {
         if (banner?.type === 1) {
             dispatch(setCurrentSongId(banner.encodeId));
@@ -70,9 +117,21 @@ function Slider() {
         }
     };
 
+    // Handle when click on next banner button
+    const handleSlideNextBanner = () => {
+        setIsAuto(false);
+        slideNextBanner();
+    };
+
+    // Handle when click on previous banner button
+    const handleSlidePrevBanner = () => {
+        setIsAuto(false);
+        slidePrevBanner();
+    };
+
     return (
         <div className="w-full overflow-hidden px-[59px]">
-            <div className="flex gap-8 pt-8 relative group">
+            <div onMouseLeave={() => setIsAuto(true)} className="flex gap-8 pt-8 relative group">
                 {banners?.map((banner, index) => (
                     <img
                         key={banner.encodeId}
@@ -84,10 +143,16 @@ function Slider() {
                         }`}
                     />
                 ))}
-                <div className="z-20 flex justify-center items-center w-[55px] h-[55px] cursor-pointer text-text-color-2 rounded-[50%] absolute top-[45%] left-[15px] bg-opacity-color-1 opacity-0 group-hover:opacity-100 hover:text-text-color-1">
+                <div
+                    className="z-20 flex justify-center items-center w-[55px] h-[55px] cursor-pointer text-text-color-2 rounded-full absolute top-[45%] left-[15px] bg-opacity-color-1 opacity-0 group-hover:opacity-100 hover:text-text-color-1"
+                    onClick={() => handleSlidePrevBanner()}
+                >
                     <BsChevronLeft size={28} />
                 </div>
-                <div className="z-20 flex justify-center items-center w-[55px] h-[55px] cursor-pointer text-text-color-2 rounded-[50%] absolute top-[45%] right-[15px] bg-opacity-color-1 opacity-0 group-hover:opacity-100 hover:text-text-color-1">
+                <div
+                    className="z-20 flex justify-center items-center w-[55px] h-[55px] cursor-pointer text-text-color-2 rounded-full absolute top-[45%] right-[15px] bg-opacity-color-1 opacity-0 group-hover:opacity-100 hover:text-text-color-1"
+                    onClick={() => handleSlideNextBanner()}
+                >
                     <BsChevronRight size={28} />
                 </div>
             </div>

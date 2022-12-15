@@ -1,6 +1,8 @@
-import MenuItem from './MenuItem';
+import SidebarItem from './SidebarItem';
 import Slider from './Slider';
 import AlbumPlaylist from './AlbumPlaylist';
 import AlbumSong from './AlbumSong';
+import AudioLoading from './AudioLoading';
+import RotatingLinesLoading from './RotatingLinesLoading';
 
-export { MenuItem, Slider, AlbumPlaylist, AlbumSong };
+export { SidebarItem, Slider, AudioLoading, AlbumPlaylist, AlbumSong, RotatingLinesLoading };

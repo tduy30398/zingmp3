@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import moment from 'moment';
 
 import { getDetailSongApi, getSongApi } from '../../apis';
 import {
@@ -16,27 +15,31 @@ import {
     CiRepeat,
 } from '../../assets/icons';
 import { isPlay, setCurrentSongId } from '../../redux/actions';
+import { PlayerProgressBar } from '../components';
+import { RotatingLinesLoading } from '../../components';
 
-var intervalId;
 function MusicPlayer() {
     const { currentSongId, isPlaying, albumSongs } = useSelector((state) => state.music);
     const [songInfo, setSongInfo] = useState(null);
-    const [second, setSecond] = useState(0);
+    const [isShuffle, setIsShuffle] = useState(false);
+    const [isRepeat, setIsRepeat] = useState(false);
+    const [isEnd, setIsEnd] = useState(false);
+    const [isLoadingSong, setIsLoadingSong] = useState(false);
     const [audio, setAudio] = useState(new Audio());
-
-    // thumb là thanh chạy ở trên
-    const thumbRef = useRef();
-    // track là thanh nằm yên ở dưới
-    const trackRef = useRef();
 
     const dispatch = useDispatch();
 
+    // Call API
     useEffect(() => {
         const fetchDetailSong = async () => {
+            // Set icon loading tại play button khi bắt đầu gọi API
+            setIsLoadingSong(true);
             const [res1, res2] = await Promise.all([
                 getDetailSongApi(currentSongId),
                 getSongApi(currentSongId),
             ]);
+            // Ẩn icon loading tại play button khi gọi API xong
+            setIsLoadingSong(false);
             if (res1.data.err === 0) {
                 setSongInfo(res1.data.data);
             }
@@ -53,25 +56,25 @@ function MusicPlayer() {
         fetchDetailSong();
     }, [currentSongId]);
 
+    // Handle when end song
     useEffect(() => {
-        audio.pause();
-        audio.load();
-        if (isPlaying) {
-            audio.play();
-        }
-        intervalId = setInterval(() => {
-            // lấy ra phần trăm đã chạy được của bài hát và set tỉ lệ vào thumb bar
-            let percent = Math.round((audio.currentTime * 10000) / songInfo?.duration) / 100;
-            // Do đang set position là right, và đang muốn thumb bar chạy từ trái sang phải
-            // => phần trăm phải chạy từ 100 về 0
-            thumbRef.current.style.cssText = `right: ${100 - percent}%`;
-            setSecond(Math.round(audio.currentTime));
-        }, 200);
+        const handleEnded = () => {
+            setIsEnd((prev) => !prev);
+            if (isRepeat) {
+                audio.play();
+                dispatch(isPlay(true));
+            } else if (isShuffle) {
+                randomSong();
+            } else {
+                handleNextSong();
+            }
+        };
+        audio.addEventListener('ended', handleEnded);
 
         return () => {
-            intervalId && clearInterval(intervalId);
+            audio.removeEventListener('ended', handleEnded);
         };
-    }, [audio]);
+    }, [audio, isEnd, isRepeat, isShuffle]);
 
     const handleTogglePlaying = () => {
         if (isPlaying) {
@@ -83,25 +86,10 @@ function MusicPlayer() {
         }
     };
 
-    // Handle when click on progress bar
-    const handleClickProgress = (e) => {
-        console.log('sss');
-        const trackRect = trackRef.current.getBoundingClientRect();
-        // e.clientX là tọa độ theo chiều x tại vị trí click của trackbar
-        // trackRect.left là tọa độ vị trí tận cùng bên trái của trackbar
-        // trackRect.width là width của trackbar
-        // Ý tưởng: lấy e.clientX trừ đi trackRect.left => ra khoảng cách từ
-        // điểm click đến vị trí left và chia cho trackRect.width => sẽ ra tỉ
-        // lệ: khoảng cách từ điểm click đến vị trí left so với width của trackbar
-        const percent = Math.round(((e.clientX - trackRect.left) * 10000) / trackRect.width) / 100;
-        // set percent vào thumb bar
-        thumbRef.current.style.cssText = `right: ${100 - percent}%`;
-        // ở trên , ta lấy ra percent bằng công thức: percent = (time * 100) / duration
-        // ở đây, ta lấy lại time (s) bằng công thức: time = (percent * duration) / 100
-        const time = (percent * songInfo.duration) / 100;
-        // sau khi có time (s), ta set lại cho audio.currentTime và second
-        audio.currentTime = time;
-        setSecond(Math.round(time));
+    const randomSong = () => {
+        const randomIndex = Math.round(Math.random() * albumSongs?.length) - 1;
+        dispatch(setCurrentSongId(albumSongs[randomIndex].encodeId));
+        dispatch(isPlay(true));
     };
 
     // Handle when click on next button
@@ -130,6 +118,16 @@ function MusicPlayer() {
             dispatch(setCurrentSongId(albumSongs[currentSongIndex - 1]?.encodeId));
             dispatch(isPlay(true));
         }
+    };
+
+    // Handle when click on shuffle button
+    const handleShuffleSong = () => {
+        setIsShuffle((prev) => !prev);
+    };
+
+    // Handle when click on repeat button
+    const handleRepeatSong = () => {
+        setIsRepeat((prev) => !prev);
     };
 
     return (
@@ -168,15 +166,15 @@ function MusicPlayer() {
                 <div className="flex items-center justify-center text-text-color-2 gap-7">
                     <span
                         title="Bật phát ngẫu nhiên"
-                        className={
-                            albumSongs
-                                ? 'p-1 hover:bg-opacity-color-1 rounded-full'
-                                : 'text-[#67455E] cursor-not-allowed'
-                        }
+                        className={`p-1 hover:bg-opacity-color-1 rounded-full ${
+                            isShuffle ? 'text-text-color-primary-1' : 'text-text-color-2'
+                        }`}
+                        onClick={handleShuffleSong}
                     >
                         <BiShuffle size={24} />
                     </span>
                     <span
+                        title="Bài trước đó"
                         onClick={handlePrevSong}
                         className={
                             albumSongs
@@ -187,9 +185,18 @@ function MusicPlayer() {
                         <MdSkipPrevious size={28} />
                     </span>
                     <span className="hover:text-text-color-primary-1" onClick={handleTogglePlaying}>
-                        {isPlaying ? <BsPauseCircle size={36} /> : <BsPlayCircle size={36} />}
+                        {isLoadingSong ? (
+                            <div className="p-[5px] border-[3px] border-[#FFFFFF] rounded-full">
+                                <RotatingLinesLoading />
+                            </div>
+                        ) : isPlaying ? (
+                            <BsPauseCircle size={36} />
+                        ) : (
+                            <BsPlayCircle size={36} />
+                        )}
                     </span>
                     <span
+                        title="Bài tiếp theo"
                         onClick={handleNextSong}
                         className={
                             albumSongs
@@ -200,30 +207,16 @@ function MusicPlayer() {
                         <MdSkipNext size={28} />
                     </span>
                     <span
-                        title="Bật phát lại tất cả"
-                        className="p-1 hover:bg-opacity-color-1 rounded-full"
+                        title="Bật phát lại bài hiện tại"
+                        className={`p-1 hover:bg-opacity-color-1 rounded-full ${
+                            isRepeat ? 'text-text-color-primary-1' : 'text-text-color-2'
+                        }`}
+                        onClick={handleRepeatSong}
                     >
                         <CiRepeat size={26} />
                     </span>
                 </div>
-                <div className="w-full flex justify-center items-center gap-[10px]">
-                    <span className="text-text-color-3 text-xs font-medium">
-                        {moment.utc(second * 1000).format('mm:ss')}
-                    </span>
-                    <div
-                        onClick={handleClickProgress}
-                        ref={trackRef}
-                        className="w-4/5 h-1 rounded-full bg-primary-color-6 relative hover:h-[6px] group"
-                    >
-                        <div
-                            ref={thumbRef}
-                            className="absolute top-0 left-0 h-1 rounded-full bg-primary-color-7 hover:h-[6px] group-hover:h-[6px]"
-                        ></div>
-                    </div>
-                    <span className="text-text-color-2 text-xs font-medium">
-                        {moment.utc(songInfo?.duration * 1000).format('mm:ss')}
-                    </span>
-                </div>
+                <PlayerProgressBar audio={audio} songInfo={songInfo} />
             </div>
             <div className="w-[30%] flex-auto">Volume</div>
         </div>
