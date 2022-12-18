@@ -4,6 +4,7 @@ const initState = {
     currentSongId: null,
     isPlaying: false,
     albumSongs: null,
+    isLoading: false,
 };
 
 const musicReducer = (state = initState, action) => {
@@ -13,10 +14,15 @@ const musicReducer = (state = initState, action) => {
                 ...state,
                 currentSongId: action.songId,
             };
-        case actionTypes.PLAY:
+        case actionTypes.IS_PLAYING:
             return {
                 ...state,
                 isPlaying: action.flag,
+            };
+        case actionTypes.IS_LOADING:
+            return {
+                ...state,
+                isLoading: action.flag,
             };
         case actionTypes.SET_PLAYLIST:
             return {

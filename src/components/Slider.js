@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { BsChevronLeft, BsChevronRight } from '../assets/icons';
-import { setCurrentSongId, isPlay, setAlbumSongs } from '../redux/actions';
+import { setCurrentSongId, setIsPlaying, setAlbumSongs } from '../redux/actions';
 
 var intervalId;
 function Slider() {
@@ -109,7 +109,7 @@ function Slider() {
         if (banner?.type === 1) {
             dispatch(setCurrentSongId(banner.encodeId));
             dispatch(setAlbumSongs(null));
-            dispatch(isPlay(true));
+            dispatch(setIsPlaying(true));
         } else if (banner?.type === 4) {
             navigate(banner.link);
         } else {

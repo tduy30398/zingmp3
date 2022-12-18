@@ -4,7 +4,7 @@ export const getHomeApi = () =>
     new Promise(async (resolve, reject) => {
         try {
             const response = await httpRequest({
-                url: '/home',
+                url: 'home',
                 method: 'get',
             });
             resolve(response);

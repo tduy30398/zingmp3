@@ -4,7 +4,7 @@ export const getSongApi = (songId) =>
     new Promise(async (resolve, reject) => {
         try {
             const response = await httpRequest({
-                url: '/song',
+                url: 'song',
                 method: 'get',
                 params: { id: songId },
             });
@@ -18,7 +18,7 @@ export const getDetailSongApi = (songId) =>
     new Promise(async (resolve, reject) => {
         try {
             const response = await httpRequest({
-                url: '/infosong',
+                url: 'infosong',
                 method: 'get',
                 params: { id: songId },
             });
@@ -32,7 +32,7 @@ export const getDetailPlaylistApi = (playlistId) =>
     new Promise(async (resolve, reject) => {
         try {
             const response = await httpRequest({
-                url: '/detailplaylist',
+                url: 'detailplaylist',
                 method: 'get',
                 params: { id: playlistId },
             });

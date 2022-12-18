@@ -4,17 +4,17 @@ import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 
 import { BsMusicNoteBeamed, FaPlay } from '../assets/icons';
-import { setCurrentSongId } from '../redux/actions';
-import { isPlay } from '../redux/actions';
+import { setCurrentSongId, setIsPlaying } from '../redux/actions';
+import { AudioLoading } from '../components';
 
 function AlbumSong({ songInfo }) {
-    const { currentSongId } = useSelector((state) => state.music);
+    const { currentSongId, isPlaying } = useSelector((state) => state.music);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleClickSong = () => {
         dispatch(setCurrentSongId(songInfo.encodeId));
-        dispatch(isPlay(true));
+        dispatch(setIsPlaying(true));
     };
 
     return (
@@ -25,7 +25,7 @@ function AlbumSong({ songInfo }) {
             }`}
         >
             <div className="flex items-center flex-5">
-                <span className="mr-[10px] cursor-pointer">
+                <span className="mr-[10px]">
                     <BsMusicNoteBeamed size={15} />
                 </span>
                 <div
@@ -37,9 +37,20 @@ function AlbumSong({ songInfo }) {
                         src={songInfo.thumbnail}
                         alt={songInfo.title}
                     />
-                    <span className="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] text-text-color-2 hidden group-hover:block">
+                    <span className="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] text-text-color-2 cursor-pointer hidden group-hover:block">
                         <FaPlay size={16} />
                     </span>
+                    {songInfo?.encodeId === currentSongId ? (
+                        <span className="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] text-text-color-2 cursor-pointer">
+                            {isPlaying ? (
+                                <AudioLoading height={'25'} width={'25'} color={'#FFFFFF'} />
+                            ) : (
+                                <FaPlay size={16} />
+                            )}
+                        </span>
+                    ) : (
+                        ''
+                    )}
                 </div>
                 <div className="flex flex-col">
                     <span className="text-sm font-semibold leading-5 text-text-color-2 select-none">

@@ -11,7 +11,9 @@ module.exports = {
                 'primary-color-5': '#542E4A',
                 'primary-color-6': '#825F79',
                 'primary-color-7': '#FFFFFF',
+                'primary-hover-color-1': '#B64268',
                 'overlay-40': 'rgba(0,0,0,0.4)',
+                'overlay-50': 'rgba(0,0,0,0.5)',
                 'opacity-color-1': 'hsla(0,0%,100%,.15);',
             },
             textColor: {

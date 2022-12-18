@@ -6,12 +6,12 @@ import moment from 'moment';
 
 import { getDetailPlaylistApi } from '../apis';
 import { TabTitle } from '../utils';
-import { AlbumPlaylist, AudioLoading } from '../components';
-import { setAlbumSongs } from '../redux/actions';
+import { AlbumPlaylist, AudioLoading, RotatingLinesLoading } from '../components';
+import { setAlbumSongs, setIsLoading } from '../redux/actions';
 import { BsPlayCircle } from '../assets/icons';
 
 function Album() {
-    const { isPlaying } = useSelector((state) => state.music);
+    const { isPlaying, isLoading } = useSelector((state) => state.music);
     const dispatch = useDispatch();
     const { playlistId } = useParams();
     const [playlistDetail, setPlaylistDetail] = useState({});
@@ -22,7 +22,9 @@ function Album() {
 
     useEffect(() => {
         const fetchDetailPlaylist = async () => {
+            dispatch(setIsLoading(true));
             const response = await getDetailPlaylistApi(playlistId);
+            dispatch(setIsLoading(false));
             if (response?.data.err === 0) {
                 setPlaylistDetail(response.data.data);
                 dispatch(setAlbumSongs(response.data.data.song.items));
@@ -32,7 +34,14 @@ function Album() {
     }, [playlistId]);
 
     return (
-        <div className="flex gap-8 px-[59px] pt-5 w-full h-[calc(100vh-160px)] overflow-x-hidden overflow-y-auto overflow-y-overlay scrollbar">
+        <div className="flex relative gap-8 px-[59px] pt-5 w-full h-[calc(100vh-160px)] overflow-x-hidden overflow-y-auto overflow-y-overlay scrollbar">
+            {isLoading && (
+                <div className="absolute left-0 right-0 top-0 bottom-0 bg-primary-color-2 z-20">
+                    <div className="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%]">
+                        <RotatingLinesLoading height={'50'} width={'50'} color={'#FFFFFF'} />
+                    </div>
+                </div>
+            )}
             {playlistDetail.artistsNames && (
                 <div className="flex-none w-[29.5%] flex flex-col">
                     <div className="w-full relative">
@@ -45,7 +54,11 @@ function Album() {
                             src={playlistDetail?.thumbnailM}
                             alt={playlistDetail?.artistsNames}
                         />
-                        <div className="absolute top-0 bottom-0 left-0 right-0 cursor-pointer hover:bg-overlay-40 group">
+                        <div
+                            className={`absolute top-0 bottom-0 left-0 right-0 cursor-pointer group  ${
+                                !isPlaying ? 'hover:bg-overlay-40' : ''
+                            }`}
+                        >
                             {isPlaying ? (
                                 <div className="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] p-[10px] border-[1px] border-[#FFFFFF] rounded-full">
                                     <AudioLoading height={'25'} width={'25'} color={'#FFFFFF'} />
@@ -53,7 +66,11 @@ function Album() {
                             ) : (
                                 ''
                             )}
-                            <div className="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] text-text-color-2 opacity-0 group-hover:opacity-100">
+                            <div
+                                className={`absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] text-text-color-2 opacity-0 ${
+                                    !isPlaying ? 'group-hover:opacity-100' : ''
+                                }`}
+                            >
                                 <BsPlayCircle size={45} />
                             </div>
                         </div>

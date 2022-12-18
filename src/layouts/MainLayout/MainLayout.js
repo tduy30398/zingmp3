@@ -1,6 +1,8 @@
-import { Sidebar, MusicPlayer, Playlist, Search } from '../components';
+import { useState } from 'react';
+import { Sidebar, MusicPlayer, RightSidebarPlaylist, Search } from '../components';
 
 function MainLayout({ children }) {
+    const [isShowRightSidebar, setIsShowRightSidebar] = useState(true);
     return (
         <div className="w-full relative h-screen flex flex-col bg-primary-color-2">
             <div className="w-full h-full flex flex-auto">
@@ -13,12 +15,14 @@ function MainLayout({ children }) {
                     </div>
                     <div>{children}</div>
                 </div>
-                <div className="w-[330px] hidden 2xl:flex animate-slide-left flex-none border-l-[1px] border-border-color-1">
-                    <Playlist />
-                </div>
+                {isShowRightSidebar && (
+                    <div className="w-[330px] flex-none border-l-[1px] border-border-color-1 animate-slide-left">
+                        <RightSidebarPlaylist />
+                    </div>
+                )}
             </div>
             <div className="fixed bottom-0 left-0 right-0 h-[90px] border-t-[1px] border-border-color-1">
-                <MusicPlayer />
+                <MusicPlayer setIsShowRightSidebar={setIsShowRightSidebar} />
             </div>
         </div>
     );

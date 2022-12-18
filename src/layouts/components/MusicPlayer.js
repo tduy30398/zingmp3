@@ -13,18 +13,24 @@ import {
     BsPauseCircle,
     MdSkipNext,
     CiRepeat,
+    MdOutlineQueueMusic,
+    BiVolumeFull,
+    BiVolumeMute,
+    TbMicrophone2,
+    SlScreenDesktop,
 } from '../../assets/icons';
-import { isPlay, setCurrentSongId } from '../../redux/actions';
+import { setIsPlaying, setCurrentSongId } from '../../redux/actions';
 import { PlayerProgressBar } from '../components';
 import { RotatingLinesLoading } from '../../components';
 
-function MusicPlayer() {
+function MusicPlayer({ setIsShowRightSidebar }) {
     const { currentSongId, isPlaying, albumSongs } = useSelector((state) => state.music);
     const [songInfo, setSongInfo] = useState(null);
     const [isShuffle, setIsShuffle] = useState(false);
     const [isRepeat, setIsRepeat] = useState(false);
     const [isEnd, setIsEnd] = useState(false);
     const [isLoadingSong, setIsLoadingSong] = useState(false);
+    const [volume, setVolume] = useState(50);
     const [audio, setAudio] = useState(new Audio());
 
     const dispatch = useDispatch();
@@ -32,6 +38,7 @@ function MusicPlayer() {
     // Call API
     useEffect(() => {
         const fetchDetailSong = async () => {
+            audio.pause();
             // Set icon loading tại play button khi bắt đầu gọi API
             setIsLoadingSong(true);
             const [res1, res2] = await Promise.all([
@@ -41,6 +48,7 @@ function MusicPlayer() {
             // Ẩn icon loading tại play button khi gọi API xong
             setIsLoadingSong(false);
             if (res1.data.err === 0) {
+                audio.pause();
                 setSongInfo(res1.data.data);
             }
             if (res2.data.err === 0) {
@@ -49,7 +57,7 @@ function MusicPlayer() {
             } else {
                 audio.pause();
                 setAudio(new Audio());
-                dispatch(isPlay(false));
+                dispatch(setIsPlaying(false));
                 toast.warn(res2.data.msg);
             }
         };
@@ -62,7 +70,7 @@ function MusicPlayer() {
             setIsEnd((prev) => !prev);
             if (isRepeat) {
                 audio.play();
-                dispatch(isPlay(true));
+                dispatch(setIsPlaying(true));
             } else if (isShuffle) {
                 randomSong();
             } else {
@@ -76,20 +84,38 @@ function MusicPlayer() {
         };
     }, [audio, isEnd, isRepeat, isShuffle]);
 
+    // Handle when press space button on keyboard
+    useEffect(() => {
+        const detectKeyDown = (e) => {
+            if (e.keyCode === 32) {
+                handleTogglePlaying();
+            }
+        };
+        document.addEventListener('keydown', detectKeyDown);
+
+        return () => {
+            document.removeEventListener('keydown', detectKeyDown);
+        };
+    }, [isPlaying, audio]);
+
+    useEffect(() => {
+        audio.volume = volume / 100;
+    }, [volume]);
+
     const handleTogglePlaying = () => {
         if (isPlaying) {
             audio.pause();
-            dispatch(isPlay(false));
+            dispatch(setIsPlaying(false));
         } else {
             audio.play();
-            dispatch(isPlay(true));
+            dispatch(setIsPlaying(true));
         }
     };
 
     const randomSong = () => {
         const randomIndex = Math.round(Math.random() * albumSongs?.length) - 1;
         dispatch(setCurrentSongId(albumSongs[randomIndex].encodeId));
-        dispatch(isPlay(true));
+        dispatch(setIsPlaying(true));
     };
 
     // Handle when click on next button
@@ -102,7 +128,7 @@ function MusicPlayer() {
                 }
             });
             dispatch(setCurrentSongId(albumSongs[currentSongIndex + 1]?.encodeId));
-            dispatch(isPlay(true));
+            dispatch(setIsPlaying(true));
         }
     };
 
@@ -116,7 +142,7 @@ function MusicPlayer() {
                 }
             });
             dispatch(setCurrentSongId(albumSongs[currentSongIndex - 1]?.encodeId));
-            dispatch(isPlay(true));
+            dispatch(setIsPlaying(true));
         }
     };
 
@@ -130,11 +156,15 @@ function MusicPlayer() {
         setIsRepeat((prev) => !prev);
     };
 
+    const handleToggleVolume = () => {
+        setVolume((prev) => (+prev === 0 ? 50 : 0));
+    };
+
     return (
         <div className="bg-primary-color-3 px-5 h-full flex cursor-pointer">
             <div className="w-[30%] flex-auto flex items-center">
                 <img
-                    src={songInfo?.thumbnail}
+                    src={songInfo?.thumbnail || `https://avatar.talk.zdn.vn/default.jpg`}
                     className="w-16 h-16 object-cover rounded-md mr-[10px]"
                     alt="thumbnail"
                 />
@@ -165,10 +195,14 @@ function MusicPlayer() {
             <div className="w-[40%] flex-auto flex flex-col items-center justify-center gap-4">
                 <div className="flex items-center justify-center text-text-color-2 gap-7">
                     <span
-                        title="Bật phát ngẫu nhiên"
-                        className={`p-1 hover:bg-opacity-color-1 rounded-full ${
-                            isShuffle ? 'text-text-color-primary-1' : 'text-text-color-2'
-                        }`}
+                        title={isShuffle ? 'Tắt phát ngẫu nhiên' : 'Bật phát ngẫu nhiên'}
+                        className={
+                            albumSongs
+                                ? `p-1 hover:bg-opacity-color-1 rounded-full ${
+                                      isShuffle ? 'text-text-color-primary-1' : 'text-text-color-2'
+                                  }`
+                                : 'text-[#67455E] cursor-not-allowed'
+                        }
                         onClick={handleShuffleSong}
                     >
                         <BiShuffle size={24} />
@@ -186,8 +220,8 @@ function MusicPlayer() {
                     </span>
                     <span className="hover:text-text-color-primary-1" onClick={handleTogglePlaying}>
                         {isLoadingSong ? (
-                            <div className="p-[5px] border-[3px] border-[#FFFFFF] rounded-full">
-                                <RotatingLinesLoading />
+                            <div className="p-[5px] border-[3px] border-[#FFFFFF] rounded-full cursor-not-allowed">
+                                <RotatingLinesLoading width={20} />
                             </div>
                         ) : isPlaying ? (
                             <BsPauseCircle size={36} />
@@ -207,7 +241,7 @@ function MusicPlayer() {
                         <MdSkipNext size={28} />
                     </span>
                     <span
-                        title="Bật phát lại bài hiện tại"
+                        title={isRepeat ? 'Tắt phát lại bài hiện tại' : 'Bật phát lại bài hiện tại'}
                         className={`p-1 hover:bg-opacity-color-1 rounded-full ${
                             isRepeat ? 'text-text-color-primary-1' : 'text-text-color-2'
                         }`}
@@ -218,7 +252,51 @@ function MusicPlayer() {
                 </div>
                 <PlayerProgressBar audio={audio} songInfo={songInfo} />
             </div>
-            <div className="w-[30%] flex-auto">Volume</div>
+            <div className="w-[30%] flex-auto flex justify-end items-center">
+                <div className="flex">
+                    <div className="flex items-center pr-5 gap-1 border-r-[1px] border-border-color-1">
+                        <span
+                            title="Xem lời bài hát"
+                            className="text-text-color-2 p-1 mx-[1px] hover:bg-opacity-color-1 rounded-full"
+                        >
+                            <TbMicrophone2 size={18} />
+                        </span>
+                        <span
+                            title="Chế độ cửa sổ"
+                            className="text-text-color-2 p-1 mx-[1px] hover:bg-opacity-color-1 rounded-full"
+                        >
+                            <SlScreenDesktop size={18} />
+                        </span>
+                        <span
+                            onClick={handleToggleVolume}
+                            className="text-text-color-2 p-1 mx-[1px] hover:bg-opacity-color-1 rounded-full"
+                        >
+                            {+volume === 0 ? (
+                                <BiVolumeMute size={18} />
+                            ) : (
+                                <BiVolumeFull size={18} />
+                            )}
+                        </span>
+                        <input
+                            className="ml-1 h-1 hover:h-[6px] rounded-full w-[70px] cursor-pointer border-none outline-none"
+                            type="range"
+                            step={1}
+                            min={0}
+                            max={100}
+                            value={volume}
+                            onChange={(e) => setVolume(e.target.value)}
+                        />
+                    </div>
+
+                    <span
+                        onClick={() => setIsShowRightSidebar((prev) => !prev)}
+                        title="Danh sách phát"
+                        className="text-text-color-2 p-1 bg-primary-color-1 rounded-[4px] hover:text-text-color-3 ml-5"
+                    >
+                        <MdOutlineQueueMusic size={22} />
+                    </span>
+                </div>
+            </div>
         </div>
     );
 }

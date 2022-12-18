@@ -1,7 +1,8 @@
 import Sidebar from './Sidebar';
 import MusicPlayer from './MusicPlayer';
-import Playlist from './Playlist';
+import RightSidebarPlaylist from './RightSidebarPlaylist';
 import Search from './Search';
 import PlayerProgressBar from './PlayerProgressBar';
+import PlaylistSection from './PlaylistSection';
 
-export { Sidebar, MusicPlayer, Playlist, Search, PlayerProgressBar };
+export { Sidebar, MusicPlayer, RightSidebarPlaylist, Search, PlayerProgressBar, PlaylistSection };
