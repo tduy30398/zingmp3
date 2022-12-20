@@ -1,10 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { BsChevronRight } from '../assets/icons';
 import { SongItem } from '../components';
-import { useEffect } from 'react';
 
 function NewRelease() {
     const { newRelease } = useSelector((state) => state.app);

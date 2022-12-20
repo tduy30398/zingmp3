@@ -19,11 +19,11 @@ import {
     TbMicrophone2,
     SlScreenDesktop,
 } from '../../assets/icons';
-import { setIsPlaying, setCurrentSongId } from '../../redux/actions';
+import { setIsPlaying, setCurrentSongId, setCurrentSongDetail } from '../../redux/actions';
 import { PlayerProgressBar } from '../components';
 import { RotatingLinesLoading } from '../../components';
 
-function MusicPlayer({ setIsShowRightSidebar }) {
+function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
     const { currentSongId, isPlaying, albumSongs } = useSelector((state) => state.music);
     const [songInfo, setSongInfo] = useState(null);
     const [isShuffle, setIsShuffle] = useState(false);
@@ -50,6 +50,7 @@ function MusicPlayer({ setIsShowRightSidebar }) {
             if (res1.data.err === 0) {
                 audio.pause();
                 setSongInfo(res1.data.data);
+                dispatch(setCurrentSongDetail(res1.data.data));
             }
             if (res2.data.err === 0) {
                 audio.pause();
@@ -127,6 +128,7 @@ function MusicPlayer({ setIsShowRightSidebar }) {
                     currentSongIndex = index;
                 }
             });
+            currentSongIndex = currentSongIndex === albumSongs?.length - 1 ? -1 : currentSongIndex;
             dispatch(setCurrentSongId(albumSongs[currentSongIndex + 1]?.encodeId));
             dispatch(setIsPlaying(true));
         }
@@ -141,6 +143,7 @@ function MusicPlayer({ setIsShowRightSidebar }) {
                     currentSongIndex = index;
                 }
             });
+            currentSongIndex = currentSongIndex === 0 ? albumSongs?.length : currentSongIndex;
             dispatch(setCurrentSongId(albumSongs[currentSongIndex - 1]?.encodeId));
             dispatch(setIsPlaying(true));
         }
@@ -278,7 +281,7 @@ function MusicPlayer({ setIsShowRightSidebar }) {
                             )}
                         </span>
                         <input
-                            className="ml-1 h-1 hover:h-[6px] rounded-full w-[70px] cursor-pointer border-none outline-none"
+                            className="ml-1 h-1 w-[70px] hover:h-[6px] outline-none cursor-pointer"
                             type="range"
                             step={1}
                             min={0}
@@ -291,7 +294,9 @@ function MusicPlayer({ setIsShowRightSidebar }) {
                     <span
                         onClick={() => setIsShowRightSidebar((prev) => !prev)}
                         title="Danh sách phát"
-                        className="text-text-color-2 p-1 bg-primary-color-1 rounded-[4px] hover:text-text-color-3 ml-5"
+                        className={`text-text-color-2 p-1 rounded-[4px] hover:text-text-color-3 ml-5 ${
+                            isShowRightSidebar ? 'bg-primary-color-1' : 'bg-[#5E3153]'
+                        }`}
                     >
                         <MdOutlineQueueMusic size={22} />
                     </span>

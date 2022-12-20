@@ -13,4 +13,5 @@ export const routes = {
     history: '/history',
     album: '/album/:title/:playlistId.html',
     playlistAlbum: '/playlist/:title/:playlistId.html',
+    weekchart: '/zing-chart-tuan/:title/:weekchartId.html',
 };

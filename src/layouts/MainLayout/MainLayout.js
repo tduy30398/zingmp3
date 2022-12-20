@@ -22,7 +22,10 @@ function MainLayout({ children }) {
                 )}
             </div>
             <div className="fixed bottom-0 left-0 right-0 h-[90px] border-t-[1px] border-border-color-1">
-                <MusicPlayer setIsShowRightSidebar={setIsShowRightSidebar} />
+                <MusicPlayer
+                    setIsShowRightSidebar={setIsShowRightSidebar}
+                    isShowRightSidebar={isShowRightSidebar}
+                />
             </div>
         </div>
     );

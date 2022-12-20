@@ -21,7 +21,9 @@ function AlbumSong({ songInfo }) {
         <div
             onDoubleClick={handleClickSong}
             className={`flex justify-between p-[10px] border-b-[1px] border-border-color-2 rounded-[4px] group ${
-                songInfo?.encodeId === currentSongId ? 'bg-[#542D4A]' : 'hover:bg-[#542D4A]'
+                songInfo?.encodeId === currentSongId
+                    ? 'bg-primary-color-8'
+                    : 'hover:bg-primary-color-8'
             }`}
         >
             <div className="flex items-center flex-5">
@@ -67,7 +69,9 @@ function AlbumSong({ songInfo }) {
             </div>
             <span className="text-xs font-medium leading-5 flex-4 flex items-center">
                 <span
-                    onClick={() => navigate(songInfo?.album.link)}
+                    onClick={() =>
+                        navigate(songInfo?.album.link, { state: { isPlayAlbum: false } })
+                    }
                     className="cursor-pointer hover:underline hover:text-text-color-primary-2"
                 >
                     {songInfo?.album?.title.length > 35
@@ -75,7 +79,7 @@ function AlbumSong({ songInfo }) {
                         : songInfo?.album?.title}
                 </span>
             </span>
-            <span className="text-xs font-medium leading-5 flex-1 flex justify-end mr-1">
+            <span className="text-xs font-medium leading-5 flex-1 flex justify-end items-center mr-1">
                 {moment.utc(songInfo.duration * 1000).format('mm:ss')}
             </span>
         </div>

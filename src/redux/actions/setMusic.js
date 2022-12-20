@@ -5,6 +5,16 @@ export const setCurrentSongId = (songId) => ({
     songId,
 });
 
+export const setPlaylistId = (playlistId) => ({
+    type: actionTypes.SET_PLAYLIST_ID,
+    playlistId,
+});
+
+export const setCurrentSongDetail = (detailSong) => ({
+    type: actionTypes.SET_CURRENT_SONG_DETAIL,
+    detailSong,
+});
+
 export const setIsPlaying = (flag) => ({
     type: actionTypes.IS_PLAYING,
     flag,

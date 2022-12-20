@@ -11,6 +11,7 @@ import MySong from './MySong';
 import Playlist from './Playlist';
 import History from './History';
 import Album from './Album';
+import WeekChart from './WeekChart';
 
 export {
     Personal,
@@ -26,4 +27,5 @@ export {
     Playlist,
     History,
     Album,
+    WeekChart,
 };

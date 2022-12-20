@@ -3,16 +3,15 @@ import { useSelector } from 'react-redux';
 
 import { TabTitle } from '../utils';
 import { Slider, NewRelease } from '../components';
-import { PlaylistSection } from '../layouts/components';
-import { RotatingLinesLoading } from '../components';
+import { PlaylistSection } from '../components';
+import { RotatingLinesLoading, WeekChartSection } from '../components';
 
 function Home() {
     useEffect(() => {
         TabTitle('Zing MP3 | Nghe tải nhạc chất lượng cao trên desktop, mobile và TV');
     }, []);
-    const { newRelease, hArtistTheme, hAutoTheme1, hAutoTheme2, h100, hXone, hAlbum } = useSelector(
-        (state) => state.app,
-    );
+    const { newRelease, hArtistTheme, hAutoTheme1, hAutoTheme2, weekChart, h100, hXone, hAlbum } =
+        useSelector((state) => state.app);
     return (
         <div className="w-full relative h-[calc(100vh-160px)] overflow-x-hidden overflow-y-auto overflow-y-overlay scrollbar">
             {Object.keys(newRelease).length === 0 ? (
@@ -29,6 +28,11 @@ function Home() {
             <PlaylistSection content={hArtistTheme} />
             <PlaylistSection content={hAutoTheme1} />
             <PlaylistSection content={hAutoTheme2} />
+            <div className="w-full px-[59px] mt-12 flex items-center gap-7">
+                {weekChart?.map((item) => (
+                    <WeekChartSection data={item} key={item.link} />
+                ))}
+            </div>
             <PlaylistSection content={h100} />
             <PlaylistSection content={hXone} />
             <PlaylistSection content={hAlbum} />

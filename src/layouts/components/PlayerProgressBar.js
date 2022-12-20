@@ -68,7 +68,7 @@ function PlayerProgressBar({ audio, songInfo }) {
                 ></div>
             </div>
             <span className="text-text-color-2 text-xs font-medium">
-                {moment.utc(songInfo?.duration * 1000).format('mm:ss')}
+                {songInfo ? moment.utc(songInfo?.duration * 1000).format('mm:ss') : '00:00'}
             </span>
         </div>
     );

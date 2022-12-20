@@ -11,6 +11,7 @@ module.exports = {
                 'primary-color-5': '#542E4A',
                 'primary-color-6': '#825F79',
                 'primary-color-7': '#FFFFFF',
+                'primary-color-8': '#542D4A',
                 'primary-hover-color-1': '#B64268',
                 'overlay-40': 'rgba(0,0,0,0.4)',
                 'overlay-50': 'rgba(0,0,0,0.5)',
@@ -93,6 +94,26 @@ module.exports = {
                         transform: 'rotate(360deg);',
                     },
                 },
+                'scale-up-image': {
+                    '0%': {
+                        '-webkit-transform': ' scale(1);',
+                        transform: 'scale(1);',
+                    },
+                    '100%': {
+                        '-webkit-transform': ' scale(1.1);',
+                        transform: 'scale(1.1);',
+                    },
+                },
+                'scale-down-image': {
+                    '0%': {
+                        '-webkit-transform': ' scale(1.1);',
+                        transform: 'scale(1.1);',
+                    },
+                    '100%': {
+                        '-webkit-transform': ' scale(1);',
+                        transform: 'scale(1);',
+                    },
+                },
             },
             animation: {
                 'slide-right': 'slide-right 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;',
@@ -101,6 +122,10 @@ module.exports = {
                 'slide-left2': 'slide-left2 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;',
                 'rotate-center': 'rotate-center 10s linear infinite;',
                 'rotate-center-pause': 'rotate-center-pause 0.5s linear 1 both;',
+                'scale-up-image':
+                    'scale-up-image 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;',
+                'scale-down-image':
+                    'scale-down-image 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;',
             },
         },
     },

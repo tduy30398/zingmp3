@@ -1,7 +1,7 @@
-import AlbumSong from './AlbumSong';
 import { memo } from 'react';
 import moment from 'moment';
 
+import AlbumSong from './AlbumSong';
 import { BsSortDownAlt } from '../assets/icons';
 
 function AlbumPlaylist({ songs }) {

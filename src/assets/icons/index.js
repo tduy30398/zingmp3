@@ -4,7 +4,7 @@ import {
     MdSkipPrevious,
     MdOutlineQueueMusic,
 } from 'react-icons/md';
-import { TfiPieChart, TfiSettings } from 'react-icons/tfi';
+import { TfiPieChart, TfiSettings, TfiAlarmClock } from 'react-icons/tfi';
 import { HiOutlineChartBar, HiOutlinePlus, HiOutlineUpload } from 'react-icons/hi';
 import { IoIosRadio } from 'react-icons/io';
 import {
@@ -21,8 +21,8 @@ import {
     BsSortDownAlt,
 } from 'react-icons/bs';
 import { FiMusic } from 'react-icons/fi';
-import { BiCategoryAlt, BiShuffle, BiVolumeFull, BiVolumeMute } from 'react-icons/bi';
-import { AiOutlineStar, AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { BiCategoryAlt, BiShuffle, BiVolumeFull, BiVolumeMute, BiTrashAlt } from 'react-icons/bi';
+import { AiOutlineStar, AiOutlineHeart } from 'react-icons/ai';
 import { RiVipDiamondLine } from 'react-icons/ri';
 import { CiRepeat } from 'react-icons/ci';
 import { FaPlay } from 'react-icons/fa';
@@ -32,6 +32,7 @@ import { SlScreenDesktop } from 'react-icons/sl';
 export {
     MdOutlineLibraryMusic,
     TfiPieChart,
+    TfiAlarmClock,
     HiOutlineChartBar,
     IoIosRadio,
     BsNewspaper,
@@ -48,7 +49,6 @@ export {
     BsChevronLeft,
     BsChevronRight,
     BsMusicNoteBeamed,
-    AiFillHeart,
     AiOutlineHeart,
     BsThreeDots,
     BiShuffle,
@@ -64,4 +64,5 @@ export {
     BiVolumeMute,
     TbMicrophone2,
     SlScreenDesktop,
+    BiTrashAlt,
 };

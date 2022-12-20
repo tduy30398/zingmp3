@@ -1,4 +1,19 @@
 import { getHome } from './getHome';
-import { setCurrentSongId, setIsPlaying, setIsLoading, setAlbumSongs } from './setMusic';
+import {
+    setCurrentSongId,
+    setPlaylistId,
+    setIsPlaying,
+    setIsLoading,
+    setAlbumSongs,
+    setCurrentSongDetail,
+} from './setMusic';
 
-export { getHome, setCurrentSongId, setIsPlaying, setAlbumSongs, setIsLoading };
+export {
+    getHome,
+    setCurrentSongId,
+    setPlaylistId,
+    setIsPlaying,
+    setAlbumSongs,
+    setIsLoading,
+    setCurrentSongDetail,
+};

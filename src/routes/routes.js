@@ -14,6 +14,7 @@ import {
     Playlist,
     History,
     Album,
+    WeekChart,
 } from '../pages';
 
 const publicRoutes = [
@@ -31,6 +32,7 @@ const publicRoutes = [
     { path: routes.history, component: History },
     { path: routes.album, component: Album },
     { path: routes.playlistAlbum, component: Album },
+    { path: routes.weekchart, component: WeekChart },
 ];
 
 const privateRoutes = [];

@@ -1,20 +1,28 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import moment from 'moment';
 
 import { getDetailPlaylistApi } from '../apis';
 import { TabTitle } from '../utils';
 import { AlbumPlaylist, AudioLoading, RotatingLinesLoading } from '../components';
-import { setAlbumSongs, setIsLoading } from '../redux/actions';
+import {
+    setAlbumSongs,
+    setIsLoading,
+    setIsPlaying,
+    setCurrentSongId,
+    setPlaylistId,
+} from '../redux/actions';
 import { BsPlayCircle } from '../assets/icons';
 
 function Album() {
     const { isPlaying, isLoading } = useSelector((state) => state.music);
     const dispatch = useDispatch();
+    const location = useLocation();
     const { playlistId } = useParams();
     const [playlistDetail, setPlaylistDetail] = useState({});
+    const imgRef = useRef('');
 
     if (playlistDetail.title) {
         TabTitle(`${playlistDetail.title} | Album 320 lossless`);
@@ -28,10 +36,33 @@ function Album() {
             if (response?.data.err === 0) {
                 setPlaylistDetail(response.data.data);
                 dispatch(setAlbumSongs(response.data.data.song.items));
+                dispatch(setPlaylistId(playlistId));
             }
         };
         fetchDetailPlaylist();
     }, [playlistId]);
+
+    // Khi bấm play button để vào album page, sẽ phát random 1 bài bên trang album đó
+    useEffect(() => {
+        if (location?.state?.isPlayAlbum) {
+            const randomIndex = Math.round(Math.random() * playlistDetail?.song?.items?.length) - 1;
+            if (randomIndex) {
+                dispatch(setCurrentSongId(playlistDetail?.song?.items[randomIndex]?.encodeId));
+                dispatch(setIsPlaying(true));
+            }
+        }
+    }, [playlistId, playlistDetail]);
+
+    const handleMouseEnter = () => {
+        imgRef.current.classList.remove('animate-scale-down-image');
+        imgRef.current.classList.remove('animate-rotate-center-pause');
+        imgRef.current.classList.add('animate-scale-up-image');
+    };
+
+    const handleMouseLeave = () => {
+        imgRef.current.classList.remove('animate-scale-up-image');
+        imgRef.current.classList.add('animate-scale-down-image');
+    };
 
     return (
         <div className="flex relative gap-8 px-[59px] pt-5 w-full h-[calc(100vh-160px)] overflow-x-hidden overflow-y-auto overflow-y-overlay scrollbar">
@@ -44,18 +75,26 @@ function Album() {
             )}
             {playlistDetail.artistsNames && (
                 <div className="flex-none w-[29.5%] flex flex-col">
-                    <div className="w-full relative">
+                    <div
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                        className="w-full relative overflow-hidden rounded-lg"
+                    >
                         <img
-                            className={`w-full object-contain shadow-lg cursor-pointer ${
+                            ref={imgRef}
+                            className={`w-full object-cover shadow-lg cursor-pointer ${
                                 isPlaying
                                     ? `rounded-full animate-rotate-center`
-                                    : `rounded-lg animate-rotate-center-pause`
+                                    : `animate-rotate-center-pause`
                             }`}
-                            src={playlistDetail?.thumbnailM}
+                            src={
+                                playlistDetail?.thumbnailM ||
+                                `https://avatar.talk.zdn.vn/default.jpg`
+                            }
                             alt={playlistDetail?.artistsNames}
                         />
                         <div
-                            className={`absolute top-0 bottom-0 left-0 right-0 cursor-pointer group  ${
+                            className={`absolute top-0 bottom-0 left-0 right-0 cursor-pointer group ${
                                 !isPlaying ? 'hover:bg-overlay-40' : ''
                             }`}
                         >
