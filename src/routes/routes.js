@@ -1,4 +1,4 @@
-import routes from '../config';
+import routes from '../configs';
 
 import {
     Personal,

@@ -6,7 +6,7 @@ import {
     TfiSettings,
     HiOutlineUpload,
     RiVipDiamondLine,
-} from '../../assets/icons';
+} from '../../assets/icons/staticIcons';
 import { MagnifyingGlassIcon, ClearIcon } from '../../assets/images/svgIcons';
 
 function Search() {

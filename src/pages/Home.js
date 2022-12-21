@@ -2,9 +2,8 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { TabTitle } from '../utils';
-import { Slider, NewRelease } from '../components';
-import { PlaylistSection } from '../components';
-import { RotatingLinesLoading, WeekChartSection } from '../components';
+import { Slider, NewRelease, PlaylistSection, WeekChartSection } from '../components/Home';
+import { RotatingLinesLoading } from '../assets/icons/dynamicIcons';
 
 function Home() {
     useEffect(() => {

@@ -2,8 +2,8 @@
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 
-import { BsChevronRight } from '../assets/icons';
-import { SongItem } from '../components';
+import { BsChevronRight } from '../../assets/icons/staticIcons';
+import { SongItem } from '../Home';
 
 function NewRelease() {
     const { newRelease } = useSelector((state) => state.app);

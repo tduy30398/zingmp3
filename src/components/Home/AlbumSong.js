@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 
-import { BsMusicNoteBeamed, FaPlay } from '../assets/icons';
-import { setCurrentSongId, setIsPlaying } from '../redux/actions';
-import { AudioLoading } from '../components';
+import { BsMusicNoteBeamed, FaPlay } from '../../assets/icons/staticIcons';
+import { AudioLoading } from '../../assets/icons/dynamicIcons';
+import { setCurrentSongId, setIsPlaying } from '../../redux/actions';
 
 function AlbumSong({ songInfo }) {
     const { currentSongId, isPlaying } = useSelector((state) => state.music);

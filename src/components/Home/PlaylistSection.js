@@ -1,4 +1,4 @@
-import { PlaylistSectionItem } from '../components';
+import { PlaylistSectionItem } from '../Home';
 
 function PlaylistSection({ content }) {
     return (

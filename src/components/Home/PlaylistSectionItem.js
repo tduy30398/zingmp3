@@ -1,7 +1,7 @@
 import { useRef, memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { BsPlayCircle } from '../assets/icons';
+import { BsPlayCircle } from '../../assets/icons/staticIcons';
 
 function PlaylistSectionItem({ item }) {
     const navigate = useNavigate();

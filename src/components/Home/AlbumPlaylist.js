@@ -2,7 +2,7 @@ import { memo } from 'react';
 import moment from 'moment';
 
 import AlbumSong from './AlbumSong';
-import { BsSortDownAlt } from '../assets/icons';
+import { BsSortDownAlt } from '../../assets/icons/staticIcons';
 
 function AlbumPlaylist({ songs }) {
     return (

@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { BsChevronLeft, BsChevronRight } from '../assets/icons';
-import { setCurrentSongId, setIsPlaying, setAlbumSongs } from '../redux/actions';
+import { BsChevronLeft, BsChevronRight } from '../../assets/icons/staticIcons';
+import { setCurrentSongId, setIsPlaying, setAlbumSongs } from '../../redux/actions';
 
 var intervalId;
 function Slider() {

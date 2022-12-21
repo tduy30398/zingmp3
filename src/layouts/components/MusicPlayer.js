@@ -18,10 +18,10 @@ import {
     BiVolumeMute,
     TbMicrophone2,
     SlScreenDesktop,
-} from '../../assets/icons';
+} from '../../assets/icons/staticIcons';
 import { setIsPlaying, setCurrentSongId, setCurrentSongDetail } from '../../redux/actions';
 import { PlayerProgressBar } from '../components';
-import { RotatingLinesLoading } from '../../components';
+import { RotatingLinesLoading } from '../../assets/icons/dynamicIcons';
 
 function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
     const { currentSongId, isPlaying, albumSongs } = useSelector((state) => state.music);

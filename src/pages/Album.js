@@ -6,7 +6,9 @@ import moment from 'moment';
 
 import { getDetailPlaylistApi } from '../apis';
 import { TabTitle } from '../utils';
-import { AlbumPlaylist, AudioLoading, RotatingLinesLoading } from '../components';
+import { AlbumPlaylist } from '../components/Home';
+import { AudioLoading, RotatingLinesLoading } from '../assets/icons/dynamicIcons';
+import { BsPlayCircle } from '../assets/icons/staticIcons';
 import {
     setAlbumSongs,
     setIsLoading,
@@ -14,7 +16,6 @@ import {
     setCurrentSongId,
     setPlaylistId,
 } from '../redux/actions';
-import { BsPlayCircle } from '../assets/icons';
 
 function Album() {
     const { isPlaying, isLoading } = useSelector((state) => state.music);

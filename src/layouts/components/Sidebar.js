@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 import mainLogo from '../../assets/images/logos/main-logo.svg';
 import { SongIcon, PlaylistIcon, HistoryIcon } from '../../assets/images/svgIcons';
-import routes from '../../config';
-import { SidebarItem } from '../../components';
+import routes from '../../configs';
+import { SidebarItem } from '../../components/Home';
 import {
     MdOutlineLibraryMusic,
     TfiPieChart,
@@ -15,7 +15,7 @@ import {
     AiOutlineStar,
     BsCameraVideo,
     HiOutlinePlus,
-} from '../../assets/icons';
+} from '../../assets/icons/staticIcons';
 
 function Sidebar() {
     return (

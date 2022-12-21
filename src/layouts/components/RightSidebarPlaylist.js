@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { TfiAlarmClock, BiTrashAlt } from '../../assets/icons';
-import { SongItemSmall } from '../../components';
+import { TfiAlarmClock, BiTrashAlt } from '../../assets/icons/staticIcons';
+import { SongItemSmall } from '../../components/Home';
 import { getDetailPlaylistApi } from '../../apis';
 
 function RightSidebarPlaylist() {
