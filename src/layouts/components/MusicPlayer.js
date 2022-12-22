@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
-import { getDetailSongApi, getSongApi } from '../../apis';
+import { getDetailSongAPI, getSongAPI } from '../../APIs';
 import {
     AiOutlineHeart,
     BsThreeDots,
@@ -19,7 +19,12 @@ import {
     TbMicrophone2,
     SlScreenDesktop,
 } from '../../assets/icons/staticIcons';
-import { setIsPlaying, setCurrentSongId, setCurrentSongDetail } from '../../redux/actions';
+import {
+    setIsPlaying,
+    setCurrentSongId,
+    setCurrentSongDetail,
+    setRecentSongsList,
+} from '../../redux/actions';
 import { PlayerProgressBar } from '../components';
 import { RotatingLinesLoading } from '../../assets/icons/dynamicIcons';
 
@@ -42,19 +47,25 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
             // Set icon loading tại play button khi bắt đầu gọi API
             setIsLoadingSong(true);
             const [res1, res2] = await Promise.all([
-                getDetailSongApi(currentSongId),
-                getSongApi(currentSongId),
+                getDetailSongAPI(currentSongId),
+                getSongAPI(currentSongId),
             ]);
             // Ẩn icon loading tại play button khi gọi API xong
             setIsLoadingSong(false);
-            if (res1.data.err === 0) {
-                audio.pause();
-                setSongInfo(res1.data.data);
-                dispatch(setCurrentSongDetail(res1.data.data));
-            }
+
             if (res2.data.err === 0) {
                 audio.pause();
                 setAudio(new Audio(res2.data.data['128']));
+                setSongInfo(res1.data.data);
+                dispatch(setCurrentSongDetail(res1.data.data));
+                dispatch(
+                    setRecentSongsList({
+                        encodeId: res1.data.data.encodeId,
+                        thumbnail: res1.data.data.thumbnail,
+                        artistsNames: res1.data.data.artistsNames,
+                        title: res1.data.data.title,
+                    }),
+                );
             } else {
                 audio.pause();
                 setAudio(new Audio());

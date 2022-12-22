@@ -29,3 +29,8 @@ export const setAlbumSongs = (albumSongs) => ({
     type: actionTypes.SET_PLAYLIST,
     albumSongs,
 });
+
+export const setRecentSongsList = (songInfo) => ({
+    type: actionTypes.SET_RECENT_SONGS_LIST,
+    songInfo,
+});

@@ -5,16 +5,18 @@ import { useNavigate } from 'react-router-dom';
 
 import { TfiAlarmClock, BiTrashAlt } from '../../assets/icons/staticIcons';
 import { SongItemSmall } from '../../components/Home';
-import { getDetailPlaylistApi } from '../../apis';
+import { getDetailPlaylistAPI } from '../../APIs';
 
 function RightSidebarPlaylist() {
+    const { currentSongDetail, currentSongId, playlistId, isPlaying, recentSongsList } =
+        useSelector((state) => state.music);
     const [isPlaylist, setIsPlaylist] = useState(true);
     const [playlistDetail, setPlaylistDetail] = useState({});
-    const { currentSongDetail, playlistId, isPlaying } = useSelector((state) => state.music);
+
     const navigate = useNavigate();
 
     const fetchDetailPlaylist = async () => {
-        const response = await getDetailPlaylistApi(playlistId);
+        const response = await getDetailPlaylistAPI(playlistId);
         if (response?.data.err === 0) {
             setPlaylistDetail(response.data.data);
         }
@@ -24,11 +26,17 @@ function RightSidebarPlaylist() {
         playlistId && fetchDetailPlaylist();
     }, []);
 
+    // Nếu đang ở nghe gần đây, bấm vào 1 bài hát sẽ quay về playlist
+    useEffect(() => {
+        isPlaying && setIsPlaylist(true);
+    }, [isPlaying, currentSongId]);
+
+    // Chỉ khi bài hát trong trang album được play thì mới render ra playlist đó
     useEffect(() => {
         if (playlistId && isPlaying) {
             fetchDetailPlaylist();
         }
-    }, [playlistId, isPlaying]);
+    }, [isPlaying, currentSongId]);
 
     return (
         <div className="flex flex-col text-xs h-[calc(100vh-90px)] overflow-x-hidden overflow-y-auto overflow-y-overlay scrollbar">
@@ -59,33 +67,46 @@ function RightSidebarPlaylist() {
                     <span className="p-2 bg-primary-color-8 hover:text-text-color-1 rounded-full cursor-pointer">
                         <TfiAlarmClock size={18} />
                     </span>
-                    <span className="p-2 bg-primary-color-8 hover:text-text-color-1 rounded-full cursor-pointer">
+                    <span
+                        title="Xóa danh sách nghe gần đây"
+                        className="p-2 bg-primary-color-8 hover:text-text-color-1 rounded-full cursor-pointer"
+                    >
                         <BiTrashAlt size={18} />
                     </span>
                 </div>
             </div>
-            <div className="flex flex-col w-full px-2 mt-[70px]">
-                <SongItemSmall data={currentSongDetail} />
-                <div className="flex flex-col pt-[15px] pb-[5px] px-2 gap-1">
-                    <span className="text-sm font-bold">Tiếp theo</span>
-                    <span>
-                        <span className="text-sm font-normal text-text-color-3">Từ playlist </span>
-                        <span
-                            onClick={() => navigate(currentSongDetail?.album.link)}
-                            className="text-sm font-normal cursor-pointer text-text-color-primary-2"
-                        >
-                            {playlistDetail?.title?.length > 28
-                                ? `${playlistDetail?.title?.slice(0, 28)}...`
-                                : playlistDetail?.title}
+            {isPlaylist ? (
+                <div className="flex flex-col w-full px-2 mt-[70px]">
+                    <SongItemSmall data={currentSongDetail} />
+                    <div className="flex flex-col pt-[15px] pb-[5px] px-2 gap-1">
+                        <span className="text-sm font-bold">Tiếp theo</span>
+                        <span>
+                            <span className="text-sm font-normal text-text-color-3">
+                                Từ playlist{' '}
+                            </span>
+                            <span
+                                onClick={() => navigate(currentSongDetail?.album.link)}
+                                className="text-sm font-normal cursor-pointer text-text-color-primary-2"
+                            >
+                                {playlistDetail?.title?.length > 28
+                                    ? `${playlistDetail?.title?.slice(0, 28)}...`
+                                    : playlistDetail?.title}
+                            </span>
                         </span>
-                    </span>
+                    </div>
+                    {playlistDetail?.song?.items
+                        ?.filter((item) => item.encodeId !== currentSongDetail.encodeId)
+                        ?.map((item) => (
+                            <SongItemSmall data={item} key={item.encodeId} />
+                        ))}
                 </div>
-                {playlistDetail?.song?.items
-                    ?.filter((item) => item.encodeId !== currentSongDetail.encodeId)
-                    ?.map((item) => (
-                        <SongItemSmall data={item} key={item.encodeId} />
+            ) : (
+                <div className="flex flex-col w-full px-2 mt-[70px]">
+                    {recentSongsList?.map((song) => (
+                        <SongItemSmall data={song} key={song.encodeId} />
                     ))}
-            </div>
+                </div>
+            )}
         </div>
     );
 }

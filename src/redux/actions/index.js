@@ -6,6 +6,7 @@ import {
     setIsLoading,
     setAlbumSongs,
     setCurrentSongDetail,
+    setRecentSongsList,
 } from './setMusic';
 
 export {
@@ -16,4 +17,5 @@ export {
     setAlbumSongs,
     setIsLoading,
     setCurrentSongDetail,
+    setRecentSongsList,
 };

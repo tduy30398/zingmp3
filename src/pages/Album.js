@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useLocation } from 'react-router-dom';
 import moment from 'moment';
 
-import { getDetailPlaylistApi } from '../apis';
+import { getDetailPlaylistAPI } from '../APIs';
 import { TabTitle } from '../utils';
 import { AlbumPlaylist } from '../components/Home';
 import { AudioLoading, RotatingLinesLoading } from '../assets/icons/dynamicIcons';
@@ -32,7 +32,7 @@ function Album() {
     useEffect(() => {
         const fetchDetailPlaylist = async () => {
             dispatch(setIsLoading(true));
-            const response = await getDetailPlaylistApi(playlistId);
+            const response = await getDetailPlaylistAPI(playlistId);
             dispatch(setIsLoading(false));
             if (response?.data.err === 0) {
                 setPlaylistDetail(response.data.data);

@@ -1,6 +1,6 @@
 import httpRequest from '../httpRequest';
 
-export const getSongApi = (songId) =>
+export const getSongAPI = (songId) =>
     new Promise(async (resolve, reject) => {
         try {
             const response = await httpRequest({
@@ -14,7 +14,7 @@ export const getSongApi = (songId) =>
         }
     });
 
-export const getDetailSongApi = (songId) =>
+export const getDetailSongAPI = (songId) =>
     new Promise(async (resolve, reject) => {
         try {
             const response = await httpRequest({
@@ -28,13 +28,27 @@ export const getDetailSongApi = (songId) =>
         }
     });
 
-export const getDetailPlaylistApi = (playlistId) =>
+export const getDetailPlaylistAPI = (playlistId) =>
     new Promise(async (resolve, reject) => {
         try {
             const response = await httpRequest({
                 url: 'detailplaylist',
                 method: 'get',
                 params: { id: playlistId },
+            });
+            resolve(response);
+        } catch (error) {
+            reject(error);
+        }
+    });
+
+export const searchAPI = (keyword) =>
+    new Promise(async (resolve, reject) => {
+        try {
+            const response = await httpRequest({
+                url: 'search',
+                method: 'get',
+                params: { keyword },
             });
             resolve(response);
         } catch (error) {

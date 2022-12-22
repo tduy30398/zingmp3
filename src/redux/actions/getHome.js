@@ -1,25 +1,25 @@
 import actionTypes from './actionTypes';
-import { getHomeApi } from '../../apis';
+import { getHomeAPI } from '../../APIs';
 
 export const getHome = () => async (dispatch) => {
     try {
-        const response = await getHomeApi();
+        const response = await getHomeAPI();
 
         if (response?.data.err === 0) {
             dispatch({
                 type: actionTypes.GET_HOME,
-                homeApi: response.data.data.items,
+                homeAPI: response.data.data.items,
             });
         } else {
             dispatch({
                 type: actionTypes.GET_HOME,
-                homeApi: null,
+                homeAPI: null,
             });
         }
     } catch (error) {
         dispatch({
             type: actionTypes.GET_HOME,
-            homeApi: null,
+            homeAPI: null,
         });
     }
 };

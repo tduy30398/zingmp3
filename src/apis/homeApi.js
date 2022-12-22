@@ -1,6 +1,6 @@
 import httpRequest from '../httpRequest';
 
-export const getHomeApi = () =>
+export const getHomeAPI = () =>
     new Promise(async (resolve, reject) => {
         try {
             const response = await httpRequest({

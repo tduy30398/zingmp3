@@ -1,9 +1,10 @@
 import actionTypes from '../actions/actionTypes';
 
 const initState = {
-    currentSongId: null,
-    playlistId: null,
     currentSongDetail: null,
+    currentSongId: null,
+    recentSongsList: [],
+    playlistId: null,
     isPlaying: false,
     albumSongs: null,
     isLoading: false,
@@ -40,6 +41,27 @@ const musicReducer = (state = initState, action) => {
             return {
                 ...state,
                 albumSongs: action.albumSongs,
+            };
+        case actionTypes.SET_RECENT_SONGS_LIST:
+            let currentSongsList;
+            // Trước khi push bài hát mới nhất vào list, kiểm tra độ dài của list
+            // có bằng 15 bài hay ko, nếu là 15 bài thì xóa bài cuối cùng, sau đó
+            // push vào như bình thường
+            if (action.songInfo) {
+                if (state.recentSongsList.length === 15) {
+                    state.recentSongsList.pop();
+                    currentSongsList = state.recentSongsList;
+                }
+                currentSongsList = [
+                    action.songInfo,
+                    ...state.recentSongsList.filter(
+                        (song) => song.encodeId !== action.songInfo.encodeId,
+                    ),
+                ];
+            }
+            return {
+                ...state,
+                recentSongsList: currentSongsList,
             };
 
         default:

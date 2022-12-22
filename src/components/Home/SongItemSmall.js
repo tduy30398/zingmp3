@@ -46,7 +46,7 @@ function SongItemSmall({ data }) {
             </div>
             <div className="flex flex-col justify-between">
                 <span className="text-text-color-2 text-sm font-semibold select-none">
-                    {data?.title.length > 24 ? `${data?.title.slice(0, 24)}...` : data?.title}
+                    {data?.title?.length > 24 ? `${data?.title.slice(0, 24)}...` : data?.title}
                 </span>
                 <span className="text-text-color-3 text-xs font-semibold">
                     <span
@@ -56,7 +56,7 @@ function SongItemSmall({ data }) {
                                 : 'hover:text-text-color-primary-2'
                         } `}
                     >
-                        {data?.artistsNames.length > 24
+                        {data?.artistsNames?.length > 24
                             ? `${data?.artistsNames.slice(0, 24)}...`
                             : data?.artistsNames}
                     </span>
