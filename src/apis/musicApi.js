@@ -1,4 +1,4 @@
-import httpRequest from '../httpRequest';
+import { httpRequest } from '../utils';
 
 export const getSongAPI = (songId) =>
     new Promise(async (resolve, reject) => {
@@ -35,20 +35,6 @@ export const getDetailPlaylistAPI = (playlistId) =>
                 url: 'detailplaylist',
                 method: 'get',
                 params: { id: playlistId },
-            });
-            resolve(response);
-        } catch (error) {
-            reject(error);
-        }
-    });
-
-export const searchAPI = (keyword) =>
-    new Promise(async (resolve, reject) => {
-        try {
-            const response = await httpRequest({
-                url: 'search',
-                method: 'get',
-                params: { keyword },
             });
             resolve(response);
         } catch (error) {

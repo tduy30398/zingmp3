@@ -133,12 +133,7 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
     // Handle when click on next button
     const handleNextSong = () => {
         if (albumSongs) {
-            let currentSongIndex;
-            albumSongs?.forEach((song, index) => {
-                if (song.encodeId === currentSongId) {
-                    currentSongIndex = index;
-                }
-            });
+            let currentSongIndex = albumSongs?.findIndex((song) => song.encodeId === currentSongId);
             currentSongIndex = currentSongIndex === albumSongs?.length - 1 ? -1 : currentSongIndex;
             dispatch(setCurrentSongId(albumSongs[currentSongIndex + 1]?.encodeId));
             dispatch(setIsPlaying(true));
@@ -148,12 +143,7 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
     // Handle when click on prev button
     const handlePrevSong = () => {
         if (albumSongs) {
-            let currentSongIndex;
-            albumSongs?.forEach((song, index) => {
-                if (song.encodeId === currentSongId) {
-                    currentSongIndex = index;
-                }
-            });
+            let currentSongIndex = albumSongs?.findIndex((song) => song.encodeId === currentSongId);
             currentSongIndex = currentSongIndex === 0 ? albumSongs?.length : currentSongIndex;
             dispatch(setCurrentSongId(albumSongs[currentSongIndex - 1]?.encodeId));
             dispatch(setIsPlaying(true));

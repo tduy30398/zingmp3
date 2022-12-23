@@ -11,9 +11,20 @@ import { getHome } from './redux/actions';
 
 function App() {
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(getHome());
     }, []);
+
+    useEffect(() => {
+        const detectKeyDown = (e) => {
+            if (e.keyCode === 32 && e.target === document.body) {
+                e.preventDefault();
+            }
+        };
+        document.addEventListener('keydown', detectKeyDown);
+    }, []);
+
     return (
         <>
             <Router>
@@ -23,7 +34,7 @@ function App() {
 
                         return (
                             <Route
-                                key={index}
+                                key={route.path}
                                 path={route.path}
                                 element={
                                     <MainLayout>

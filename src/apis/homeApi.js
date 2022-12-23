@@ -1,4 +1,4 @@
-import httpRequest from '../httpRequest';
+import { httpRequest } from '../utils';
 
 export const getHomeAPI = () =>
     new Promise(async (resolve, reject) => {
