@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useEffect } from 'react';
 
 import MainLayout from './layouts/MainLayout/MainLayout';
 import { publicRoutes } from './routes';
 import { getHome } from './redux/actions';
+import { EmptyComponent } from './pages';
 
 function App() {
     const dispatch = useDispatch();
@@ -29,8 +30,9 @@ function App() {
         <>
             <Router>
                 <Routes>
-                    {publicRoutes.map((route, index) => {
-                        const Page = route.component;
+                    {publicRoutes.map((route) => {
+                        const Page = route.component || EmptyComponent;
+                        const SubPage = route.subComponent || EmptyComponent;
 
                         return (
                             <Route
@@ -38,7 +40,9 @@ function App() {
                                 path={route.path}
                                 element={
                                     <MainLayout>
-                                        <Page />
+                                        <Page>
+                                            <SubPage />
+                                        </Page>
                                     </MainLayout>
                                 }
                             />

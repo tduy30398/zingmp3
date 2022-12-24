@@ -4,9 +4,12 @@ import {
     setPlaylistId,
     setIsPlaying,
     setIsLoading,
+    setIsTyping,
+    setIsSearching,
     setAlbumSongs,
     setCurrentSongDetail,
     setRecentSongsList,
+    setSearchResult,
 } from './setMusic';
 
 export {
@@ -14,8 +17,11 @@ export {
     setCurrentSongId,
     setPlaylistId,
     setIsPlaying,
-    setAlbumSongs,
     setIsLoading,
+    setIsTyping,
+    setIsSearching,
+    setAlbumSongs,
     setCurrentSongDetail,
     setRecentSongsList,
+    setSearchResult,
 };

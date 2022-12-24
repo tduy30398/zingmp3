@@ -1,13 +1,16 @@
 import actionTypes from '../actions/actionTypes';
 
 const initState = {
+    recentSongsList: [],
+    searchResult: {},
     currentSongDetail: null,
     currentSongId: null,
-    recentSongsList: [],
     playlistId: null,
     isPlaying: false,
-    albumSongs: null,
     isLoading: false,
+    isTyping: false,
+    isSearching: false,
+    albumSongs: null,
 };
 
 const musicReducer = (state = initState, action) => {
@@ -37,6 +40,16 @@ const musicReducer = (state = initState, action) => {
                 ...state,
                 isLoading: action.flag,
             };
+        case actionTypes.IS_TYPING:
+            return {
+                ...state,
+                isTyping: action.flag,
+            };
+        case actionTypes.IS_SEARCHING:
+            return {
+                ...state,
+                isSearching: action.flag,
+            };
         case actionTypes.SET_PLAYLIST:
             return {
                 ...state,
@@ -62,6 +75,11 @@ const musicReducer = (state = initState, action) => {
             return {
                 ...state,
                 recentSongsList: currentSongsList,
+            };
+        case actionTypes.SET_SEARCH_RESULT:
+            return {
+                ...state,
+                searchResult: action.searchResult,
             };
 
         default:

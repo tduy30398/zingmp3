@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Sidebar, MusicPlayer, RightSidebarPlaylist, Search } from '../components';
+import { Sidebar, MusicPlayer, RightSidebarPlaylist, Searchbar } from '../components';
 
 function MainLayout({ children }) {
     const [isShowRightSidebar, setIsShowRightSidebar] = useState(true);
@@ -11,7 +11,7 @@ function MainLayout({ children }) {
                 </div>
                 <div className="flex-auto">
                     <div className="h-[70px] px-[59px] flex items-center">
-                        <Search />
+                        <Searchbar />
                     </div>
                     <div>{children}</div>
                 </div>

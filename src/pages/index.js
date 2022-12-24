@@ -12,6 +12,8 @@ import Playlist from './Playlist';
 import History from './History';
 import Album from './Album';
 import WeekChart from './WeekChart';
+import Search from './Search';
+import EmptyComponent from './EmptyComponent';
 
 export {
     Personal,
@@ -28,4 +30,6 @@ export {
     History,
     Album,
     WeekChart,
+    Search,
+    EmptyComponent,
 };

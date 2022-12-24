@@ -15,7 +15,11 @@ import {
     History,
     Album,
     WeekChart,
+    Search,
 } from '../pages';
+
+import { AllSearch } from '../components/Search/AllSearch';
+import { SongsSearch } from '../components/Search/SongsSearch';
 
 const publicRoutes = [
     { path: routes.mymusic, component: Personal },
@@ -33,6 +37,8 @@ const publicRoutes = [
     { path: routes.album, component: Album },
     { path: routes.playlistAlbum, component: Album },
     { path: routes.weekchart, component: WeekChart },
+    { path: routes.search_all, component: Search, subComponent: AllSearch },
+    { path: routes.search_songs, component: Search, subComponent: SongsSearch },
 ];
 
 const privateRoutes = [];

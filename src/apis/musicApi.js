@@ -41,3 +41,17 @@ export const getDetailPlaylistAPI = (playlistId) =>
             reject(error);
         }
     });
+
+export const searchAPI = (keyword) =>
+    new Promise(async (resolve, reject) => {
+        try {
+            const response = await httpRequest({
+                url: 'search',
+                method: 'get',
+                params: { keyword },
+            });
+            resolve(response);
+        } catch (error) {
+            reject(error);
+        }
+    });

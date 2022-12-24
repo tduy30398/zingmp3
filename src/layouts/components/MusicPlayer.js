@@ -29,7 +29,7 @@ import { PlayerProgressBar } from '../components';
 import { RotatingLinesLoading } from '../../assets/icons/dynamicIcons';
 
 function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
-    const { currentSongId, isPlaying, albumSongs } = useSelector((state) => state.music);
+    const { currentSongId, isPlaying, isTyping, albumSongs } = useSelector((state) => state.music);
     const [songInfo, setSongInfo] = useState(null);
     const [isShuffle, setIsShuffle] = useState(false);
     const [isRepeat, setIsRepeat] = useState(false);
@@ -99,7 +99,7 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
     // Handle when press space button on keyboard
     useEffect(() => {
         const detectKeyDown = (e) => {
-            if (e.keyCode === 32) {
+            if (e.keyCode === 32 && !isTyping) {
                 handleTogglePlaying();
             }
         };
@@ -108,7 +108,7 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
         return () => {
             document.removeEventListener('keydown', detectKeyDown);
         };
-    }, [isPlaying, audio]);
+    }, [isPlaying, audio, isTyping]);
 
     useEffect(() => {
         audio.volume = volume / 100;

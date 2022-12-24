@@ -25,6 +25,16 @@ export const setIsLoading = (flag) => ({
     flag,
 });
 
+export const setIsTyping = (flag) => ({
+    type: actionTypes.IS_TYPING,
+    flag,
+});
+
+export const setIsSearching = (flag) => ({
+    type: actionTypes.IS_SEARCHING,
+    flag,
+});
+
 export const setAlbumSongs = (albumSongs) => ({
     type: actionTypes.SET_PLAYLIST,
     albumSongs,
@@ -33,4 +43,9 @@ export const setAlbumSongs = (albumSongs) => ({
 export const setRecentSongsList = (songInfo) => ({
     type: actionTypes.SET_RECENT_SONGS_LIST,
     songInfo,
+});
+
+export const setSearchResult = (searchResult) => ({
+    type: actionTypes.SET_SEARCH_RESULT,
+    searchResult,
 });
