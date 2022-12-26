@@ -14,7 +14,7 @@ function SongSearchItem({ data }) {
         dispatch(setIsPlaying(true));
     };
     return (
-        <div className="w-[45%] lg:w-[30%] flex-auto p-[10px] gap-4 flex rounded-[4px] group bg-primary-color-8 hover:bg-primary-color-9">
+        <div className="w-[90%] mb-2 md:w-[45%] md:mb-2 lg:w-[30%] lg:mb-0  flex-auto p-[10px] gap-4 flex rounded-[4px] group bg-primary-color-8 hover:bg-primary-color-9">
             <div onClick={handleClickSong} className="relative">
                 <img
                     className="w-[84px] h-[84px] rounded object-cover"

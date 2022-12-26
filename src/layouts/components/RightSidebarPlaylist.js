@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { TfiAlarmClock, BiTrashAlt } from '../../assets/icons/staticIcons';
 import { SongItemSmall } from '../../components/Home';
@@ -12,8 +12,6 @@ function RightSidebarPlaylist() {
         useSelector((state) => state.music);
     const [isPlaylist, setIsPlaylist] = useState(true);
     const [playlistDetail, setPlaylistDetail] = useState({});
-
-    const navigate = useNavigate();
 
     const fetchDetailPlaylist = async () => {
         const response = await getDetailPlaylistAPI(playlistId);
@@ -84,14 +82,14 @@ function RightSidebarPlaylist() {
                             <span className="text-sm font-normal text-text-color-3">
                                 Từ playlist{' '}
                             </span>
-                            <span
-                                onClick={() => navigate(currentSongDetail?.album.link)}
+                            <Link
+                                to={currentSongDetail?.album?.link}
                                 className="text-sm font-normal cursor-pointer text-text-color-primary-2"
                             >
                                 {playlistDetail?.title?.length > 28
                                     ? `${playlistDetail?.title?.slice(0, 28)}...`
                                     : playlistDetail?.title}
-                            </span>
+                            </Link>
                         </span>
                     </div>
                     {playlistDetail?.song?.items

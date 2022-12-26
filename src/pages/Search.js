@@ -1,8 +1,12 @@
-import { RotatingLinesLoading } from '../assets/icons/dynamicIcons';
 import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+
+import { RotatingLinesLoading } from '../assets/icons/dynamicIcons';
+import paths from '../configs';
 
 function Search({ children }) {
     const { isSearching } = useSelector((state) => state.music);
+
     return (
         <div className="w-full relative flex flex-col h-[calc(100vh-160px)] overflow-x-hidden overflow-y-auto overflow-y-overlay scrollbar">
             {isSearching && (
@@ -17,23 +21,38 @@ function Search({ children }) {
                     <h3 className="pr-5 text-2xl font-bold border-r-[1px] border-border-color-1">
                         Kết Quả Tìm Kiếm
                     </h3>
-                    <ul className="flex items-center">
-                        <li className="mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2">
+                    <div className="flex items-center">
+                        <NavLink
+                            to={paths.SEARCH_ALL}
+                            className="mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2"
+                        >
                             TẤT CẢ
-                        </li>
-                        <li className="mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2">
+                        </NavLink>
+                        <NavLink
+                            to={paths.SEARCH_SONGS}
+                            className="mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2"
+                        >
                             BÀI HÁT
-                        </li>
-                        <li className="mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2">
+                        </NavLink>
+                        <NavLink
+                            to={paths.SEARCH_PLAYLIST}
+                            className="mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2"
+                        >
                             PLAYLIST/ALBUM
-                        </li>
-                        <li className="mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2">
+                        </NavLink>
+                        <NavLink
+                            to={paths.SEARCH_ARTIST}
+                            className="mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2"
+                        >
                             NGHỆ SĨ/OA
-                        </li>
-                        <li className="mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2">
+                        </NavLink>
+                        <NavLink
+                            to={paths.SEARCH_MV}
+                            className="mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2"
+                        >
                             MV
-                        </li>
-                    </ul>
+                        </NavLink>
+                    </div>
                 </div>
             </div>
             <div>{children}</div>

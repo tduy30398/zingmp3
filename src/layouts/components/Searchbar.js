@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, createSearchParams } from 'react-router-dom';
 
 import {
@@ -11,39 +11,28 @@ import {
     RiVipDiamondLine,
 } from '../../assets/icons/staticIcons';
 import { MagnifyingGlassIcon, ClearIcon } from '../../assets/images/svgIcons';
-import { setIsTyping, setSearchResult, setIsSearching } from '../../redux/actions';
-import routes from '../../configs';
-import { searchAPI } from '../../APIs';
+import { setIsTyping, setSearchText } from '../../redux/actions';
+import paths from '../../configs';
 
 function Searchbar() {
-    const [searchText, setSearchText] = useState('');
+    const { searchText } = useSelector((state) => state.music);
     const inputRef = useRef('');
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleSearchChange = (e) => {
-        setSearchText(e.target.value);
+    const handleInputChange = (e) => {
+        dispatch(setSearchText(e.target.value));
     };
 
     const handleClearSearch = () => {
-        setSearchText('');
+        dispatch(setSearchText(''));
         inputRef.current.focus();
     };
 
-    const getSearchAPI = async () => {
-        dispatch(setIsSearching(true));
-        const respone = await searchAPI(searchText);
-        dispatch(setIsSearching(false));
-        if (respone?.data.err === 0) {
-            dispatch(setSearchResult(respone.data.data));
-        }
-    };
-
-    const handleSearchKeyword = async () => {
-        getSearchAPI();
+    const handleNavigate = () => {
         navigate({
-            pathname: routes.search_all,
+            pathname: paths.SEARCH_ALL,
             search: createSearchParams({
                 q: searchText,
             }).toString(),
@@ -53,7 +42,7 @@ function Searchbar() {
     // Handle search when press enter
     const handleSearchEnter = (e) => {
         if (e.keyCode === 13) {
-            handleSearchKeyword();
+            handleNavigate();
         }
     };
 
@@ -71,14 +60,14 @@ function Searchbar() {
                 <div className="w-1/2">
                     <div className="w-full flex items-center text-sm text-text-color-2 bg-primary-color-5 rounded-[20px]">
                         <span
-                            onClick={handleSearchKeyword}
+                            onClick={handleNavigate}
                             className="h-10 pl-2 flex items-center justify-center cursor-pointer text-text-color-2 hover:text-text-color-1"
                         >
                             <MagnifyingGlassIcon />
                         </span>
                         <input
                             value={searchText}
-                            onChange={handleSearchChange}
+                            onChange={handleInputChange}
                             onKeyUp={handleSearchEnter}
                             onFocus={() => dispatch(setIsTyping(true))}
                             onBlur={() => dispatch(setIsTyping(false))}

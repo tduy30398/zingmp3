@@ -111,9 +111,7 @@ function Slider() {
             dispatch(setAlbumSongs(null));
             dispatch(setIsPlaying(true));
         } else if (banner?.type === 4) {
-            navigate(banner?.link, { state: { isPlayAlbum: false } });
-        } else {
-            dispatch(setAlbumSongs(null));
+            navigate(banner?.link);
         }
     };
 

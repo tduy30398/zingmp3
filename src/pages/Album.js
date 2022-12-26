@@ -32,6 +32,7 @@ function Album() {
     useEffect(() => {
         const fetchDetailPlaylist = async () => {
             dispatch(setIsLoading(true));
+            setPlaylistDetail({});
             const response = await getDetailPlaylistAPI(playlistId);
             dispatch(setIsLoading(false));
             if (response?.data.err === 0) {

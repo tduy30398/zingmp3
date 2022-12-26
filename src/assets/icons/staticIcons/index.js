@@ -22,7 +22,7 @@ import {
 } from 'react-icons/bs';
 import { FiMusic } from 'react-icons/fi';
 import { BiCategoryAlt, BiShuffle, BiVolumeFull, BiVolumeMute, BiTrashAlt } from 'react-icons/bi';
-import { AiOutlineStar, AiOutlineHeart } from 'react-icons/ai';
+import { AiOutlineStar, AiOutlineHeart, AiOutlineUserAdd } from 'react-icons/ai';
 import { RiVipDiamondLine } from 'react-icons/ri';
 import { CiRepeat } from 'react-icons/ci';
 import { FaPlay } from 'react-icons/fa';
@@ -65,4 +65,5 @@ export {
     TbMicrophone2,
     SlScreenDesktop,
     BiTrashAlt,
+    AiOutlineUserAdd,
 };

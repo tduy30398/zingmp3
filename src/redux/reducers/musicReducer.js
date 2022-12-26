@@ -3,6 +3,7 @@ import actionTypes from '../actions/actionTypes';
 const initState = {
     recentSongsList: [],
     searchResult: {},
+    searchText: '',
     currentSongDetail: null,
     currentSongId: null,
     playlistId: null,
@@ -80,6 +81,11 @@ const musicReducer = (state = initState, action) => {
             return {
                 ...state,
                 searchResult: action.searchResult,
+            };
+        case actionTypes.SET_SEARCH_TEXT:
+            return {
+                ...state,
+                searchText: action.searchText,
             };
 
         default:

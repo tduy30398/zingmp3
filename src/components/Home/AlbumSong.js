@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { BsMusicNoteBeamed, FaPlay } from '../../assets/icons/staticIcons';
 import { AudioLoading } from '../../assets/icons/dynamicIcons';
@@ -10,7 +10,6 @@ import { setCurrentSongId, setIsPlaying } from '../../redux/actions';
 function AlbumSong({ songInfo }) {
     const { currentSongId, isPlaying } = useSelector((state) => state.music);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const handleClickSong = () => {
         dispatch(setCurrentSongId(songInfo.encodeId));
@@ -68,19 +67,17 @@ function AlbumSong({ songInfo }) {
                 </div>
             </div>
             <span className="text-xs font-medium leading-5 flex-4 flex items-center">
-                <span
-                    onClick={() =>
-                        navigate(songInfo?.album.link, { state: { isPlayAlbum: false } })
-                    }
+                <Link
+                    to={songInfo?.album?.link}
                     className="cursor-pointer hover:underline hover:text-text-color-primary-2"
                 >
                     {songInfo?.album?.title.length > 35
                         ? `${songInfo?.album?.title.slice(0, 35)}...`
                         : songInfo?.album?.title}
-                </span>
+                </Link>
             </span>
             <span className="text-xs font-medium leading-5 flex-1 flex justify-end items-center mr-1">
-                {moment.utc(songInfo.duration * 1000).format('mm:ss')}
+                {moment.utc(songInfo?.duration * 1000).format('mm:ss')}
             </span>
         </div>
     );

@@ -15,7 +15,7 @@ function NewRelease() {
         if (songType === 0) {
             setSongContent(newRelease?.items?.all);
         } else if (songType === 1) {
-            setSongContent(newRelease?.items?.vPop);
+            setSongContent(newRelease?.items?.vPop.reverse());
         } else if (songType === 2) {
             setSongContent(newRelease?.items?.others);
         }
@@ -33,7 +33,7 @@ function NewRelease() {
                         onClick={() => {
                             setSongType(0);
                         }}
-                        className={`py-1 px-6 outline-none text-center rounded-full border leading-inherit text-text-color-2 text-xs ${
+                        className={`py-1 px-6 outline-none text-center rounded-full border leading-[14px] text-text-color-2 text-xs ${
                             songType === 0
                                 ? 'border-transparent font-semibold bg-primary-color-1 hover:bg-primary-hover-color-1'
                                 : 'border-border-color-1 font-medium bg-primary-color-2 hover:text-text-color-1'
@@ -46,7 +46,7 @@ function NewRelease() {
                         onClick={() => {
                             setSongType(1);
                         }}
-                        className={`py-1 px-6 outline-none text-center rounded-full border leading-inherit text-text-color-2 text-xs ${
+                        className={`py-1 px-6 outline-none text-center rounded-full border leading-[14px] text-text-color-2 text-xs ${
                             songType === 1
                                 ? 'border-transparent font-semibold bg-primary-color-1 hover:bg-primary-hover-color-1'
                                 : 'border-border-color-1 font-medium bg-primary-color-2 hover:text-text-color-1'
@@ -59,7 +59,7 @@ function NewRelease() {
                         onClick={() => {
                             setSongType(2);
                         }}
-                        className={`py-1 px-6 outline-none text-center rounded-full border leading-inherit text-text-color-2 text-xs ${
+                        className={`py-1 px-6 outline-none text-center rounded-full border leading-[14px] text-text-color-2 text-xs ${
                             songType === 2
                                 ? 'border-transparent font-semibold bg-primary-color-1 hover:bg-primary-hover-color-1'
                                 : 'border-border-color-1 font-medium bg-primary-color-2 hover:text-text-color-1'

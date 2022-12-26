@@ -35,10 +35,6 @@
         overflow-y: overlay;
     }
 
-    .leading-inherit {
-        line-height: inherit;
-    }
-
     .overflow-ellipsis-2-line {
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;

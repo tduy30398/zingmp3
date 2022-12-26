@@ -14,6 +14,7 @@ import Album from './Album';
 import WeekChart from './WeekChart';
 import Search from './Search';
 import EmptyComponent from './EmptyComponent';
+import Singer from './Singer';
 
 export {
     Personal,
@@ -32,4 +33,5 @@ export {
     WeekChart,
     Search,
     EmptyComponent,
+    Singer,
 };

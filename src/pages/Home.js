@@ -1,16 +1,23 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { TabTitle } from '../utils';
 import { Slider, NewRelease, PlaylistSection, WeekChartSection } from '../components/Home';
+import { setSearchText } from '../redux/actions';
 import { RotatingLinesLoading } from '../assets/icons/dynamicIcons';
 
 function Home() {
-    useEffect(() => {
-        TabTitle('Zing MP3 | Nghe tải nhạc chất lượng cao trên desktop, mobile và TV');
-    }, []);
     const { newRelease, hArtistTheme, hAutoTheme1, hAutoTheme2, weekChart, h100, hXone, hAlbum } =
         useSelector((state) => state.app);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        TabTitle('Zing MP3 | Nghe tải nhạc chất lượng cao trên desktop, mobile và TV');
+        dispatch(setSearchText(''));
+    }, []);
+
     return (
         <div className="w-full relative h-[calc(100vh-160px)] overflow-x-hidden overflow-y-auto overflow-y-overlay scrollbar">
             {Object.keys(newRelease).length === 0 ? (

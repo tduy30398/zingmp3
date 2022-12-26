@@ -10,6 +10,7 @@ import {
     setCurrentSongDetail,
     setRecentSongsList,
     setSearchResult,
+    setSearchText,
 } from './setMusic';
 
 export {
@@ -24,4 +25,5 @@ export {
     setCurrentSongDetail,
     setRecentSongsList,
     setSearchResult,
+    setSearchText,
 };

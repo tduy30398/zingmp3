@@ -16,7 +16,7 @@ function AlbumPlaylist({ songs }) {
                         <span className="text-xs font-medium leading-5 select-none">BÀI HÁT</span>
                     </div>
                     <span className="text-xs font-medium leading-5 select-none flex-4">ALBUM</span>
-                    <span className="text-xs font-medium leading-5 select-none flex-1">
+                    <span className="text-xs font-medium leading-5 select-none flex-1 flex justify-end">
                         THỜI GIAN
                     </span>
                 </div>
