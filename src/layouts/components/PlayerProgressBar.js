@@ -53,7 +53,7 @@ function PlayerProgressBar({ audio, songInfo }) {
     };
 
     return (
-        <div className="w-full flex justify-center items-center gap-[10px]">
+        <div className="w-full flex justify-center items-center gap-[10px] select-none">
             <span className="text-text-color-3 text-xs font-medium">
                 {moment.utc(second * 1000).format('mm:ss')}
             </span>

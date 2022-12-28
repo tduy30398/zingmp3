@@ -1,9 +1,10 @@
 import { useRef, memo } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
-import { BsPlayCircle } from '../../assets/icons/staticIcons';
+import { BsPlayCircle } from '../../../assets/icons/staticIcons';
 
-function PlaylistSectionItem({ item }) {
+function AlbumSearchItem({ item }) {
+    const navigate = useNavigate();
     const imgRef = useRef('');
 
     const handleMouseEnter = () => {
@@ -17,7 +18,7 @@ function PlaylistSectionItem({ item }) {
     };
 
     return (
-        <div className="flex flex-col gap-1 w-1/5 px-[14px]">
+        <div className="md:w-1/2 lg:w-1/4 xl:w-1/5 flex flex-col px-[14px] gap-1 mb-[30px]">
             <Link
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
@@ -26,9 +27,9 @@ function PlaylistSectionItem({ item }) {
             >
                 <img
                     ref={imgRef}
-                    className="w-full h-auto object-cover mb-1"
-                    src={item.thumbnail}
-                    alt={item.title}
+                    className="w-full h-auto object-cover"
+                    src={item?.thumbnail}
+                    alt={item?.title}
                 />
                 <div className="absolute top-0 bottom-0 left-0 right-0 cursor-pointer group hover:bg-overlay-50">
                     <div
@@ -37,25 +38,31 @@ function PlaylistSectionItem({ item }) {
                         }
                     >
                         <span className="hover:text-text-color-1">
-                            <BsPlayCircle size={45} />
+                            <BsPlayCircle
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    navigate(item?.link, { state: { isPlayAlbum: true } });
+                                }}
+                                size={45}
+                            />
                         </span>
                     </div>
                 </div>
             </Link>
-            {item.title && (
+            {item?.title && (
                 <Link
                     to={item?.link}
-                    title={item.title}
+                    title={item?.title}
                     className="text-text-color-2 text-sm font-bold cursor-pointer hover:text-text-color-primary-1"
                 >
-                    {item.title.length > 22 ? `${item.title.slice(0, 22)}...` : item.title}
+                    {item?.title?.length > 22 ? `${item?.title?.slice(0, 22)}...` : item?.title}
                 </Link>
             )}
             <span className="text-text-color-3 text-sm font-medium overflow-ellipsis-2-line select-none">
-                {item.sortDescription}
+                {item?.artistsNames}
             </span>
         </div>
     );
 }
 
-export default memo(PlaylistSectionItem);
+export default memo(AlbumSearchItem);

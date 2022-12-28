@@ -46,6 +46,8 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
             audio.pause();
             // Set icon loading tại play button khi bắt đầu gọi API
             setIsLoadingSong(true);
+            //Promise.all sẽ nhận các Promise làm đầu vào và chỉ thành
+            //công khi tất cả các Promise đầu vào thành công
             const [res1, res2] = await Promise.all([
                 getDetailSongAPI(currentSongId),
                 getSongAPI(currentSongId),
@@ -115,12 +117,14 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
     }, [volume]);
 
     const handleTogglePlaying = () => {
-        if (isPlaying) {
-            audio.pause();
-            dispatch(setIsPlaying(false));
-        } else {
-            audio.play();
-            dispatch(setIsPlaying(true));
+        if (!isLoadingSong) {
+            if (isPlaying) {
+                audio.pause();
+                dispatch(setIsPlaying(false));
+            } else {
+                audio.play();
+                dispatch(setIsPlaying(true));
+            }
         }
     };
 

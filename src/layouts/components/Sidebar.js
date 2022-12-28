@@ -25,7 +25,7 @@ function Sidebar() {
                     <img src={mainLogo} alt="Logo" className="w-[120px] h-10" />
                 </Link>
             </div>
-            <div className="mb-[15px]">
+            <div className="pb-[15px] border-b-[1px] border-border-color-1">
                 <SidebarItem
                     title="Cá Nhân"
                     to={paths.MYMUSIC}
@@ -37,7 +37,7 @@ function Sidebar() {
                     to={paths.ZINGCHART}
                     icon={<HiOutlineChartBar size={24} />}
                 />
-                <SidebarItem title="RADIO" to={paths.RADIO} icon={<IoIosRadio size={24} />} />
+                <SidebarItem title="Radio" to={paths.RADIO} icon={<IoIosRadio size={24} />} />
                 <SidebarItem
                     title="Theo Dõi"
                     to={paths.FOLLOWING}

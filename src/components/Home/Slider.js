@@ -128,7 +128,7 @@ function Slider() {
     };
 
     return (
-        <div className="w-full overflow-hidden px-[59px]">
+        <div className="w-full overflow-hidden px-[59px] select-none">
             <div onMouseLeave={() => setIsAuto(true)} className="flex gap-8 pt-8 relative group">
                 {banners?.map((banner, index) => (
                     <img
@@ -143,13 +143,13 @@ function Slider() {
                 ))}
                 <div
                     className="z-20 flex justify-center items-center w-[55px] h-[55px] cursor-pointer text-text-color-2 rounded-full absolute top-[45%] left-[15px] bg-opacity-color-1 opacity-0 group-hover:opacity-100 hover:text-text-color-1"
-                    onClick={() => handleSlidePrevBanner()}
+                    onClick={handleSlidePrevBanner}
                 >
                     <BsChevronLeft size={28} />
                 </div>
                 <div
                     className="z-20 flex justify-center items-center w-[55px] h-[55px] cursor-pointer text-text-color-2 rounded-full absolute top-[45%] right-[15px] bg-opacity-color-1 opacity-0 group-hover:opacity-100 hover:text-text-color-1"
-                    onClick={() => handleSlideNextBanner()}
+                    onClick={handleSlideNextBanner}
                 >
                     <BsChevronRight size={28} />
                 </div>

@@ -22,7 +22,6 @@ import {
 import { AllSearch } from '../components/Search/AllSearch';
 import { SongsSearch } from '../components/Search/SongsSearch';
 import { SingersSearch } from '../components/Search/SingersSearch';
-import { MVsSearch } from '../components/Search/MVsSearch';
 import { AlbumsSearch } from '../components/Search/AlbumsSearch';
 
 const publicRoutes = [
@@ -46,7 +45,6 @@ const publicRoutes = [
     { path: paths.SEARCH_SONGS, component: Search, subComponent: SongsSearch },
     { path: paths.SEARCH_PLAYLIST, component: Search, subComponent: AlbumsSearch },
     { path: paths.SEARCH_ARTIST, component: Search, subComponent: SingersSearch },
-    { path: paths.SEARCH_MV, component: Search, subComponent: MVsSearch },
 ];
 
 const privateRoutes = [];

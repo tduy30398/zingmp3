@@ -16,11 +16,12 @@ function SongItemSmall({ data }) {
     };
     return (
         <div
-            className={`w-[90%] lg:w-[45%] flex-auto p-[10px] gap-[10px] flex rounded-[4px] border-b-[1px] border-border-color-2 group ${
+            onDoubleClick={handleClickSong}
+            className={`w-[90%] lg:w-[45%] flex-auto select-none p-[10px] gap-[10px] flex rounded-[4px] border-b-[1px] border-border-color-2 group ${
                 data?.encodeId === currentSongId ? 'bg-primary-color-8' : 'hover:bg-primary-color-8'
             }`}
         >
-            <div onClick={() => handleClickSong()} className="relative">
+            <div onClick={handleClickSong} className="relative">
                 <img
                     className="w-[40px] h-[40px] rounded object-cover"
                     src={data?.thumbnail}
@@ -47,7 +48,7 @@ function SongItemSmall({ data }) {
             </div>
             <div className="w-full flex items-center justify-between">
                 <div className="flex flex-col">
-                    <span className="text-text-color-2 text-sm font-semibold select-none">
+                    <span className="text-text-color-2 text-sm font-semibold">
                         {data?.title?.length > 40 ? `${data?.title.slice(0, 40)}...` : data?.title}
                     </span>
                     <span className="text-text-color-3 text-xs font-semibold">

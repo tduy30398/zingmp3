@@ -58,9 +58,11 @@ function SongSearchItem({ data }) {
                 </span>
                 <span className="text-text-color-3 text-xs font-semibold">
                     <span>
-                        {data?.totalFollow < 1000000
+                        {data?.totalFollow > 1000000
+                            ? `${(data?.totalFollow / 1000000).toFixed(1)}M quan tâm`
+                            : data?.totalFollow > 1000
                             ? `${Math.round(data?.totalFollow / 1000)}K quan tâm`
-                            : `${(data?.totalFollow / 1000000).toFixed(1)}M quan tâm`}
+                            : `${data?.totalFollow} quan tâm`}
                     </span>
                 </span>
             </div>

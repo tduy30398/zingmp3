@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
-import { BsMusicNoteBeamed, FaPlay } from '../../assets/icons/staticIcons';
-import { AudioLoading } from '../../assets/icons/dynamicIcons';
-import { setCurrentSongId, setIsPlaying } from '../../redux/actions';
+import { FaPlay } from '../../../assets/icons/staticIcons';
+import { AudioLoading } from '../../../assets/icons/dynamicIcons';
+import { setCurrentSongId, setIsPlaying } from '../../../redux/actions';
 
-function AlbumSong({ songInfo }) {
+function SongSearchItem({ songInfo }) {
     const { currentSongId, isPlaying } = useSelector((state) => state.music);
     const dispatch = useDispatch();
 
@@ -19,16 +19,13 @@ function AlbumSong({ songInfo }) {
     return (
         <div
             onDoubleClick={handleClickSong}
-            className={`flex justify-between select-none p-[10px] border-b-[1px] border-border-color-2 rounded-[4px] group ${
+            className={`flex justify-between select-none text-text-color-3 p-[10px] border-b-[1px] border-border-color-2 rounded-[4px] group ${
                 songInfo?.encodeId === currentSongId
                     ? 'bg-primary-color-8'
                     : 'hover:bg-primary-color-8'
             }`}
         >
             <div className="flex items-center flex-5">
-                <span className="mr-[10px]">
-                    <BsMusicNoteBeamed size={15} />
-                </span>
                 <div className="relative cursor-pointer mr-[10px]" onClick={handleClickSong}>
                     <img
                         className="w-10 h-10 rounded-[4px] object-cover group-hover:opacity-30"
@@ -80,4 +77,4 @@ function AlbumSong({ songInfo }) {
     );
 }
 
-export default memo(AlbumSong);
+export default memo(SongSearchItem);

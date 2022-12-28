@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { BiShuffle, AiOutlineUserAdd } from '../../../assets/icons/staticIcons';
 
-function Artist({ item }) {
+function ArtistSearchItem({ item }) {
     const imgRef = useRef('');
 
     const handleMouseEnter = () => {
@@ -17,7 +17,7 @@ function Artist({ item }) {
     };
 
     return (
-        <div className="w-1/5 flex flex-col items-center">
+        <div className="md:w-1/2 lg:w-1/4 xl:w-1/5 flex flex-col px-[14px] items-center">
             <Link
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
@@ -70,4 +70,4 @@ function Artist({ item }) {
     );
 }
 
-export default memo(Artist);
+export default memo(ArtistSearchItem);

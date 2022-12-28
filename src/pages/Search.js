@@ -4,8 +4,13 @@ import { NavLink } from 'react-router-dom';
 import { RotatingLinesLoading } from '../assets/icons/dynamicIcons';
 import paths from '../configs';
 
+const nonActiveStyle =
+    'mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2';
+const activeStyle =
+    'mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2 border-b-[1px] border-[#CA4974]';
+
 function Search({ children }) {
-    const { isSearching } = useSelector((state) => state.music);
+    const { isSearching, searchText } = useSelector((state) => state.music);
 
     return (
         <div className="w-full relative flex flex-col h-[calc(100vh-160px)] overflow-x-hidden overflow-y-auto overflow-y-overlay scrollbar">
@@ -18,39 +23,33 @@ function Search({ children }) {
             )}
             <div className="border-b-[1px] border-border-color-1 mb-7">
                 <div className="w-full flex h-[50px] px-[59px] items-center">
-                    <h3 className="pr-5 text-2xl font-bold border-r-[1px] border-border-color-1">
+                    <h3 className="hidden lg:block pr-5 text-2xl font-bold border-r-[1px] border-border-color-1">
                         Kết Quả Tìm Kiếm
                     </h3>
                     <div className="flex items-center">
                         <NavLink
-                            to={paths.SEARCH_ALL}
-                            className="mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2"
+                            to={`${paths.SEARCH_ALL}?q=${searchText}`}
+                            className={({ isActive }) => (isActive ? activeStyle : nonActiveStyle)}
                         >
                             TẤT CẢ
                         </NavLink>
                         <NavLink
-                            to={paths.SEARCH_SONGS}
-                            className="mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2"
+                            to={`${paths.SEARCH_SONGS}?q=${searchText}`}
+                            className={({ isActive }) => (isActive ? activeStyle : nonActiveStyle)}
                         >
                             BÀI HÁT
                         </NavLink>
                         <NavLink
-                            to={paths.SEARCH_PLAYLIST}
-                            className="mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2"
+                            to={`${paths.SEARCH_PLAYLIST}?q=${searchText}`}
+                            className={({ isActive }) => (isActive ? activeStyle : nonActiveStyle)}
                         >
                             PLAYLIST/ALBUM
                         </NavLink>
                         <NavLink
-                            to={paths.SEARCH_ARTIST}
-                            className="mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2"
+                            to={`${paths.SEARCH_ARTIST}?q=${searchText}`}
+                            className={({ isActive }) => (isActive ? activeStyle : nonActiveStyle)}
                         >
                             NGHỆ SĨ/OA
-                        </NavLink>
-                        <NavLink
-                            to={paths.SEARCH_MV}
-                            className="mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2"
-                        >
-                            MV
                         </NavLink>
                     </div>
                 </div>

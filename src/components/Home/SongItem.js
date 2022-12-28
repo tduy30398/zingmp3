@@ -17,11 +17,12 @@ function SongItem({ data }) {
     };
     return (
         <div
-            className={`w-[45%] lg:w-[30%] flex-auto p-[10px] gap-[10px] flex rounded-[4px] group ${
+            onDoubleClick={handleClickSong}
+            className={`w-[45%] lg:w-[31.5%] select-none p-[10px] gap-[10px] flex rounded-[4px] group ${
                 data?.encodeId === currentSongId ? 'bg-primary-color-8' : 'hover:bg-primary-color-8'
             }`}
         >
-            <div onClick={() => handleClickSong()} className="relative">
+            <div onClick={handleClickSong} className="relative">
                 <img
                     className="w-[60px] h-[60px] rounded object-cover"
                     src={data?.thumbnail}
@@ -47,7 +48,7 @@ function SongItem({ data }) {
                 )}
             </div>
             <div className="flex flex-col justify-between">
-                <span className="text-text-color-2 text-sm font-semibold select-none">
+                <span className="text-text-color-2 text-sm font-semibold">
                     {data?.title.length > 24 ? `${data?.title.slice(0, 24)}...` : data?.title}
                 </span>
                 <span className="text-text-color-3 text-xs font-semibold">
@@ -57,7 +58,7 @@ function SongItem({ data }) {
                             : data?.artistsNames}
                     </span>
                 </span>
-                <span className="text-text-color-3 text-xs font-semibold select-none">
+                <span className="text-text-color-3 text-xs font-semibold">
                     {moment(data?.releaseDate * 1000).fromNow()}
                 </span>
             </div>

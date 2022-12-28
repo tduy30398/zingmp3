@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { TabTitle } from '../utils';
 import { Slider, NewRelease, PlaylistSection, WeekChartSection } from '../components/Home';
-import { setSearchText } from '../redux/actions';
+import { setSearchText, setSearchResult } from '../redux/actions';
 import { RotatingLinesLoading } from '../assets/icons/dynamicIcons';
 
 function Home() {
@@ -16,6 +16,7 @@ function Home() {
     useEffect(() => {
         TabTitle('Zing MP3 | Nghe tải nhạc chất lượng cao trên desktop, mobile và TV');
         dispatch(setSearchText(''));
+        dispatch(setSearchResult({}));
     }, []);
 
     return (

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import moment from 'moment';
 
 import { getDetailPlaylistAPI } from '../APIs';
@@ -9,18 +9,11 @@ import { TabTitle } from '../utils';
 import { AlbumPlaylist } from '../components/Home';
 import { AudioLoading, RotatingLinesLoading } from '../assets/icons/dynamicIcons';
 import { BsPlayCircle } from '../assets/icons/staticIcons';
-import {
-    setAlbumSongs,
-    setIsLoading,
-    setIsPlaying,
-    setCurrentSongId,
-    setPlaylistId,
-} from '../redux/actions';
+import { setAlbumSongs, setIsLoading, setPlaylistId } from '../redux/actions';
 
 function Album() {
     const { isPlaying, isLoading } = useSelector((state) => state.music);
     const dispatch = useDispatch();
-    const location = useLocation();
     const { playlistId } = useParams();
     const [playlistDetail, setPlaylistDetail] = useState({});
     const imgRef = useRef('');
@@ -43,17 +36,6 @@ function Album() {
         };
         fetchDetailPlaylist();
     }, [playlistId]);
-
-    // Khi bấm play button để vào album page, sẽ phát random 1 bài bên trang album đó
-    useEffect(() => {
-        if (location?.state?.isPlayAlbum) {
-            const randomIndex = Math.round(Math.random() * playlistDetail?.song?.items?.length) - 1;
-            if (randomIndex) {
-                dispatch(setCurrentSongId(playlistDetail?.song?.items[randomIndex]?.encodeId));
-                dispatch(setIsPlaying(true));
-            }
-        }
-    }, [playlistId, playlistDetail]);
 
     const handleMouseEnter = () => {
         imgRef.current.classList.remove('animate-scale-down-image');

@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
 
 const activeStyle =
-    'flex items-center h-10 px-[25px] py-2 text-[13px] font-bold border-l-[3px] text-text-color-2 border-border-color-1 border-[#CA4974] bg-[#5D3954]';
+    'flex items-center h-10 px-[25px] py-2 text-[13px] font-bold border-l-[3px] text-text-color-2 border-[#CA4974] bg-[#5D3954]';
 const nonActiveStyle =
-    'flex items-center h-10 px-[25px] py-2 text-[13px] font-bold border-l-[3px] text-text-color-1 hover:text-text-color-2 border-transparent';
+    'flex items-center h-10 px-[25px] py-2 text-[13px] font-bold border-l-[3px] text-text-color-1 border-transparent hover:text-text-color-2';
 function SidebarItem({ to, icon, title }) {
     return (
         <NavLink

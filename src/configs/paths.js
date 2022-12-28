@@ -19,5 +19,4 @@ export const paths = {
     SEARCH_SONGS: '/tim-kiem/bai-hat',
     SEARCH_PLAYLIST: '/tim-kiem/playlist',
     SEARCH_ARTIST: '/tim-kiem/artist',
-    SEARCH_MV: '/tim-kiem/video',
 };

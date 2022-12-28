@@ -14,7 +14,10 @@ function SongSearchItem({ data }) {
         dispatch(setIsPlaying(true));
     };
     return (
-        <div className="w-[90%] mb-2 md:w-[45%] md:mb-2 lg:w-[30%] lg:mb-0  flex-auto p-[10px] gap-4 flex rounded-[4px] group bg-primary-color-8 hover:bg-primary-color-9">
+        <div
+            onDoubleClick={handleClickSong}
+            className="w-[90%] mb-2 md:w-[45%] md:mb-2 lg:w-[30%] lg:mb-0 select-none flex-auto p-[10px] gap-4 flex rounded-[4px] group bg-primary-color-8 hover:bg-primary-color-9"
+        >
             <div onClick={handleClickSong} className="relative">
                 <img
                     className="w-[84px] h-[84px] rounded object-cover"
@@ -41,10 +44,8 @@ function SongSearchItem({ data }) {
                 )}
             </div>
             <div className="flex flex-col justify-center">
-                <span className="text-text-color-3 text-xs font-normal select-none mb-[6px]">
-                    Bài hát
-                </span>
-                <span className="text-text-color-2 text-sm font-extrabold select-none mb-[2px] overflow-ellipsis-2-line">
+                <span className="text-text-color-3 text-xs font-normal mb-[6px]">Bài hát</span>
+                <span className="text-text-color-2 text-sm font-extrabold mb-[2px] overflow-ellipsis-2-line">
                     {data?.title}
                 </span>
                 <span className="text-text-color-3 text-xs font-semibold">

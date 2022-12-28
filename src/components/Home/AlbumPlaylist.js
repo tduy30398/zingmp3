@@ -29,7 +29,7 @@ function AlbumPlaylist({ songs }) {
                 </div>
             )}
             {songs && (
-                <div className="flex text-xs font-medium">
+                <div className="flex text-xs font-medium mb-[30px]">
                     <h3 className="mr-2">{`${songs.total} bài hát`}</h3>•
                     <h3 className="ml-2">
                         {moment.utc(songs.totalDuration * 1000).format('H giờ mm ')}phút
