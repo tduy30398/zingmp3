@@ -49,7 +49,7 @@ function SongItemSmall({ data }) {
             <div className="w-full flex items-center justify-between">
                 <div className="flex flex-col">
                     <span className="text-text-color-2 text-sm font-semibold">
-                        {data?.title?.length > 40 ? `${data?.title.slice(0, 40)}...` : data?.title}
+                        {data?.title?.length > 28 ? `${data?.title.slice(0, 28)}...` : data?.title}
                     </span>
                     <span className="text-text-color-3 text-xs font-semibold">
                         <span

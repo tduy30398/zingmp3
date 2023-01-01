@@ -19,6 +19,7 @@ import {
     BsPauseCircle,
     BsMusicNoteBeamed,
     BsSortDownAlt,
+    BsFillPlayFill,
 } from 'react-icons/bs';
 import { FiMusic } from 'react-icons/fi';
 import { BiCategoryAlt, BiShuffle, BiVolumeFull, BiVolumeMute, BiTrashAlt } from 'react-icons/bi';
@@ -66,4 +67,5 @@ export {
     SlScreenDesktop,
     BiTrashAlt,
     AiOutlineUserAdd,
+    BsFillPlayFill,
 };

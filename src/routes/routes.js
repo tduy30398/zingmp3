@@ -41,6 +41,7 @@ const publicRoutes = [
     { path: paths.PLAYLISTALBUM, component: Album },
     { path: paths.WEEKCHART, component: WeekChart },
     { path: paths.SINGER, component: Singer },
+    { path: paths.ARTIST_SINGER, component: Singer },
     { path: paths.SEARCH_ALL, component: Search, subComponent: AllSearch },
     { path: paths.SEARCH_SONGS, component: Search, subComponent: SongsSearch },
     { path: paths.SEARCH_PLAYLIST, component: Search, subComponent: AlbumsSearch },

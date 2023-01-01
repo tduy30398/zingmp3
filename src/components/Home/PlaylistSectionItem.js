@@ -48,7 +48,7 @@ function PlaylistSectionItem({ item }) {
                     title={item.title}
                     className="text-text-color-2 text-sm font-bold cursor-pointer hover:text-text-color-primary-1"
                 >
-                    {item.title.length > 22 ? `${item.title.slice(0, 22)}...` : item.title}
+                    {item.title.length > 20 ? `${item.title.slice(0, 20)}...` : item.title}
                 </Link>
             )}
             <span className="text-text-color-3 text-sm font-medium overflow-ellipsis-2-line select-none">

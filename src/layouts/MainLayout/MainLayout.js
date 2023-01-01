@@ -1,8 +1,10 @@
 import { useState } from 'react';
+
 import { Sidebar, MusicPlayer, RightSidebarPlaylist, Searchbar } from '../components';
 
 function MainLayout({ children }) {
     const [isShowRightSidebar, setIsShowRightSidebar] = useState(true);
+
     return (
         <div className="w-full relative h-screen flex flex-col bg-primary-color-2">
             <div className="w-full h-full flex flex-auto">
@@ -10,7 +12,7 @@ function MainLayout({ children }) {
                     <Sidebar />
                 </div>
                 <div className="flex-auto">
-                    <div className="h-[70px] px-[59px] flex items-center">
+                    <div className="h-[70px] px-[59px] flex items-center fixed top-0 left-0 right-0 ml-[240px] mr-[330px] z-50 ">
                         <Searchbar />
                     </div>
                     <div>{children}</div>

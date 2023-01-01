@@ -1,10 +1,9 @@
 import { useRef, memo } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { BsPlayCircle } from '../../../assets/icons/staticIcons';
 
 function PlaylistSectionItem({ item }) {
-    const navigate = useNavigate();
     const imgRef = useRef('');
 
     const handleMouseEnter = () => {
@@ -38,13 +37,7 @@ function PlaylistSectionItem({ item }) {
                         }
                     >
                         <span className="hover:text-text-color-1">
-                            <BsPlayCircle
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    navigate(item?.link, { state: { isPlayAlbum: true } });
-                                }}
-                                size={45}
-                            />
+                            <BsPlayCircle size={45} />
                         </span>
                     </div>
                 </div>

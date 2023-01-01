@@ -22,7 +22,7 @@ function Sidebar() {
         <div className="w-[240px] h-[calc(100vh-90px)] flex-col bg-primary-color-4 fixed left-0 top-0">
             <div className="w-full h-[70px] pr-[25px] pl-7 flex items-center justify-start">
                 <Link to={paths.HOME}>
-                    <img src={mainLogo} alt="Logo" className="w-[120px] h-10" />
+                    <img src={mainLogo} alt="Logo" className="w-[120px] h-10 outline-none" />
                 </Link>
             </div>
             <div className="pb-[15px] border-b-[1px] border-border-color-1">

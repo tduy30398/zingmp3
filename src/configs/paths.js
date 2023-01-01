@@ -15,6 +15,7 @@ export const paths = {
     PLAYLISTALBUM: '/playlist/:title/:playlistId.html',
     WEEKCHART: '/zing-chart-tuan/:title/:weekchartId.html',
     SINGER: '/:singerName',
+    ARTIST_SINGER: '/nghe-si/:singerName',
     SEARCH_ALL: '/tim-kiem/tat-ca',
     SEARCH_SONGS: '/tim-kiem/bai-hat',
     SEARCH_PLAYLIST: '/tim-kiem/playlist',

@@ -5,7 +5,7 @@ import { BsChevronRight } from '../../assets/icons/staticIcons';
 
 function PlaylistSection({ content }) {
     return (
-        <div className="w-full overflow-hidden px-[59px] mt-12">
+        <div className="w-full overflow-hidden mt-12">
             <div className="flex flex-col">
                 <div className="flex justify-between items-center">
                     {content?.title && (

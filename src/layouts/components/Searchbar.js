@@ -15,7 +15,7 @@ import { setIsTyping, setSearchText } from '../../redux/actions';
 import paths from '../../configs';
 
 function Searchbar() {
-    const { searchText, searchResult } = useSelector((state) => state.music);
+    const { searchText } = useSelector((state) => state.music);
     const inputRef = useRef('');
 
     const dispatch = useDispatch();
@@ -46,28 +46,20 @@ function Searchbar() {
         }
     };
 
-    // Click to back home when at search page
-    const handleBackHome = () => {
-        if (Object.keys(searchResult).length !== 0) {
-            navigate(paths.HOME);
-        }
-    };
-
     return (
         <div className="w-full flex items-center justify-between">
             <div className="w-full flex items-center">
                 <div className="flex">
                     <span
-                        onClick={handleBackHome}
-                        className={
-                            Object.keys(searchResult).length === 0
-                                ? 'text-[#6E4D65] mr-[20px]'
-                                : 'text-text-color-2 mr-[20px] cursor-pointer'
-                        }
+                        onClick={() => navigate(-1)}
+                        className="text-text-color-1 mr-5 cursor-pointer"
                     >
                         <BsArrowLeft size={24} />
                     </span>
-                    <span className="text-[#6E4D65] mr-[20px]">
+                    <span
+                        onClick={() => navigate(1)}
+                        className="text-text-color-1 mr-5 cursor-pointer"
+                    >
                         <BsArrowRight size={24} />
                     </span>
                 </div>

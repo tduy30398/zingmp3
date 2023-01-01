@@ -18,9 +18,7 @@ function Album() {
     const [playlistDetail, setPlaylistDetail] = useState({});
     const imgRef = useRef('');
 
-    if (playlistDetail.title) {
-        TabTitle(`${playlistDetail.title} | Album 320 lossless`);
-    }
+    playlistDetail.title && TabTitle(`${playlistDetail.title} | Album 320 lossless`);
 
     useEffect(() => {
         const fetchDetailPlaylist = async () => {
@@ -49,7 +47,7 @@ function Album() {
     };
 
     return (
-        <div className="flex relative gap-8 px-[59px] pt-5 w-full h-[calc(100vh-160px)] overflow-x-hidden overflow-y-auto overflow-y-overlay scrollbar">
+        <div className="flex relative gap-8 px-[59px] mt-[70px] w-full h-[calc(100vh-160px)] overflow-x-hidden overflow-y-auto overflow-y-overlay scrollbar">
             {isLoading && (
                 <div className="absolute left-0 right-0 top-0 bottom-0 bg-primary-color-2 z-20">
                     <div className="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%]">
