@@ -10,7 +10,7 @@ const activeStyle =
     'mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2 border-b-[1px] border-[#CA4974]';
 
 function Search({ children }) {
-    const { isSearching, searchText } = useSelector((state) => state.music);
+    const { isSearching, searchParams } = useSelector((state) => state.music);
 
     return (
         <div className="w-full relative flex flex-col mt-[70px] h-[calc(100vh-160px)] overflow-x-hidden overflow-y-auto overflow-y-overlay scrollbar">
@@ -28,25 +28,25 @@ function Search({ children }) {
                     </h3>
                     <div className="flex items-center">
                         <NavLink
-                            to={`${paths.SEARCH_ALL}?q=${searchText}`}
+                            to={`${paths.SEARCH_ALL}?q=${searchParams}`}
                             className={({ isActive }) => (isActive ? activeStyle : nonActiveStyle)}
                         >
                             TẤT CẢ
                         </NavLink>
                         <NavLink
-                            to={`${paths.SEARCH_SONGS}?q=${searchText}`}
+                            to={`${paths.SEARCH_SONGS}?q=${searchParams}`}
                             className={({ isActive }) => (isActive ? activeStyle : nonActiveStyle)}
                         >
                             BÀI HÁT
                         </NavLink>
                         <NavLink
-                            to={`${paths.SEARCH_PLAYLIST}?q=${searchText}`}
+                            to={`${paths.SEARCH_PLAYLIST}?q=${searchParams}`}
                             className={({ isActive }) => (isActive ? activeStyle : nonActiveStyle)}
                         >
                             PLAYLIST/ALBUM
                         </NavLink>
                         <NavLink
-                            to={`${paths.SEARCH_ARTIST}?q=${searchText}`}
+                            to={`${paths.SEARCH_ARTIST}?q=${searchParams}`}
                             className={({ isActive }) => (isActive ? activeStyle : nonActiveStyle)}
                         >
                             NGHỆ SĨ/OA

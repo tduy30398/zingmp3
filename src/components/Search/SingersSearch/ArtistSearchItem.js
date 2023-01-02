@@ -60,7 +60,7 @@ function ArtistSearchItem({ item }) {
                         : `${item?.totalFollow} quan tâm`}
                 </span>
             </span>
-            <span className="py-[6px] cursor-pointer px-[19px] leading-[14px] mb-5 mt-[15px] flex outline-none text-center rounded-full border text-text-color-2 text-xs border-border-color-1 font-medium bg-primary-color-5 hover:text-text-color-1 hover:bg-primary-color-4">
+            <span className="py-1.5 cursor-pointer px-[19px] leading-[14px] mb-5 mt-[15px] flex outline-none text-center rounded-full border text-text-color-2 text-xs border-border-color-1 font-medium bg-primary-color-5 hover:text-text-color-1 hover:bg-primary-color-4">
                 <span className="mr-1">
                     <AiOutlineUserAdd size={15} />
                 </span>

@@ -55,7 +55,7 @@ function Sidebar() {
                         Nghe nhạc không quảng cáo cùng kho nhạc VIP
                     </div>
                     <a
-                        className="bg-[#ffdb00] border-[1px] border-[#ffdb00] py-[6px] px-[35px] text-xs font-bold rounded-full text-[#32323d] hover:bg-[#E6C500] hover:border-[#E6C500]"
+                        className="bg-[#ffdb00] border-[1px] border-[#ffdb00] py-1.5 px-[35px] text-xs font-bold rounded-full text-[#32323d] hover:bg-[#E6C500] hover:border-[#E6C500]"
                         href="https://zingmp3.vn/vip?utm_source=desktop&utm_campaign=VIP&utm_medium=sidebar"
                         target="_blank"
                         rel="noreferrer"

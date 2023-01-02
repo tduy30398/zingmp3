@@ -59,8 +59,6 @@ function Singer() {
         (section) => section?.title === 'Bạn Có Thể Thích',
     );
 
-    console.log(singerDetail);
-
     return (
         <div className="w-full flex flex-col relative h-[calc(100vh-90px)] overflow-x-hidden overflow-y-auto overflow-y-overlay scrollbar">
             {!singerDetail?.cover && (
@@ -92,7 +90,7 @@ function Singer() {
                                     ?.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
                                  người quan tâm`}
                             </span>
-                            <span className="py-[6px] px-[19px] cursor-pointer leading-[14px] flex outline-none text-center rounded-full border text-text-color-2 text-xs border-[rgba(254,255,255,.2)] font-medium bg-[rgba(254,255,255,.1)] hover:text-text-color-1 hover:bg-[rgba(254,255,255,.15)]">
+                            <span className="py-1.5 px-[19px] cursor-pointer leading-[14px] flex outline-none text-center rounded-full border text-text-color-2 text-xs border-[rgba(254,255,255,.2)] font-medium bg-[rgba(254,255,255,.1)] hover:text-text-color-1 hover:bg-[rgba(254,255,255,.15)]">
                                 <span className="mr-1">
                                     <AiOutlineUserAdd size={15} />
                                 </span>
@@ -123,11 +121,11 @@ function Singer() {
                                     />
                                     <div className="absolute bottom-0 left-0 right-0 top-0 bg-overlay-40 rounded-[5px] hidden group-hover:block">
                                         <span className="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] text-text-color-2 p-3 border-[1px] border-[#FFFFFF] rounded-full">
-                                            <FaPlay size={20} className="ml-[2px]" />
+                                            <FaPlay size={20} className="ml-0.5" />
                                         </span>
                                     </div>
                                 </div>
-                                <div className="flex flex-col my-[6px] ml-[16px] gap-3">
+                                <div className="flex flex-col my-1.5 ml-[16px] gap-3">
                                     <span className="text-xs text-text-color-3 font-medium">
                                         {singerDetail?.topAlbum?.textType}
                                     </span>
@@ -146,25 +144,27 @@ function Singer() {
                             </Link>
                         </div>
                     )}
-                    <div className="flex flex-col flex-2 px-[14px]">
-                        <div className="flex items-center justify-between mb-5">
-                            <h3 className="text-xl font-bold">Bài Hát</h3>
-                            <div className="flex items-center text-text-color-3 gap-1 cursor-pointer hover:text-text-color-primary-2">
-                                <span className="text-xs font-medium mr-[2px]">TẤT CẢ</span>
-                                <span className="mb-1">
-                                    <BsChevronRight size={18} />
+                    {singerDetail?.sections && (
+                        <div className="flex flex-col flex-2 px-[14px]">
+                            <span className="flex items-center justify-between mb-5">
+                                <h3 className="text-xl font-bold">Bài Hát</h3>
+                                <span className="flex items-center text-text-color-3 gap-1 cursor-pointer hover:text-text-color-primary-2">
+                                    <span className="text-xs font-medium mr-0.5">TẤT CẢ</span>
+                                    <span className="mb-1">
+                                        <BsChevronRight size={18} />
+                                    </span>
                                 </span>
+                            </span>
+                            <div className="flex w-full flex-wrap gap-x-7">
+                                {singerDetail?.sections
+                                    ?.find((section) => section.sectionType === 'song')
+                                    .items?.filter((item, index) => index < 6)
+                                    ?.map((item) => (
+                                        <SongItemSearchSmall key={item?.encodeId} data={item} />
+                                    ))}
                             </div>
                         </div>
-                        <div className="flex w-full flex-wrap gap-x-7">
-                            {singerDetail?.sections
-                                ?.find((section) => section.sectionType === 'song')
-                                .items?.filter((item, index) => index < 6)
-                                ?.map((item) => (
-                                    <SongItemSearchSmall key={item?.encodeId} data={item} />
-                                ))}
-                        </div>
-                    </div>
+                    )}
                 </div>
                 {singerAlbum && <PlaylistSectionSinger content={singerAlbum} />}
                 {singerAlbum2 && <PlaylistSectionSinger content={singerAlbum2} />}
@@ -179,6 +179,18 @@ function Singer() {
                                     <Artist key={item?.id} item={item} />
                                 ))}
                         </div>
+                    </div>
+                )}
+                {singerDetail?.topAlbum?.thumbnail ||
+                singerDetail?.sections ||
+                singerAlbum ||
+                singerAlbum2 ||
+                singerAlbum3 ||
+                suggestions ? (
+                    ''
+                ) : (
+                    <div className="w-full h-[250px] text-text-color-3 rounded-lg bg-[#542E4B] flex items-center justify-center">
+                        Không có kết quả được tìm thấy, hãy thử lại...
                     </div>
                 )}
             </div>

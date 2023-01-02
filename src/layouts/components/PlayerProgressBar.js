@@ -60,11 +60,11 @@ function PlayerProgressBar({ audio, songInfo }) {
             <div
                 onClick={handleClickProgress}
                 ref={trackRef}
-                className="w-4/5 h-1 rounded-full bg-primary-color-6 relative hover:h-[6px] group"
+                className="w-4/5 h-1 rounded-full bg-primary-color-6 relative hover:h-1.5 group"
             >
                 <div
                     ref={thumbRef}
-                    className="absolute top-0 left-0 h-1 rounded-full bg-primary-color-7 hover:h-[6px] group-hover:h-[6px]"
+                    className="absolute top-0 left-0 h-1 rounded-full bg-primary-color-7 hover:h-1.5 group-hover:h-1.5"
                 ></div>
             </div>
             <span className="text-text-color-2 text-xs font-medium">

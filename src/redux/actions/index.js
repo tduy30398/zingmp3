@@ -1,4 +1,5 @@
 import { getHome } from './getHome';
+import { setTop100 } from './setTop100';
 import {
     setCurrentSongId,
     setPlaylistId,
@@ -11,10 +12,12 @@ import {
     setRecentSongsList,
     setSearchResult,
     setSearchText,
+    setSearchParams,
 } from './setMusic';
 
 export {
     getHome,
+    setTop100,
     setCurrentSongId,
     setPlaylistId,
     setIsPlaying,
@@ -26,4 +29,5 @@ export {
     setRecentSongsList,
     setSearchResult,
     setSearchText,
+    setSearchParams,
 };

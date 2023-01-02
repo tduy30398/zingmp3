@@ -10,6 +10,11 @@ const initState = {
     h100: {},
     hXone: {},
     hAlbum: {},
+    top100_1: null,
+    top100_2: null,
+    top100_3: null,
+    top100_4: null,
+    top100_5: null,
 };
 
 const appReducer = (state = initState, action) => {
@@ -26,6 +31,15 @@ const appReducer = (state = initState, action) => {
                 h100: action.homeAPI?.find((item) => item.sectionId === 'h100'),
                 hXone: action.homeAPI?.find((item) => item.sectionId === 'hXone'),
                 hAlbum: action.homeAPI?.find((item) => item.sectionId === 'hAlbum'),
+            };
+        case actionTypes.SET_TOP_100:
+            return {
+                ...state,
+                top100_1: action.top100API?.find((item) => item.title === 'Nổi bật'),
+                top100_2: action.top100API?.find((item) => item.title === 'Nhạc Việt Nam'),
+                top100_3: action.top100API?.find((item) => item.title === 'Nhạc Châu Á'),
+                top100_4: action.top100API?.find((item) => item.title === 'Nhạc Âu Mỹ'),
+                top100_5: action.top100API?.find((item) => item.title === 'Nhạc Hòa Tấu'),
             };
 
         default:

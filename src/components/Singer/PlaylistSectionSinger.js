@@ -18,7 +18,7 @@ function PlaylistSection({ content }) {
                                     to={content?.link}
                                     className="flex items-center text-text-color-3 gap-1 cursor-pointer hover:text-text-color-primary-2"
                                 >
-                                    <span className="text-xs font-medium mr-[2px]">TẤT CẢ</span>
+                                    <span className="text-xs font-medium mr-0.5">TẤT CẢ</span>
                                     <span className="mb-1">
                                         <BsChevronRight size={18} />
                                     </span>

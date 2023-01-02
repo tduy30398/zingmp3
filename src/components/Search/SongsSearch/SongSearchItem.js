@@ -16,6 +16,8 @@ function SongSearchItem({ songInfo }) {
         dispatch(setIsPlaying(true));
     };
 
+    const artistsLength = songInfo?.artists?.length;
+
     return (
         <div
             onDoubleClick={handleClickSong}
@@ -53,10 +55,18 @@ function SongSearchItem({ songInfo }) {
                             ? `${songInfo?.title.slice(0, 30)}...`
                             : songInfo?.title}
                     </span>
-                    <h3 className="text-xs font-medium leading-5">
-                        <span className="cursor-pointer hover:underline hover:text-text-color-primary-2">
-                            {songInfo?.artistsNames}
-                        </span>
+                    <h3 className="text-xs font-medium leading-5 overflow-ellipsis-2-line">
+                        {songInfo?.artists?.map((artist, index) => (
+                            <Link
+                                key={artist?.link}
+                                to={artist?.link}
+                                className="cursor-pointer hover:underline hover:text-text-color-primary-2"
+                            >
+                                {index === artistsLength - 1
+                                    ? `${artist?.name}`
+                                    : `${artist?.name}, `}
+                            </Link>
+                        ))}
                     </h3>
                 </div>
             </div>

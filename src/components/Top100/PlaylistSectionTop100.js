@@ -1,9 +1,9 @@
-import { PlaylistSectionItem } from '../Home';
+import { PlaylistSectionItemTop100 } from '../Top100';
 import { Link } from 'react-router-dom';
 
 import { BsChevronRight } from '../../assets/icons/staticIcons';
 
-function PlaylistSection({ content }) {
+function PlaylistSectionTop100({ content }) {
     return (
         <div className="w-full overflow-hidden px-[59px] mt-12">
             <div className="flex flex-col">
@@ -27,16 +27,14 @@ function PlaylistSection({ content }) {
                         </div>
                     )}
                 </div>
-                <div className="flex items-start mx-[-14px]">
-                    {content?.items
-                        ?.filter((item, index) => index < 5)
-                        ?.map((item) => (
-                            <PlaylistSectionItem key={item?.encodeId} item={item} />
-                        ))}
+                <div className="flex flex-wrap items-start mx-[-14px]">
+                    {content?.items?.map((item) => (
+                        <PlaylistSectionItemTop100 key={item?.encodeId} item={item} />
+                    ))}
                 </div>
             </div>
         </div>
     );
 }
 
-export default PlaylistSection;
+export default PlaylistSectionTop100;

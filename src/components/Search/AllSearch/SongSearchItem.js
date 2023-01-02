@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { FaPlay } from '../../../assets/icons/staticIcons';
 import { setCurrentSongId, setIsPlaying } from '../../../redux/actions';
@@ -13,6 +14,9 @@ function SongSearchItem({ data }) {
         dispatch(setCurrentSongId(data?.encodeId));
         dispatch(setIsPlaying(true));
     };
+
+    const artistsLength = data?.artists?.length;
+
     return (
         <div
             onDoubleClick={handleClickSong}
@@ -44,16 +48,20 @@ function SongSearchItem({ data }) {
                 )}
             </div>
             <div className="flex flex-col justify-center">
-                <span className="text-text-color-3 text-xs font-normal mb-[6px]">Bài hát</span>
-                <span className="text-text-color-2 text-sm font-extrabold mb-[2px] overflow-ellipsis-2-line">
+                <span className="text-text-color-3 text-xs font-normal mb-1.5">Bài hát</span>
+                <span className="text-text-color-2 text-sm font-extrabold mb-0.5 overflow-ellipsis-2-line">
                     {data?.title}
                 </span>
-                <span className="text-text-color-3 text-xs font-semibold">
-                    <span className="cursor-pointer hover:underline hover:text-text-color-primary-2">
-                        {data?.artistsNames?.length > 30
-                            ? `${data?.artistsNames?.slice(0, 30)}...`
-                            : data?.artistsNames}
-                    </span>
+                <span className="text-text-color-3 text-xs font-semibold overflow-ellipsis-2-line">
+                    {data?.artists?.map((artist, index) => (
+                        <Link
+                            key={artist?.link}
+                            to={artist?.link}
+                            className="cursor-pointer hover:underline hover:text-text-color-primary-2"
+                        >
+                            {index === artistsLength - 1 ? `${artist?.name}` : `${artist?.name}, `}
+                        </Link>
+                    ))}
                 </span>
             </div>
         </div>

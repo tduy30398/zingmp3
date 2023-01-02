@@ -49,7 +49,13 @@ export const setSearchResult = (searchResult) => ({
     type: actionTypes.SET_SEARCH_RESULT,
     searchResult,
 });
+
 export const setSearchText = (searchText) => ({
     type: actionTypes.SET_SEARCH_TEXT,
     searchText,
+});
+
+export const setSearchParams = (searchParams) => ({
+    type: actionTypes.SET_SEARCH_PARAMS,
+    searchParams,
 });

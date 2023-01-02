@@ -1,5 +1,6 @@
 import { memo, useRef } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { FaPlay } from '../../../assets/icons/staticIcons';
 import { AudioLoading } from '../../../assets/icons/dynamicIcons';
@@ -17,8 +18,10 @@ function SongSearchItem({ data }) {
         imgRef.current.classList.remove('animate-scale-up-image');
         imgRef.current.classList.add('animate-scale-down-image');
     };
+
     return (
-        <div
+        <Link
+            to={data?.link}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             className="w-[90%] mb-2 md:w-[45%] md:mb-2 lg:w-[30%] lg:mb-0 flex-auto p-[10px] gap-4 flex rounded-[4px] cursor-pointer group bg-primary-color-8 hover:bg-primary-color-9"
@@ -50,10 +53,10 @@ function SongSearchItem({ data }) {
                 )}
             </div>
             <div className="flex flex-col justify-center">
-                <span className="text-text-color-3 text-xs font-normal select-none mb-[6px]">
+                <span className="text-text-color-3 text-xs font-normal select-none mb-1.5">
                     Nghệ sĩ
                 </span>
-                <span className="text-text-color-2 text-sm font-extrabold select-none mb-[2px] overflow-ellipsis-2-line">
+                <span className="text-text-color-2 text-sm font-extrabold select-none mb-0.5 overflow-ellipsis-2-line">
                     {data?.name}
                 </span>
                 <span className="text-text-color-3 text-xs font-semibold">
@@ -66,7 +69,7 @@ function SongSearchItem({ data }) {
                     </span>
                 </span>
             </div>
-        </div>
+        </Link>
     );
 }
 

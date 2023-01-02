@@ -41,7 +41,7 @@ function RightSidebarPlaylist() {
             <div className="fixed top-0 left-0 right-0 z-10 bg-primary-color-2 h-[70px] flex-none w-full py-[14px] px-2 flex items-center justify-between gap-2">
                 <div className="flex items-center bg-primary-color-5 w-full rounded-full p-[3px] cursor-pointer">
                     <span
-                        className={`py-[6px] px-2 text-center flex-1 rounded-full ${
+                        className={`py-1.5 px-2 text-center flex-1 rounded-full ${
                             isPlaylist
                                 ? 'font-semibold bg-[#886D81]'
                                 : 'text-[#DADADA] font-medium hover:text-text-color-2'
@@ -51,7 +51,7 @@ function RightSidebarPlaylist() {
                         Danh sách phát
                     </span>
                     <span
-                        className={`py-[6px] px-2 text-center flex-1 rounded-full ${
+                        className={`py-1.5 px-2 text-center flex-1 rounded-full ${
                             !isPlaylist
                                 ? 'font-semibold bg-[#886D81]'
                                 : 'font-medium text-[#DADADA] hover:text-text-color-2'

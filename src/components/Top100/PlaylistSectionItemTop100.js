@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { BsPlayCircle } from '../../assets/icons/staticIcons';
 
-function PlaylistSectionItem({ item }) {
+function PlaylistSectionItemTop100({ item }) {
     const imgRef = useRef('');
 
     const handleMouseEnter = () => {
@@ -19,7 +19,7 @@ function PlaylistSectionItem({ item }) {
     const artistsLength = item?.artists?.length;
 
     return (
-        <div className="flex flex-col gap-1 w-1/5 px-[14px]">
+        <div className="md:w-1/2 lg:w-1/4 xl:w-1/5 flex flex-col mb-[30px] gap-1 px-[14px]">
             <Link
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
@@ -68,4 +68,4 @@ function PlaylistSectionItem({ item }) {
     );
 }
 
-export default memo(PlaylistSectionItem);
+export default memo(PlaylistSectionItemTop100);

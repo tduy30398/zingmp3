@@ -64,7 +64,7 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
                     setRecentSongsList({
                         encodeId: res1.data.data.encodeId,
                         thumbnail: res1.data.data.thumbnail,
-                        artistsNames: res1.data.data.artistsNames,
+                        artists: res1.data.data.artists,
                         title: res1.data.data.title,
                     }),
                 );
@@ -187,13 +187,13 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
                 <div className="text-text-color-2 flex gap-2 items-center ml-4">
                     <span
                         title="Thêm vào thư viện"
-                        className="mx-[2px] p-1 hover:bg-opacity-color-1 rounded-full"
+                        className="mx-0.5 p-1 hover:bg-opacity-color-1 rounded-full"
                     >
                         <AiOutlineHeart size={18} />
                     </span>
                     <span
                         title="Xem thêm"
-                        className="mx-[2px] p-1 hover:bg-opacity-color-1 rounded-full"
+                        className="mx-0.5 p-1 hover:bg-opacity-color-1 rounded-full"
                     >
                         <BsThreeDots size={18} />
                     </span>
@@ -286,7 +286,7 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
                             )}
                         </span>
                         <input
-                            className="ml-1 h-1 w-[70px] hover:h-[6px] outline-none cursor-pointer"
+                            className="ml-1 h-1 w-[70px] hover:h-1.5 outline-none cursor-pointer"
                             type="range"
                             step={1}
                             min={0}

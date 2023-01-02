@@ -2,6 +2,7 @@ import { memo } from 'react';
 import moment from 'moment';
 import 'moment/locale/vi';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { FaPlay } from '../../assets/icons/staticIcons';
 import { setCurrentSongId, setIsPlaying } from '../../redux/actions';
@@ -15,6 +16,9 @@ function SongItem({ data }) {
         dispatch(setCurrentSongId(data?.encodeId));
         dispatch(setIsPlaying(true));
     };
+
+    const artistsLength = data?.artists?.length;
+
     return (
         <div
             onDoubleClick={handleClickSong}
@@ -51,12 +55,16 @@ function SongItem({ data }) {
                 <span className="text-text-color-2 text-sm font-semibold">
                     {data?.title.length > 24 ? `${data?.title.slice(0, 24)}...` : data?.title}
                 </span>
-                <span className="text-text-color-3 text-xs font-semibold">
-                    <span className="cursor-pointer hover:underline hover:text-text-color-primary-2">
-                        {data?.artistsNames.length > 30
-                            ? `${data?.artistsNames.slice(0, 30)}...`
-                            : data?.artistsNames}
-                    </span>
+                <span className="text-text-color-3 text-xs font-semibold overflow-ellipsis-2-line">
+                    {data?.artists?.map((artist, index) => (
+                        <Link
+                            key={artist?.link}
+                            to={artist?.link}
+                            className="cursor-pointer hover:underline hover:text-text-color-primary-2"
+                        >
+                            {index === artistsLength - 1 ? `${artist?.name}` : `${artist?.name}, `}
+                        </Link>
+                    ))}
                 </span>
                 <span className="text-text-color-3 text-xs font-semibold">
                     {moment(data?.releaseDate * 1000).fromNow()}

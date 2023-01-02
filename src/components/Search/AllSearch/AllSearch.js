@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 
 import {
     SongSearchItem,
@@ -10,9 +10,10 @@ import {
     PlaylistSectionSearchItem,
     Artist,
 } from '../AllSearch';
-import { setIsSearching, setSearchResult } from '../../../redux/actions';
+import { setIsSearching, setSearchResult, setSearchParams } from '../../../redux/actions';
 import { searchAPI } from '../../../APIs';
 import { BsChevronRight } from '../../../assets/icons/staticIcons';
+import paths from '../../../configs';
 
 function AllSearch() {
     const { searchResult } = useSelector((state) => state.music);
@@ -24,10 +25,11 @@ function AllSearch() {
         const getSearchAPI = async () => {
             dispatch(setIsSearching(true));
             dispatch(setSearchResult({}));
-            const respone = await searchAPI(searchParams);
+            dispatch(setSearchParams(searchParams));
+            const response = await searchAPI(searchParams);
             dispatch(setIsSearching(false));
-            if (respone?.data.err === 0) {
-                dispatch(setSearchResult(respone.data.data));
+            if (response?.data.err === 0) {
+                dispatch(setSearchResult(response.data.data));
             }
         };
         getSearchAPI();
@@ -66,12 +68,15 @@ function AllSearch() {
                 <div className="flex flex-col mt-[30px]">
                     <div className="flex items-center justify-between mb-5">
                         <h3 className="text-xl font-bold">Bài Hát</h3>
-                        <div className="flex items-center text-text-color-3 gap-1 cursor-pointer hover:text-text-color-primary-2">
-                            <span className="text-xs font-medium mr-[2px]">TẤT CẢ</span>
+                        <Link
+                            to={`${paths.SEARCH_SONGS}?q=${searchParams}`}
+                            className="flex items-center text-text-color-3 gap-1 cursor-pointer hover:text-text-color-primary-2"
+                        >
+                            <span className="text-xs font-medium mr-0.5">TẤT CẢ</span>
                             <span className="mb-1">
                                 <BsChevronRight size={18} />
                             </span>
-                        </div>
+                        </Link>
                     </div>
                     <div className="flex w-full flex-wrap gap-x-7">
                         {searchResult?.songs
@@ -86,12 +91,15 @@ function AllSearch() {
                 <div className="flex flex-col mt-[30px]">
                     <div className="flex items-center justify-between mb-5">
                         <h3 className="text-xl font-bold">Playlist/Album</h3>
-                        <div className="flex items-center text-text-color-3 gap-1 cursor-pointer hover:text-text-color-primary-2">
-                            <span className="text-xs font-medium mr-[2px]">TẤT CẢ</span>
+                        <Link
+                            to={`${paths.SEARCH_PLAYLIST}?q=${searchParams}`}
+                            className="flex items-center text-text-color-3 gap-1 cursor-pointer hover:text-text-color-primary-2"
+                        >
+                            <span className="text-xs font-medium mr-0.5">TẤT CẢ</span>
                             <span className="mb-1">
                                 <BsChevronRight size={18} />
                             </span>
-                        </div>
+                        </Link>
                     </div>
                     <div className="flex justify-between items-start gap-7">
                         {searchResult?.playlists
@@ -106,12 +114,15 @@ function AllSearch() {
                 <div className="flex flex-col mt-[30px]">
                     <div className="flex items-center justify-between mb-5">
                         <h3 className="text-xl font-bold">Nghệ sĩ/OA</h3>
-                        <div className="flex items-center text-text-color-3 gap-1 cursor-pointer hover:text-text-color-primary-2">
-                            <span className="text-xs font-medium mr-[2px]">TẤT CẢ</span>
+                        <Link
+                            to={`${paths.SEARCH_ARTIST}?q=${searchParams}`}
+                            className="flex items-center text-text-color-3 gap-1 cursor-pointer hover:text-text-color-primary-2"
+                        >
+                            <span className="text-xs font-medium mr-0.5">TẤT CẢ</span>
                             <span className="mb-1">
                                 <BsChevronRight size={18} />
                             </span>
-                        </div>
+                        </Link>
                     </div>
                     <div className="flex items-start gap-7">
                         {searchResult?.artists
