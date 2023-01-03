@@ -17,7 +17,7 @@ function AlbumSearchItem({ item }) {
     };
 
     return (
-        <div className="md:w-1/2 lg:w-1/4 xl:w-1/5 flex flex-col px-[14px] gap-1 mb-[30px]">
+        <div className="w-1/2 lg:w-1/4 xl:w-1/5 flex flex-col px-[14px] gap-1 mb-[30px]">
             <Link
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}

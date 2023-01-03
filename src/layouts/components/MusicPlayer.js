@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 import { getDetailSongAPI, getSongAPI } from '../../APIs';
 import {
@@ -168,35 +169,49 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
         setVolume((prev) => (+prev === 0 ? 50 : 0));
     };
 
+    const artistsLength = songInfo?.artists?.length;
+
     return (
         <div className="bg-primary-color-3 px-5 h-full flex cursor-pointer">
             <div className="w-[30%] flex-auto flex items-center">
-                <img
-                    src={songInfo?.thumbnail || `https://avatar.talk.zdn.vn/default.jpg`}
-                    className="w-16 h-16 object-cover rounded-md mr-[10px]"
-                    alt="thumbnail"
-                />
-                <div className="flex flex-col">
-                    <span className="text-text-color-2 text-sm font-semibold text-clip overflow-visible">
-                        {songInfo?.title}
-                    </span>
-                    <span className="text-xs text-text-color-3 font-semibold text-ellipsis overflow-hidden hover:underline hover:text-text-color-primary-2">
-                        {songInfo?.artistsNames}
-                    </span>
-                </div>
-                <div className="text-text-color-2 flex gap-2 items-center ml-4">
-                    <span
-                        title="Thêm vào thư viện"
-                        className="mx-0.5 p-1 hover:bg-opacity-color-1 rounded-full"
-                    >
-                        <AiOutlineHeart size={18} />
-                    </span>
-                    <span
-                        title="Xem thêm"
-                        className="mx-0.5 p-1 hover:bg-opacity-color-1 rounded-full"
-                    >
-                        <BsThreeDots size={18} />
-                    </span>
+                <div className="w-full flex-auto flex items-center">
+                    <img
+                        src={songInfo?.thumbnail || `https://avatar.talk.zdn.vn/default.jpg`}
+                        className="w-16 h-16 object-cover rounded-md mr-[10px]"
+                        alt="thumbnail"
+                    />
+                    <div className="flex flex-col">
+                        <span className="text-text-color-2 text-sm font-semibold text-clip overflow-visible">
+                            {songInfo?.title}
+                        </span>
+                        <span className="text-text-color-3 text-xs font-semibold overflow-ellipsis-2-line">
+                            {songInfo?.artists?.map((artist, index) => (
+                                <Link
+                                    key={artist?.link}
+                                    to={artist?.link}
+                                    className="cursor-pointer hover:underline hover:text-text-color-primary-2"
+                                >
+                                    {index === artistsLength - 1
+                                        ? `${artist?.name}`
+                                        : `${artist?.name}, `}
+                                </Link>
+                            ))}
+                        </span>
+                    </div>
+                    <div className="text-text-color-2 flex gap-2 items-center ml-4">
+                        <span
+                            title="Thêm vào thư viện"
+                            className="mx-0.5 p-1 hover:bg-opacity-color-1 rounded-full"
+                        >
+                            <AiOutlineHeart size={18} />
+                        </span>
+                        <span
+                            title="Xem thêm"
+                            className="mx-0.5 p-1 hover:bg-opacity-color-1 rounded-full"
+                        >
+                            <BsThreeDots size={18} />
+                        </span>
+                    </div>
                 </div>
             </div>
 
@@ -260,6 +275,7 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
                 </div>
                 <PlayerProgressBar audio={audio} songInfo={songInfo} />
             </div>
+
             <div className="w-[30%] flex-auto flex justify-end items-center">
                 <div className="flex">
                     <div className="flex items-center pr-5 gap-1 border-r-[1px] border-border-color-1">

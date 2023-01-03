@@ -38,7 +38,7 @@ function RightSidebarPlaylist() {
 
     return (
         <div className="flex flex-col text-xs h-[calc(100vh-90px)] overflow-x-hidden overflow-y-auto overflow-y-overlay scrollbar">
-            <div className="fixed top-0 left-0 right-0 z-10 bg-primary-color-2 h-[70px] flex-none w-full py-[14px] px-2 flex items-center justify-between gap-2">
+            <div className="fixed top-0 left-0 right-0 bg-primary-color-2 h-[70px] flex-none w-full py-[14px] px-2 flex items-center justify-between gap-2">
                 <div className="flex items-center bg-primary-color-5 w-full rounded-full p-[3px] cursor-pointer">
                     <span
                         className={`py-1.5 px-2 text-center flex-1 rounded-full ${
@@ -75,7 +75,7 @@ function RightSidebarPlaylist() {
             </div>
             {isPlaylist ? (
                 <div className="flex flex-col w-full px-2 mt-[70px]">
-                    <SongItemSmall data={currentSongDetail} />
+                    {currentSongDetail && <SongItemSmall data={currentSongDetail} />}
                     <div className="flex flex-col pt-[15px] pb-[5px] px-2 gap-1">
                         <span className="text-sm font-bold">Tiếp theo</span>
                         <span>
@@ -93,15 +93,15 @@ function RightSidebarPlaylist() {
                         </span>
                     </div>
                     {playlistDetail?.song?.items
-                        ?.filter((item) => item.encodeId !== currentSongDetail.encodeId)
+                        ?.filter((item) => item?.encodeId !== currentSongDetail?.encodeId)
                         ?.map((item) => (
-                            <SongItemSmall data={item} key={item.encodeId} />
+                            <SongItemSmall data={item} key={item?.encodeId} />
                         ))}
                 </div>
             ) : (
                 <div className="flex flex-col w-full px-2 mt-[70px]">
                     {recentSongsList?.map((song) => (
-                        <SongItemSmall data={song} key={song.encodeId} />
+                        <SongItemSmall data={song} key={song?.encodeId} />
                     ))}
                 </div>
             )}
