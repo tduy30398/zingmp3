@@ -6,7 +6,7 @@ const initState = {
     searchParams: '',
     searchText: '',
     currentSongDetail: null,
-    currentSongId: null,
+    currentSongId: 'ZWADIED6',
     playlistId: null,
     isPlaying: false,
     isLoading: false,

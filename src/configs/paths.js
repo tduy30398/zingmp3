@@ -4,7 +4,7 @@ export const paths = {
     ZINGCHART: '/zing-chart',
     RADIO: '/radio',
     FOLLOWING: '/following',
-    NEW: '/new',
+    NEW: '/moi-phat-hanh',
     HUB: '/hub',
     TOP100: '/top100',
     MV: '/mv',

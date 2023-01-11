@@ -3,7 +3,13 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { TabTitle } from '../utils';
-import { Slider, NewRelease, PlaylistSection, WeekChartSection } from '../components/Home';
+import {
+    Slider,
+    NewRelease,
+    PlaylistSection,
+    WeekChartSection,
+    ChartSection,
+} from '../components/Home';
 import { setSearchText, setSearchResult } from '../redux/actions';
 import { RotatingLinesLoading } from '../assets/icons/dynamicIcons';
 
@@ -35,6 +41,7 @@ function Home() {
             <PlaylistSection content={hArtistTheme} />
             <PlaylistSection content={hAutoTheme1} />
             <PlaylistSection content={hAutoTheme2} />
+            <ChartSection />
             <div className="w-full px-[59px] mt-12 flex items-center gap-7">
                 {weekChart?.map((item) => (
                     <WeekChartSection data={item} key={item.link} />

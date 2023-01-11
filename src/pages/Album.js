@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import moment from 'moment';
 
 import { getDetailPlaylistAPI } from '../APIs';
@@ -45,6 +45,8 @@ function Album() {
         imgRef.current.classList.remove('animate-scale-up-image');
         imgRef.current.classList.add('animate-scale-down-image');
     };
+
+    const artistsLength = playlistDetail?.artists?.length;
 
     return (
         <div className="flex relative gap-8 px-[59px] mt-[70px] w-full h-[calc(100vh-160px)] overflow-x-hidden overflow-y-auto overflow-y-overlay scrollbar">
@@ -103,10 +105,18 @@ function Album() {
                         <span className="text-text-color-3 text-xs leading-5 select-none">{`Cập nhật: ${moment
                             .unix(playlistDetail?.contentLastUpdate)
                             .format('DD/MM/YYYY')}`}</span>
-                        <span className="text-text-color-3 text-xs leading-5">
-                            <span className="cursor-pointer hover:underline hover:text-text-color-primary-2">
-                                {playlistDetail?.artistsNames}
-                            </span>
+                        <span className="text-text-color-3 text-xs font-semibold overflow-ellipsis-2-line">
+                            {playlistDetail?.artists?.map((artist, index) => (
+                                <Link
+                                    key={artist?.link}
+                                    to={artist?.link}
+                                    className="cursor-pointer hover:underline hover:text-text-color-primary-2"
+                                >
+                                    {index === artistsLength - 1
+                                        ? `${artist?.name}`
+                                        : `${artist?.name}, `}
+                                </Link>
+                            ))}
                         </span>
                         <span className="text-text-color-3 text-xs leading-5 select-none">{`${Math.round(
                             playlistDetail?.like / 1000,

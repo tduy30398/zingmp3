@@ -17,6 +17,8 @@ module.exports = {
                 'overlay-40': 'rgba(0,0,0,0.4)',
                 'overlay-50': 'rgba(0,0,0,0.5)',
                 'opacity-color-1': 'hsla(0,0%,100%,.15);',
+                'opacity-color-2': 'hsla(0,0%,100%,.07);',
+                'opacity-color-3': 'hsla(0,0%,100%,.2);',
             },
             textColor: {
                 'text-color-primary-1': '#CA4974',
@@ -31,8 +33,10 @@ module.exports = {
             },
             flex: {
                 2: '2 1 0%',
+                44: '4 4 0%',
                 4: '4 1 0%',
                 5: '5 1 0%',
+                66: '6 6 0%',
             },
             keyframes: {
                 'slide-right': {

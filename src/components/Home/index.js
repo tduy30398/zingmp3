@@ -8,6 +8,9 @@ import SongItem from './SongItem';
 import SongItemSmall from './SongItemSmall';
 import NewRelease from './NewRelease';
 import WeekChartSection from './WeekChartSection';
+import ChartSection from './ChartSection';
+import SongItemChartHome from './SongItemChartHome';
+import SongItemChartHomeTooltip from './SongItemChartHomeTooltip';
 
 export {
     SidebarItem,
@@ -20,4 +23,7 @@ export {
     AlbumSong,
     PlaylistSectionItem,
     WeekChartSection,
+    ChartSection,
+    SongItemChartHome,
+    SongItemChartHomeTooltip,
 };
