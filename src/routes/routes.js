@@ -16,7 +16,7 @@ import {
     Album,
     WeekChart,
     Search,
-    Singer,
+    Singer
 } from '../pages';
 
 import { AllSearch } from '../components/Search/AllSearch';
@@ -29,7 +29,7 @@ const publicRoutes = [
     { path: paths.HOME, component: Home },
     { path: paths.ZINGCHART, component: ZingChart },
     { path: paths.RADIO, component: Radio },
-    { path: paths.FOLLOWING, COMPONENT: Following },
+    { path: paths.FOLLOWING, component: Following },
     { path: paths.NEW, component: NewMusic },
     { path: paths.HUB, component: Category },
     { path: paths.TOP100, component: Top100 },
@@ -45,7 +45,7 @@ const publicRoutes = [
     { path: paths.SEARCH_ALL, component: Search, subComponent: AllSearch },
     { path: paths.SEARCH_SONGS, component: Search, subComponent: SongsSearch },
     { path: paths.SEARCH_PLAYLIST, component: Search, subComponent: AlbumsSearch },
-    { path: paths.SEARCH_ARTIST, component: Search, subComponent: SingersSearch },
+    { path: paths.SEARCH_ARTIST, component: Search, subComponent: SingersSearch }
 ];
 
 const privateRoutes = [];

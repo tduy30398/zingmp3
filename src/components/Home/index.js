@@ -25,5 +25,5 @@ export {
     WeekChartSection,
     ChartSection,
     SongItemChartHome,
-    SongItemChartHomeTooltip,
+    SongItemChartHomeTooltip
 };

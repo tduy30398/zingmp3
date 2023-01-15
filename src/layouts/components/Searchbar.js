@@ -7,8 +7,7 @@ import {
     BsArrowLeft,
     BsArrowRight,
     TfiSettings,
-    HiOutlineUpload,
-    RiVipDiamondLine,
+    RiVipDiamondLine
 } from '../../assets/icons/staticIcons';
 import { MagnifyingGlassIcon, ClearIcon } from '../../assets/images/svgIcons';
 import { setIsTyping, setSearchText } from '../../redux/actions';
@@ -34,8 +33,8 @@ function Searchbar() {
         navigate({
             pathname: paths.SEARCH_ALL,
             search: createSearchParams({
-                q: searchText,
-            }).toString(),
+                q: searchText
+            }).toString()
         });
     };
 
@@ -100,14 +99,6 @@ function Searchbar() {
                     >
                         <RiVipDiamondLine size={20} />
                     </a>
-                </button>
-                <button className="w-[38px] h-[38px] bg-primary-color-5 rounded-full hover:opacity-80 mr-3">
-                    <span
-                        title="Tải lên"
-                        className="text-text-color-2 flex items-center justify-center"
-                    >
-                        <HiOutlineUpload size={20} />
-                    </span>
                 </button>
                 <button className="w-[38px] h-[38px] bg-primary-color-5 rounded-full hover:opacity-80 mr-3">
                     <span

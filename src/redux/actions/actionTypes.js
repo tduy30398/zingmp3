@@ -12,7 +12,7 @@ const actionTypes = {
     SET_SEARCH_TEXT: 'SET_SEARCH_TEXT',
     SET_SEARCH_PARAMS: 'SET_SEARCH_PARAMS',
     SET_PLAYLIST_ID: 'SET_PLAYLIST_ID',
-    SET_PLAYLIST: 'SET_PLAYLIST',
+    SET_PLAYLIST: 'SET_PLAYLIST'
 };
 
 export default actionTypes;

@@ -8,7 +8,7 @@ import {
     NewRelease,
     PlaylistSection,
     WeekChartSection,
-    ChartSection,
+    ChartSection
 } from '../components/Home';
 import { setSearchText, setSearchResult } from '../redux/actions';
 import { RotatingLinesLoading } from '../assets/icons/dynamicIcons';

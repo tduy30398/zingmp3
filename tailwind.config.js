@@ -19,107 +19,108 @@ module.exports = {
                 'opacity-color-1': 'hsla(0,0%,100%,.15);',
                 'opacity-color-2': 'hsla(0,0%,100%,.07);',
                 'opacity-color-3': 'hsla(0,0%,100%,.2);',
+                'opacity-color-4': 'hsla(0,0%,100%,.1);'
             },
             textColor: {
                 'text-color-primary-1': '#CA4974',
                 'text-color-primary-2': '#E9638F',
                 'text-color-1': '#DADADA',
                 'text-color-2': '#FFFFFF',
-                'text-color-3': '#FFFFFF80',
+                'text-color-3': '#FFFFFF80'
             },
             borderColor: {
                 'border-color-1': '#5D3953',
-                'border-color-2': 'hsla(0,0%,100%,0.05)',
+                'border-color-2': 'hsla(0,0%,100%,0.05)'
             },
             flex: {
                 2: '2 1 0%',
                 44: '4 4 0%',
                 4: '4 1 0%',
                 5: '5 1 0%',
-                66: '6 6 0%',
+                66: '6 6 0%'
             },
             keyframes: {
                 'slide-right': {
                     '0%': {
                         '-webkit-transform': ' translateX(-500px);',
-                        transform: 'translateX(-500px);',
+                        transform: 'translateX(-500px);'
                     },
                     '100%': {
                         '-webkit-transform': 'translateX(0);',
-                        transform: 'translateX(0);',
-                    },
+                        transform: 'translateX(0);'
+                    }
                 },
                 'slide-right2': {
                     '0%': {
                         '-webkit-transform': ' translateX(-500px);',
-                        transform: 'translateX(-500px);',
+                        transform: 'translateX(-500px);'
                     },
                     '100%': {
                         '-webkit-transform': 'translateX(0);',
-                        transform: 'translateX(0);',
-                    },
+                        transform: 'translateX(0);'
+                    }
                 },
                 'slide-left': {
                     '0%': {
                         '-webkit-transform': ' translateX(500px);',
-                        transform: 'translateX(500px);',
+                        transform: 'translateX(500px);'
                     },
                     '100%': {
                         '-webkit-transform': 'translateX(0);',
-                        transform: 'translateX(0);',
-                    },
+                        transform: 'translateX(0);'
+                    }
                 },
                 'slide-left2': {
                     '0%': {
                         '-webkit-transform': ' translateX(500px);',
-                        transform: 'translateX(500px);',
+                        transform: 'translateX(500px);'
                     },
                     '100%': {
                         '-webkit-transform': 'translateX(0);',
-                        transform: 'translateX(0);',
-                    },
+                        transform: 'translateX(0);'
+                    }
                 },
                 'rotate-center': {
                     '0%': {
                         '-webkit-transform': ' rotate(0);',
-                        transform: 'rotate(0);',
+                        transform: 'rotate(0);'
                     },
                     '100%': {
                         '-webkit-transform': ' rotate(360deg);',
-                        transform: 'rotate(360deg);',
-                    },
+                        transform: 'rotate(360deg);'
+                    }
                 },
                 'rotate-center-pause': {
                     '0%': {
                         '-webkit-transform': ' rotate(0);',
                         transform: 'rotate(0);',
-                        'border-radius': '9999px',
+                        'border-radius': '9999px'
                     },
                     '100%': {
                         '-webkit-transform': ' rotate(360deg);',
-                        transform: 'rotate(360deg);',
-                    },
+                        transform: 'rotate(360deg);'
+                    }
                 },
                 'scale-up-image': {
                     '0%': {
                         '-webkit-transform': ' scale(1);',
-                        transform: 'scale(1);',
+                        transform: 'scale(1);'
                     },
                     '100%': {
                         '-webkit-transform': ' scale(1.1);',
-                        transform: 'scale(1.1);',
-                    },
+                        transform: 'scale(1.1);'
+                    }
                 },
                 'scale-down-image': {
                     '0%': {
                         '-webkit-transform': ' scale(1.1);',
-                        transform: 'scale(1.1);',
+                        transform: 'scale(1.1);'
                     },
                     '100%': {
                         '-webkit-transform': ' scale(1);',
-                        transform: 'scale(1);',
-                    },
-                },
+                        transform: 'scale(1);'
+                    }
+                }
             },
             animation: {
                 'slide-right': 'slide-right 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;',
@@ -131,9 +132,9 @@ module.exports = {
                 'scale-up-image':
                     'scale-up-image 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;',
                 'scale-down-image':
-                    'scale-down-image 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;',
-            },
-        },
+                    'scale-down-image 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;'
+            }
+        }
     },
-    plugins: [],
+    plugins: []
 };

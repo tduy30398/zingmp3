@@ -119,7 +119,7 @@ function Album() {
                             ))}
                         </span>
                         <span className="text-text-color-3 text-xs leading-5 select-none">{`${Math.round(
-                            playlistDetail?.like / 1000,
+                            playlistDetail?.like / 1000
                         )}K người yêu thích`}</span>
                     </div>
                 </div>

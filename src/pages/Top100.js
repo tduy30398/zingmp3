@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { TabTitle } from '../utils';
-import { setTop100 } from '../redux/actions';
+import { setTop100, setSearchText } from '../redux/actions';
 import { getTop100API } from '../APIs';
 import { PlaylistSectionTop100 } from '../components/Top100';
 import { RotatingLinesLoading } from '../assets/icons/dynamicIcons';
@@ -20,6 +20,7 @@ function Top100() {
             dispatch(setTop100(response.data.data));
         };
         fetchTop100API();
+        dispatch(setSearchText(''));
     }, []);
 
     return (

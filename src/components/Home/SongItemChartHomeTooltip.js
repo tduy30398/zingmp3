@@ -23,7 +23,7 @@ function SongItemChartHomeTooltip({ data, totalScore }) {
                 </div>
             </div>
             <span className="font-bold text-xs mr-1">{`${Math.round(
-                (data?.score * 100) / totalScore,
+                (data?.score * 100) / totalScore
             )}%`}</span>
         </div>
     );

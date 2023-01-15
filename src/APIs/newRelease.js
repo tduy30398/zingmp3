@@ -1,10 +1,10 @@
 import { httpRequest } from '../utils';
 
-export const getTop100API = () =>
+export const getNewReleaseAPI = () =>
     new Promise(async (resolve, reject) => {
         try {
             const response = await httpRequest({
-                url: 'top100',
+                url: 'newreleasechart',
                 method: 'get'
             });
             resolve(response);

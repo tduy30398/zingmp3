@@ -8,18 +8,18 @@ export const getHome = () => async (dispatch) => {
         if (response?.data.err === 0) {
             dispatch({
                 type: actionTypes.GET_HOME,
-                homeAPI: response.data.data.items,
+                homeAPI: response.data.data.items
             });
         } else {
             dispatch({
                 type: actionTypes.GET_HOME,
-                homeAPI: null,
+                homeAPI: null
             });
         }
     } catch (error) {
         dispatch({
             type: actionTypes.GET_HOME,
-            homeAPI: null,
+            homeAPI: null
         });
     }
 };

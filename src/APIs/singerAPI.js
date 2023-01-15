@@ -6,7 +6,7 @@ export const getSingerAPI = (name) =>
             const response = await httpRequest({
                 url: 'artist',
                 method: 'get',
-                params: { name },
+                params: { name }
             });
             resolve(response);
         } catch (error) {

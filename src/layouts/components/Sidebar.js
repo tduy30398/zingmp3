@@ -14,7 +14,7 @@ import {
     BiCategoryAlt,
     AiOutlineStar,
     BsCameraVideo,
-    HiOutlinePlus,
+    HiOutlinePlus
 } from '../../assets/icons/staticIcons';
 
 function Sidebar() {

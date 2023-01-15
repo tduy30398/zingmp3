@@ -12,7 +12,7 @@ const initState = {
     isLoading: false,
     isTyping: false,
     isSearching: false,
-    albumSongs: null,
+    albumSongs: null
 };
 
 const musicReducer = (state = initState, action) => {
@@ -20,42 +20,42 @@ const musicReducer = (state = initState, action) => {
         case actionTypes.SET_CURRENT_SONG_ID:
             return {
                 ...state,
-                currentSongId: action.songId,
+                currentSongId: action.songId
             };
         case actionTypes.SET_PLAYLIST_ID:
             return {
                 ...state,
-                playlistId: action.playlistId,
+                playlistId: action.playlistId
             };
         case actionTypes.SET_CURRENT_SONG_DETAIL:
             return {
                 ...state,
-                currentSongDetail: action.detailSong,
+                currentSongDetail: action.detailSong
             };
         case actionTypes.IS_PLAYING:
             return {
                 ...state,
-                isPlaying: action.flag,
+                isPlaying: action.flag
             };
         case actionTypes.IS_LOADING:
             return {
                 ...state,
-                isLoading: action.flag,
+                isLoading: action.flag
             };
         case actionTypes.IS_TYPING:
             return {
                 ...state,
-                isTyping: action.flag,
+                isTyping: action.flag
             };
         case actionTypes.IS_SEARCHING:
             return {
                 ...state,
-                isSearching: action.flag,
+                isSearching: action.flag
             };
         case actionTypes.SET_PLAYLIST:
             return {
                 ...state,
-                albumSongs: action.albumSongs,
+                albumSongs: action.albumSongs
             };
         case actionTypes.SET_RECENT_SONGS_LIST:
             let currentSongsList;
@@ -70,28 +70,28 @@ const musicReducer = (state = initState, action) => {
                 currentSongsList = [
                     action.songInfo,
                     ...state.recentSongsList.filter(
-                        (song) => song.encodeId !== action.songInfo.encodeId,
-                    ),
+                        (song) => song.encodeId !== action.songInfo.encodeId
+                    )
                 ];
             }
             return {
                 ...state,
-                recentSongsList: currentSongsList,
+                recentSongsList: currentSongsList
             };
         case actionTypes.SET_SEARCH_RESULT:
             return {
                 ...state,
-                searchResult: action.searchResult,
+                searchResult: action.searchResult
             };
         case actionTypes.SET_SEARCH_TEXT:
             return {
                 ...state,
-                searchText: action.searchText,
+                searchText: action.searchText
             };
         case actionTypes.SET_SEARCH_PARAMS:
             return {
                 ...state,
-                searchParams: action.searchParams,
+                searchParams: action.searchParams
             };
 
         default:

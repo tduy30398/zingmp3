@@ -8,18 +8,18 @@ import musicReducer from './musicReducer';
 
 const commonConfig = {
     storage: storage,
-    stateReconciler: autoMergeLevel2,
+    stateReconciler: autoMergeLevel2
 };
 
 const musicConfig = {
     ...commonConfig,
     key: 'music',
-    whitelist: ['currentSongId', 'currentSongDetail', 'playlistId', 'recentSongsList'],
+    whitelist: ['currentSongId', 'currentSongDetail', 'playlistId', 'recentSongsList']
 };
 
 const rootReducer = combineReducers({
     app: appReducer,
-    music: persistReducer(musicConfig, musicReducer),
+    music: persistReducer(musicConfig, musicReducer)
 });
 
 export default rootReducer;

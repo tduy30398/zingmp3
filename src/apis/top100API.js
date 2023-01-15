@@ -5,7 +5,7 @@ export const getTop100API = () =>
         try {
             const response = await httpRequest({
                 url: 'top100',
-                method: 'get',
+                method: 'get'
             });
             resolve(response);
         } catch (error) {

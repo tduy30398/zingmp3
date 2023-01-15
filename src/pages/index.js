@@ -33,5 +33,5 @@ export {
     WeekChart,
     Search,
     EmptyComponent,
-    Singer,
+    Singer
 };

@@ -10,7 +10,7 @@ import {
     AiOutlineUserAdd,
     BsFillPlayFill,
     BsChevronRight,
-    FaPlay,
+    FaPlay
 } from '../assets/icons/staticIcons';
 import { RotatingLinesLoading } from '../assets/icons/dynamicIcons';
 import { SongItemSearchSmall, Artist } from '../components/Search/AllSearch';
@@ -53,10 +53,10 @@ function Singer() {
     const singerAlbum = singerDetail?.sections?.find((section) => section?.title === 'Single & EP');
     const singerAlbum2 = singerDetail?.sections?.find((section) => section?.title === 'Tuyển tập');
     const singerAlbum3 = singerDetail?.sections?.find(
-        (section) => section?.title === 'Xuất hiện trong',
+        (section) => section?.title === 'Xuất hiện trong'
     );
     const suggestions = singerDetail?.sections?.find(
-        (section) => section?.title === 'Bạn Có Thể Thích',
+        (section) => section?.title === 'Bạn Có Thể Thích'
     );
 
     return (

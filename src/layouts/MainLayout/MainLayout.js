@@ -13,7 +13,7 @@ function MainLayout({ children }) {
                 </div>
                 <div className="flex-auto">
                     <div
-                        className={`h-[70px] px-[59px] flex items-center fixed top-0 left-0 right-0 ml-[240px] z-20  ${
+                        className={`h-[70px] px-[59px] flex items-center fixed top-0 left-0 right-0 ml-[240px] z-50  ${
                             isShowRightSidebar ? '2xl:mr-[330px]' : ''
                         }`}
                     >

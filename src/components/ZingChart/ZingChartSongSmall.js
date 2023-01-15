@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
-import { BsMusicNoteBeamed, FaPlay } from '../../assets/icons/staticIcons';
+import { FaPlay } from '../../assets/icons/staticIcons';
 import { AudioLoading } from '../../assets/icons/dynamicIcons';
 import { setCurrentSongId, setIsPlaying } from '../../redux/actions';
 
-function AlbumSong({ songInfo }) {
+function ZingChartSongSmall({ songInfo, index }) {
     const { currentSongId, isPlaying } = useSelector((state) => state.music);
     const dispatch = useDispatch();
 
@@ -21,15 +21,15 @@ function AlbumSong({ songInfo }) {
     return (
         <div
             onDoubleClick={handleClickSong}
-            className={`flex justify-between select-none p-[10px] border-b-[1px] border-border-color-2 rounded-[4px] group ${
+            className={`flex justify-between select-none p-[10px] rounded-[4px] group ${
                 songInfo?.encodeId === currentSongId
-                    ? 'bg-primary-color-8'
-                    : 'hover:bg-primary-color-8'
+                    ? 'bg-[hsla(0,0%,100%,0.1)]'
+                    : 'hover:bg-[hsla(0,0%,100%,0.1)]'
             }`}
         >
             <div className="flex items-center flex-5">
-                <span className="mr-[10px]">
-                    <BsMusicNoteBeamed size={15} />
+                <span className="text-shadow-4 mr-[15px] w-[40px] flex items-center justify-center text-[32px] text-[rgba(139,57,121,0.9)]">
+                    {index + 1}
                 </span>
                 <div className="relative cursor-pointer mr-[10px]" onClick={handleClickSong}>
                     <img
@@ -54,11 +54,11 @@ function AlbumSong({ songInfo }) {
                 </div>
                 <div className="flex flex-col">
                     <span className="text-sm font-semibold leading-5 text-text-color-2">
-                        {songInfo?.title.length > 30
-                            ? `${songInfo?.title.slice(0, 30)}...`
+                        {songInfo?.title.length > 10
+                            ? `${songInfo?.title.slice(0, 10)}...`
                             : songInfo?.title}
                     </span>
-                    <h3 className="text-xs font-medium leading-5 truncate max-w-[200px] overflow-ellipsis-2-line">
+                    <h3 className="text-xs font-medium leading-5 text-text-color-3 truncate max-w-[125px] overflow-ellipsis-2-line">
                         {songInfo?.artists?.map((artist, index) => (
                             <Link
                                 key={artist?.link}
@@ -73,21 +73,11 @@ function AlbumSong({ songInfo }) {
                     </h3>
                 </div>
             </div>
-            <span className="text-xs font-medium leading-5 flex-4 flex items-center">
-                <Link
-                    to={songInfo?.album?.link}
-                    className="cursor-pointer hover:underline hover:text-text-color-primary-2"
-                >
-                    {songInfo?.album?.title.length > 35
-                        ? `${songInfo?.album?.title.slice(0, 35)}...`
-                        : songInfo?.album?.title}
-                </Link>
-            </span>
-            <span className="text-xs font-medium leading-5 flex-1 flex justify-end items-center mr-1">
+            <span className="text-xs font-medium leading-5 flex-1 flex justify-end items-center mr-1 text-text-color-3">
                 {moment.utc(songInfo?.duration * 1000).format('mm:ss')}
             </span>
         </div>
     );
 }
 
-export default memo(AlbumSong);
+export default memo(ZingChartSongSmall);

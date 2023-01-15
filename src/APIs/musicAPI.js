@@ -6,7 +6,7 @@ export const getSongAPI = (songId) =>
             const response = await httpRequest({
                 url: 'song',
                 method: 'get',
-                params: { id: songId },
+                params: { id: songId }
             });
             resolve(response);
         } catch (error) {
@@ -20,7 +20,7 @@ export const getDetailSongAPI = (songId) =>
             const response = await httpRequest({
                 url: 'infosong',
                 method: 'get',
-                params: { id: songId },
+                params: { id: songId }
             });
             resolve(response);
         } catch (error) {
@@ -34,7 +34,7 @@ export const getDetailPlaylistAPI = (playlistId) =>
             const response = await httpRequest({
                 url: 'detailplaylist',
                 method: 'get',
-                params: { id: playlistId },
+                params: { id: playlistId }
             });
             resolve(response);
         } catch (error) {
@@ -48,7 +48,7 @@ export const searchAPI = (keyword) =>
             const response = await httpRequest({
                 url: 'search',
                 method: 'get',
-                params: { keyword },
+                params: { keyword }
             });
             resolve(response);
         } catch (error) {

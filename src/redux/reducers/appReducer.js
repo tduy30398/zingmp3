@@ -16,7 +16,7 @@ const initState = {
     top100_2: null,
     top100_3: null,
     top100_4: null,
-    top100_5: null,
+    top100_5: null
 };
 
 const appReducer = (state = initState, action) => {
@@ -34,7 +34,7 @@ const appReducer = (state = initState, action) => {
                 weekChart: action.homeAPI?.find((item) => item.sectionType === 'weekChart').items,
                 h100: action.homeAPI?.find((item) => item.sectionId === 'h100'),
                 hXone: action.homeAPI?.find((item) => item.sectionId === 'hXone'),
-                hAlbum: action.homeAPI?.find((item) => item.sectionId === 'hAlbum'),
+                hAlbum: action.homeAPI?.find((item) => item.sectionId === 'hAlbum')
             };
         case actionTypes.SET_TOP_100:
             return {
@@ -43,9 +43,8 @@ const appReducer = (state = initState, action) => {
                 top100_2: action.top100API?.find((item) => item.title === 'Nhạc Việt Nam'),
                 top100_3: action.top100API?.find((item) => item.title === 'Nhạc Châu Á'),
                 top100_4: action.top100API?.find((item) => item.title === 'Nhạc Âu Mỹ'),
-                top100_5: action.top100API?.find((item) => item.title === 'Nhạc Hòa Tấu'),
+                top100_5: action.top100API?.find((item) => item.title === 'Nhạc Hòa Tấu')
             };
-
         default:
             return state;
     }

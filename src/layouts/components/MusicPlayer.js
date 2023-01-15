@@ -18,13 +18,13 @@ import {
     BiVolumeFull,
     BiVolumeMute,
     TbMicrophone2,
-    SlScreenDesktop,
+    SlScreenDesktop
 } from '../../assets/icons/staticIcons';
 import {
     setIsPlaying,
     setCurrentSongId,
     setCurrentSongDetail,
-    setRecentSongsList,
+    setRecentSongsList
 } from '../../redux/actions';
 import { PlayerProgressBar } from '../components';
 import { RotatingLinesLoading } from '../../assets/icons/dynamicIcons';
@@ -51,7 +51,7 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
             //công khi tất cả các Promise đầu vào thành công
             const [res1, res2] = await Promise.all([
                 getDetailSongAPI(currentSongId),
-                getSongAPI(currentSongId),
+                getSongAPI(currentSongId)
             ]);
             // Ẩn icon loading tại play button khi gọi API xong
             setIsLoadingSong(false);
@@ -66,8 +66,8 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
                         encodeId: res1.data.data.encodeId,
                         thumbnail: res1.data.data.thumbnail,
                         artists: res1.data.data.artists,
-                        title: res1.data.data.title,
-                    }),
+                        title: res1.data.data.title
+                    })
                 );
             } else {
                 audio.pause();

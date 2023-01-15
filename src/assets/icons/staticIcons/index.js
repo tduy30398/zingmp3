@@ -2,10 +2,10 @@ import {
     MdOutlineLibraryMusic,
     MdSkipNext,
     MdSkipPrevious,
-    MdOutlineQueueMusic,
+    MdOutlineQueueMusic
 } from 'react-icons/md';
 import { TfiPieChart, TfiSettings, TfiAlarmClock } from 'react-icons/tfi';
-import { HiOutlineChartBar, HiOutlinePlus, HiOutlineUpload } from 'react-icons/hi';
+import { HiOutlineChartBar, HiOutlinePlus } from 'react-icons/hi';
 import { IoIosRadio } from 'react-icons/io';
 import {
     BsNewspaper,
@@ -19,7 +19,7 @@ import {
     BsPauseCircle,
     BsMusicNoteBeamed,
     BsSortDownAlt,
-    BsFillPlayFill,
+    BsFillPlayFill
 } from 'react-icons/bs';
 import { FiMusic } from 'react-icons/fi';
 import { BiCategoryAlt, BiShuffle, BiVolumeFull, BiVolumeMute, BiTrashAlt } from 'react-icons/bi';
@@ -45,7 +45,6 @@ export {
     BsArrowLeft,
     BsArrowRight,
     TfiSettings,
-    HiOutlineUpload,
     RiVipDiamondLine,
     BsChevronLeft,
     BsChevronRight,
@@ -67,5 +66,5 @@ export {
     SlScreenDesktop,
     BiTrashAlt,
     AiOutlineUserAdd,
-    BsFillPlayFill,
+    BsFillPlayFill
 };

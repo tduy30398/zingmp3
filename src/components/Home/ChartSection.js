@@ -16,7 +16,7 @@ function ChartSection() {
     const [tooltipState, setTooltipState] = useState({
         opacity: 0,
         top: 0,
-        left: 0,
+        left: 0
     });
     const [tooltipData, setTooltipData] = useState(null);
 
@@ -39,14 +39,14 @@ function ChartSection() {
                 // set điểm max cho đồ thị
                 max: chart?.maxScore,
                 // dash là nét đứt, 3 là width của mỗi nét, 4 là khoảng cách giữa 2 nét
-                border: { dash: [3, 4] },
+                border: { dash: [3, 4] }
             },
             x: {
                 // màu của các mốc tại trục hoành
                 ticks: { color: '#bfabbb' },
                 // các đường kẻ vuông góc từ trục hoành
-                grid: { color: 'transparent' },
-            },
+                grid: { color: 'transparent' }
+            }
         },
         plugins: {
             // legend là chú thích của biểu đồ
@@ -65,7 +65,7 @@ function ChartSection() {
                         if (tooltipState.opacity !== 0) {
                             setTooltipState((prev) => ({
                                 ...prev,
-                                opacity: 0,
+                                opacity: 0
                             }));
                         }
                         return;
@@ -78,7 +78,7 @@ function ChartSection() {
                             data: chart?.items[Object.keys(chart?.items)[i]]
                                 ?.filter((item) => +item.hour % 2 === 0)
                                 ?.map((item) => item.counter),
-                            encodeId: Object.keys(chart?.items)[i],
+                            encodeId: Object.keys(chart?.items)[i]
                         });
                     }
 
@@ -87,14 +87,14 @@ function ChartSection() {
                     // thì set tooltipData là encodeId của thằng đó
                     const result = counters.find((item) =>
                         item.data.some(
-                            (number) => number === +tooltip.body[0]?.lines[0]?.replace(',', ''),
-                        ),
+                            (number) => number === +tooltip.body[0]?.lines[0]?.replace(',', '')
+                        )
                     );
                     setTooltipData(result.encodeId);
                     const newTooltipData = {
                         opacity: 1,
                         left: tooltip.caretX,
-                        top: tooltip.caretY,
+                        top: tooltip.caretY
                     };
 
                     // Nếu tooltipState của lần trước đó và newTooltipData khác nhau thì update
@@ -102,8 +102,8 @@ function ChartSection() {
                     if (!_.isEqual(tooltipState, newTooltipData)) {
                         setTooltipState(newTooltipData);
                     }
-                },
-            },
+                }
+            }
         },
         hover: {
             // dataset mode: tìm những item có cùng dataset. Nếu intersect: true, item đầu tiên
@@ -112,8 +112,8 @@ function ChartSection() {
             mode: 'dataset',
             // Nếu là true, phải hover chuột vào điểm point thì mới hiện ra hover, còn nếu false thì
             // chỉ cần hover vào chart thì nó sẽ hiện ra hover của line gần chuột nhất
-            intersect: false,
-        },
+            intersect: false
+        }
     };
 
     // từ rank ban đầu lấy từ redux, tìm ra thằng item có encodeId khớp với thằng vừa được hover
@@ -151,7 +151,7 @@ function ChartSection() {
                     // màu của border của các điểm point (điểm nối)
                     pointBorderColor: i === 0 ? '#4A90E2' : i === 1 ? '#27BD9C' : '#E35050',
                     // width của border của các điểm point khi hover
-                    pointHoverBorderWidth: 2,
+                    pointHoverBorderWidth: 2
                 });
             }
             setChartData({ labels, datasets });
@@ -160,12 +160,20 @@ function ChartSection() {
 
     return (
         <div className="w-full overflow-hidden px-[59px] mt-12 max-h-[415px] relative">
-            <img
-                src={bgChart}
-                alt="bgChart"
-                className="w-full object-cover rounded-lg max-h-[415px]"
-            />
-            <div className="absolute top-0 bottom-0 left-[59px] right-[59px] rounded-lg bg-[rgba(172,52,147,0.9)]"></div>
+            {rank?.length === 0 ? (
+                ''
+            ) : (
+                <img
+                    src={bgChart}
+                    alt="bgChart"
+                    className="w-full object-cover rounded-lg max-h-[415px]"
+                />
+            )}
+            {rank?.length === 0 ? (
+                ''
+            ) : (
+                <div className="absolute top-0 bottom-0 left-[59px] right-[59px] rounded-lg bg-[rgba(172,52,147,0.9)]"></div>
+            )}
             <div className="absolute top-0 bottom-0 left-[59px] right-[59px] p-5 flex flex-col">
                 <Link
                     to={paths.ZINGCHART}
@@ -190,7 +198,7 @@ function ChartSection() {
                         <div className="flex justify-center">
                             <Link
                                 to={paths.ZINGCHART}
-                                className="py-[5px] px-[25px] outline-none text-center rounded-full border leading-[14px] text-text-color-2 text-sm hover:bg-[hsla(0,0%,100%,.1)]"
+                                className="py-[5px] px-[25px] outline-none text-center rounded-full border leading-[14px] text-text-color-2 text-sm hover:bg-opacity-color-4"
                             >
                                 Xem thêm
                             </Link>
@@ -204,7 +212,7 @@ function ChartSection() {
                                 top: tooltipState.top,
                                 left: tooltipState.left,
                                 opacity: tooltipState.opacity,
-                                position: 'absolute',
+                                position: 'absolute'
                             }}
                         >
                             <SongItemChartHomeTooltip
