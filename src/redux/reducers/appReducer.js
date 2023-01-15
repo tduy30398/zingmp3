@@ -16,7 +16,9 @@ const initState = {
     top100_2: null,
     top100_3: null,
     top100_4: null,
-    top100_5: null
+    top100_5: null,
+    chartPageData: null,
+    newReleaseData: null
 };
 
 const appReducer = (state = initState, action) => {
@@ -35,6 +37,16 @@ const appReducer = (state = initState, action) => {
                 h100: action.homeAPI?.find((item) => item.sectionId === 'h100'),
                 hXone: action.homeAPI?.find((item) => item.sectionId === 'hXone'),
                 hAlbum: action.homeAPI?.find((item) => item.sectionId === 'hAlbum')
+            };
+        case actionTypes.GET_CHART_PAGE:
+            return {
+                ...state,
+                chartPageData: action.chartPageAPI
+            };
+        case actionTypes.GET_NEW_RELEASE:
+            return {
+                ...state,
+                newReleaseData: action.newReleaseAPI
             };
         case actionTypes.SET_TOP_100:
             return {

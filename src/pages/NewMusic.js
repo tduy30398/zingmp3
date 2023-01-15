@@ -1,30 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import bgNewRelease from '../assets/images/imgs/bg-newrelease.jpg';
-import { getNewReleaseAPI } from '../APIs';
 import { TabTitle } from '../utils';
 import { setSearchText } from '../redux/actions';
 import { RotatingLinesLoading } from '../assets/icons/dynamicIcons';
 import { ZingChartSong } from '../components/ZingChart';
 
 function NewMusic() {
-    TabTitle('#zingchart tuần, #zingchart Zing - Bài hát');
-    const [newReleaseData, setNewReleaseData] = useState(null);
+    const { newReleaseData } = useSelector((state) => state.app);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const fetchNewReleaseAPI = async () => {
-            const response = await getNewReleaseAPI();
-            if (response.data.err === 0) {
-                setNewReleaseData(response.data.data);
-            }
-        };
-        fetchNewReleaseAPI();
+        TabTitle('#zingchart tuần, #zingchart Zing - Bài hát');
         dispatch(setSearchText(''));
     }, []);
+
     return (
         <div className="w-full relative h-[calc(100vh-90px)] overflow-x-hidden overflow-y-auto overflow-y-overlay scrollbar">
             {!newReleaseData && (

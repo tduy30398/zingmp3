@@ -1,4 +1,4 @@
-import { getHome } from './getHome';
+import { getHome, getChartPage, getNewRelease } from './getPages';
 import { setTop100 } from './setTop100';
 import {
     setCurrentSongId,
@@ -17,6 +17,8 @@ import {
 
 export {
     getHome,
+    getChartPage,
+    getNewRelease,
     setTop100,
     setCurrentSongId,
     setPlaylistId,

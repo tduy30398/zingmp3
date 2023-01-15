@@ -7,18 +7,16 @@ import _ from 'lodash';
 // eslint-disable-next-line no-unused-vars
 import { Chart } from 'chart.js/auto';
 
-import { getChartHomeAPI } from '../APIs';
+import bgChart from '../assets/images/imgs/bg-chart.jpg';
+import bgChart2 from '../assets/images/imgs/bg-chart-2.jpg';
 import { TabTitle } from '../utils';
 import { SongItemChartHomeTooltip } from '../components/Home';
 import { ZingChartSong, ZingChartSongSmall } from '../components/ZingChart';
-import bgChart from '../assets/images/imgs/bg-chart.jpg';
-import bgChart2 from '../assets/images/imgs/bg-chart-2.jpg';
 import { RotatingLinesLoading } from '../assets/icons/dynamicIcons';
 import { setSearchText } from '../redux/actions';
 
 function ZingChart() {
-    const { chart, rank } = useSelector((state) => state.app);
-    const [chartPageData, setChartPageData] = useState(null);
+    const { chart, rank, chartPageData } = useSelector((state) => state.app);
     const [chartData, setChartData] = useState(null);
     const [tooltipState, setTooltipState] = useState({
         opacity: 0,
@@ -34,13 +32,6 @@ function ZingChart() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const fetchChartHomeAPI = async () => {
-            const response = await getChartHomeAPI();
-            if (response.data.err === 0) {
-                setChartPageData(response.data.data);
-            }
-        };
-        fetchChartHomeAPI();
         TabTitle('#zingchart | Xem bài hát, album, MV đang hot nhất hiện tại');
         dispatch(setSearchText(''));
     }, []);

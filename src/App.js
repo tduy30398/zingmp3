@@ -7,14 +7,22 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import MainLayout from './layouts/MainLayout/MainLayout';
 import { publicRoutes } from './routes';
-import { getHome } from './redux/actions';
+import { getHome, getChartPage, getNewRelease, setTop100 } from './redux/actions';
 import { EmptyComponent } from './pages';
+import { getTop100API } from './APIs';
 
 function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getHome());
+        dispatch(getChartPage());
+        dispatch(getNewRelease());
+        const fetchTop100API = async () => {
+            const response = await getTop100API();
+            dispatch(setTop100(response.data.data));
+        };
+        fetchTop100API();
     }, []);
 
     useEffect(() => {

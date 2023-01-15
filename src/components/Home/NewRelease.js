@@ -1,9 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { BsChevronRight } from '../../assets/icons/staticIcons';
 import { SongItem } from '../Home';
+import paths from '../../configs';
 
 function NewRelease() {
     const { newRelease } = useSelector((state) => state.app);
@@ -68,12 +70,15 @@ function NewRelease() {
                         QUỐC TẾ
                     </button>
                 </div>
-                <div className="flex items-center text-text-color-3 gap-1 cursor-pointer hover:text-text-color-primary-2">
+                <Link
+                    to={paths.NEW}
+                    className="flex items-center text-text-color-3 gap-1 cursor-pointer hover:text-text-color-primary-2"
+                >
                     <span className="text-xs font-medium mr-0.5">TẤT CẢ</span>
                     <span className="mb-1">
                         <BsChevronRight size={18} />
                     </span>
-                </div>
+                </Link>
             </div>
             <div className="flex w-full flex-wrap gap-x-7">
                 {songContent
