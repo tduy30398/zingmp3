@@ -12,7 +12,7 @@ import { WeekChartSong } from '../components/ZingChart';
 const nonActiveStyle =
     'mr-10 py-[15px] cursor-pointer text-2xl font-bold text-text-color-1 hover:text-text-color-2 border-b-[3px] border-transparent';
 const activeStyle =
-    'mr-10 py-[15px] cursor-pointer text-2xl font-bold text-text-color-1 hover:text-text-color-2 border-b-[3px] border-[#CA4974]';
+    'mr-10 py-[15px] cursor-pointer text-2xl font-bold text-text-color-1 hover:text-text-color-2 border-b-[3px] border-border-color-3';
 
 function WeekChart() {
     const { chartPageData } = useSelector((state) => state.app);

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
@@ -36,8 +36,12 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
     const [isRepeat, setIsRepeat] = useState(false);
     const [isEnd, setIsEnd] = useState(false);
     const [isLoadingSong, setIsLoadingSong] = useState(false);
+    const [isHoverVolume, setIsHoverVolume] = useState(false);
     const [volume, setVolume] = useState(50);
     const [audio, setAudio] = useState(new Audio());
+
+    const volumeRef = useRef('');
+    const sliderRef = useRef('');
 
     const dispatch = useDispatch();
 
@@ -60,6 +64,7 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
                 audio.pause();
                 setAudio(new Audio(res2.data.data['128']));
                 setSongInfo(res1.data.data);
+                setVolume(50);
                 dispatch(setCurrentSongDetail(res1.data.data));
                 dispatch(
                     setRecentSongsList({
@@ -115,6 +120,12 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
 
     useEffect(() => {
         audio.volume = volume / 100;
+        if (sliderRef.current) {
+            sliderRef.current.style.background = `linear-gradient(to right, #ffffff ${volume}%, #825F79 ${volume}%)`;
+        }
+        if (volumeRef.current) {
+            volumeRef.current.style.cssText = `right: ${100 - volume}%`;
+        }
     }, [volume]);
 
     const handleTogglePlaying = () => {
@@ -276,7 +287,7 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
                 <PlayerProgressBar audio={audio} songInfo={songInfo} />
             </div>
 
-            <div className="w-[30%] flex-auto flex justify-end items-center">
+            <div className="w-[30%] flex-auto hidden md:flex md:justify-end md:items-center">
                 <div className="flex">
                     <div className="flex items-center pr-5 gap-1 border-r-[1px] border-border-color-1">
                         <span
@@ -301,15 +312,35 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
                                 <BiVolumeFull size={18} />
                             )}
                         </span>
-                        <input
-                            className="ml-1 h-1 w-[70px] hover:h-1.5 outline-none cursor-pointer"
-                            type="range"
-                            step={1}
-                            min={0}
-                            max={100}
-                            value={volume}
-                            onChange={(e) => setVolume(e.target.value)}
-                        />
+                        <div
+                            onMouseEnter={() => setIsHoverVolume(true)}
+                            onMouseLeave={() => setIsHoverVolume(false)}
+                            className="w-full hidden lg:flex items-center"
+                        >
+                            <input
+                                className={`ml-[5px] mr-[-1px] h-1.5 w-[72px] outline-none rounded-full cursor-pointer ${
+                                    isHoverVolume ? 'block' : 'hidden'
+                                }`}
+                                ref={sliderRef}
+                                type="range"
+                                step={1}
+                                min={0}
+                                max={100}
+                                value={volume}
+                                onChange={(e) => setVolume(e.target.value)}
+                            />
+
+                            <div
+                                className={`ml-1.5 h-1 w-[70px] outline-none rounded-full bg-primary-color-6 relative ${
+                                    isHoverVolume ? 'hidden' : 'block'
+                                }`}
+                            >
+                                <div
+                                    ref={volumeRef}
+                                    className="absolute top-0 bottom-0 left-0 rounded-full bg-primary-color-7"
+                                ></div>
+                            </div>
+                        </div>
                     </div>
 
                     <span

@@ -84,6 +84,7 @@ function RightSidebarPlaylist() {
                                     Từ playlist{' '}
                                 </span>
                                 <Link
+                                    title={currentSongDetail?.album?.link}
                                     to={currentSongDetail?.album?.link}
                                     className="text-sm font-normal cursor-pointer text-text-color-primary-2"
                                 >

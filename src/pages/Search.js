@@ -7,7 +7,7 @@ import paths from '../configs';
 const nonActiveStyle =
     'mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2';
 const activeStyle =
-    'mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2 border-b-[1px] border-[#CA4974]';
+    'mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2 border-b-[1px] border-border-color-3';
 
 function Search({ children }) {
     const { isSearching, searchParams } = useSelector((state) => state.music);

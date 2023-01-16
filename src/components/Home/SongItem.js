@@ -22,7 +22,7 @@ function SongItem({ data }) {
     return (
         <div
             onDoubleClick={handleClickSong}
-            className={`w-[45%] lg:w-[31.5%] select-none p-[10px] gap-[10px] flex rounded-[4px] group ${
+            className={`w-[45%] lg:w-[30%] select-none p-[10px] gap-[10px] flex rounded-[4px] group ${
                 data?.encodeId === currentSongId ? 'bg-primary-color-8' : 'hover:bg-primary-color-8'
             }`}
         >

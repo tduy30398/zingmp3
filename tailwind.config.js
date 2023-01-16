@@ -30,7 +30,8 @@ module.exports = {
             },
             borderColor: {
                 'border-color-1': '#5D3953',
-                'border-color-2': 'hsla(0,0%,100%,0.05)'
+                'border-color-2': 'hsla(0,0%,100%,0.05)',
+                'border-color-3': '#CA4974'
             },
             flex: {
                 2: '2 1 0%',
