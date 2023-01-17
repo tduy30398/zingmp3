@@ -15,7 +15,7 @@ const activeStyle =
     'mr-10 py-[15px] cursor-pointer text-2xl font-bold text-text-color-1 hover:text-text-color-2 border-b-[3px] border-border-color-3';
 
 function WeekChart() {
-    const { chartPageData } = useSelector((state) => state.app);
+    const { chartPageData, screenWidthRedux } = useSelector((state) => state.app);
     const { title } = useParams();
     const [chartType, setChartType] = useState([]);
 
@@ -49,7 +49,13 @@ function WeekChart() {
                 <img src={bgChart2} alt="cover" className="object-cover w-full h-[410px]" />
                 <div className="absolute top-0 bottom-0 left-0 right-0 bg-[rgba(65,22,54,0.7)]"></div>
                 <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-t from-[rgb(65,22,54)] to-transparent"></div>
-                <div className="absolute top-0 bottom-2/3 left-[59px] right-[59px] flex flex-col mt-[100px]">
+                <div
+                    className={`absolute top-0 bottom-2/3 flex flex-col mt-[100px] ${
+                        screenWidthRedux > 1022
+                            ? 'left-[59px] right-[59px]'
+                            : 'left-[29px] right-[29px]'
+                    }`}
+                >
                     <h3 className="text-[40px] font-bold mb-[30px]">Bảng Xếp Hạng Tuần</h3>
                     <div className="flex items-center">
                         <NavLink

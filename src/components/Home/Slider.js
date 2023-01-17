@@ -8,7 +8,7 @@ import { setCurrentSongId, setIsPlaying, setAlbumSongs } from '../../redux/actio
 
 var intervalId;
 function Slider() {
-    const { banners } = useSelector((state) => state.app);
+    const { banners, screenWidthRedux } = useSelector((state) => state.app);
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(2);
     const [isAuto, setIsAuto] = useState(true);
@@ -128,7 +128,11 @@ function Slider() {
     };
 
     return (
-        <div className="w-full overflow-hidden px-[59px] select-none">
+        <div
+            className={`w-full overflow-hidden select-none ${
+                screenWidthRedux > 1022 ? 'px-[59px]' : 'px-[29px]'
+            }`}
+        >
             <div onMouseLeave={() => setIsAuto(true)} className="flex gap-8 pt-8 relative group">
                 {banners?.map((banner, index) => (
                     <img

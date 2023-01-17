@@ -156,7 +156,13 @@ function ZingChart() {
             <div className="relative">
                 <img src={bgChart} alt="cover" className="object-cover w-full h-[500px]" />
                 <div className="absolute top-0 bottom-0 left-0 right-0 bg-[rgba(65,22,54,0.92)]"></div>
-                <div className="absolute top-0 bottom-2/3 left-[59px] right-[59px] flex items-end">
+                <div
+                    className={`absolute top-0 bottom-2/3 flex items-end ${
+                        screenWidthRedux > 1022
+                            ? 'left-[59px] right-[59px]'
+                            : 'left-[29px] right-[29px]'
+                    }`}
+                >
                     <h3 className="mb-5 text-[40px] font-extrabold">#zingchart</h3>
                 </div>
                 <div className="absolute top-1/3 bottom-0 left-0 right-[10px] md:right-[59px] bg-gradient-to-t from-[rgb(65,22,54)] to-transparent">
@@ -180,7 +186,7 @@ function ZingChart() {
                     </div>
                 </div>
             </div>
-            <div className="px-[59px] pb-[30px]">
+            <div className={`pb-[30px] ${screenWidthRedux > 1022 ? 'px-[59px]' : 'px-[29px]'}`}>
                 <div className="mb-5">
                     {songData?.map((item, index) => (
                         <ZingChartSong songInfo={item} key={item?.encodeId} index={index} />

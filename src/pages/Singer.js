@@ -77,7 +77,11 @@ function Singer() {
                     className="object-cover w-full h-[410px] mt-[-70px]"
                 />
                 <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-t from-[rgba(0,0,0,0.6)] to-transparent">
-                    <div className="absolute bottom-6 px-[59px] w-full flex flex-col">
+                    <div
+                        className={`absolute bottom-6 w-full flex flex-col ${
+                            screenWidthRedux > 1022 ? 'px-[59px]' : 'px-[29px]'
+                        }`}
+                    >
                         <div className="flex items-center mb-4">
                             <span className="text-6xl font-bold">{singerDetail?.name}</span>
                             <span className="ml-5 p-1 rounded-full cursor-pointer bg-primary-color-7 text-text-color-primary-1 hover:bg-primary-color-1 hover:text-text-color-2">
@@ -102,7 +106,11 @@ function Singer() {
                 </div>
             </div>
 
-            <div className="w-full px-[59px] flex flex-col">
+            <div
+                className={`w-full flex flex-col ${
+                    screenWidthRedux > 1022 ? 'px-[59px]' : 'px-[29px]'
+                }`}
+            >
                 <div className="flex mt-[30px] mx-[-14px]">
                     {singerDetail?.topAlbum?.thumbnail && (
                         <div className="flex flex-col flex-1 px-[14px]">

@@ -37,7 +37,11 @@ function AllSearch() {
     }, [searchParams]);
 
     return (
-        <div className="w-full px-[59px] flex flex-col">
+        <div
+            className={`w-full flex flex-col ${
+                screenWidthRedux > 1022 ? 'px-[59px]' : 'px-[29px]'
+            }`}
+        >
             {(searchResult?.songs || searchResult?.artists) && (
                 <div className="flex flex-col">
                     <h3 className="text-xl font-bold mb-5">Nổi Bật</h3>

@@ -1,11 +1,17 @@
-import { PlaylistSectionItemTop100 } from '../Top100';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
+import { PlaylistSectionItemTop100 } from '../Top100';
 import { BsChevronRight } from '../../assets/icons/staticIcons';
 
 function PlaylistSectionTop100({ content }) {
+    const { screenWidthRedux } = useSelector((state) => state.app);
     return (
-        <div className="w-full overflow-hidden px-[59px] mt-12">
+        <div
+            className={`w-full overflow-hidden mt-12 ${
+                screenWidthRedux > 1022 ? 'px-[59px]' : 'px-[29px]'
+            }`}
+        >
             <div className="flex flex-col">
                 <div className="flex justify-between items-center">
                     {content?.title && (

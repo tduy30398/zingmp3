@@ -52,7 +52,9 @@ function Home() {
             <PlaylistSection content={hAutoTheme2} />
             <ChartSection />
             <div
-                className={`w-full px-[59px] mt-12 ${
+                className={`w-full ${
+                    screenWidthRedux > 1022 ? 'px-[59px]' : 'px-[29px]'
+                } px-[59px] mt-12 ${
                     screenWidthRedux > 768 ? 'flex' : 'flex-col'
                 } items-center gap-7`}
             >

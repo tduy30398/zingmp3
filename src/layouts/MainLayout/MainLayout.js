@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import { Sidebar, MusicPlayer, RightSidebarPlaylist, Searchbar } from '../components';
 
 function MainLayout({ children }) {
+    const { screenWidthRedux } = useSelector((state) => state.app);
     const [isShowRightSidebar, setIsShowRightSidebar] = useState(true);
 
     return (
@@ -13,7 +15,9 @@ function MainLayout({ children }) {
                 </div>
                 <div className="flex-auto">
                     <div
-                        className={`h-[70px] px-[59px] flex items-center fixed top-0 left-0 right-0 ml-[70px] lg:ml-[240px] z-50 ${
+                        className={`h-[70px] ${
+                            screenWidthRedux > 1022 ? 'px-[59px]' : 'px-[29px]'
+                        } flex items-center fixed top-0 left-0 right-0 ml-[70px] lg:ml-[240px] z-50 ${
                             isShowRightSidebar ? '2xl:mr-[330px]' : ''
                         }`}
                     >

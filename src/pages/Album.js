@@ -51,9 +51,9 @@ function Album() {
 
     return (
         <div
-            className={`${
-                screenWidthRedux > 1200 ? 'flex' : 'flex-col'
-            } relative gap-8 px-[59px] pt-10 mt-[70px] w-full h-[calc(100vh-160px)] overflow-x-hidden overflow-y-auto overflow-y-overlay scrollbar`}
+            className={`${screenWidthRedux > 1200 ? 'flex' : 'flex-col'} relative gap-8 ${
+                screenWidthRedux > 1022 ? 'px-[59px]' : 'px-[29px]'
+            } pt-10 mt-[70px] w-full h-[calc(100vh-160px)] overflow-x-hidden overflow-y-auto overflow-y-overlay scrollbar`}
         >
             {isLoading && (
                 <div className="absolute left-0 right-0 top-0 bottom-0 bg-primary-color-2 z-20">

@@ -16,6 +16,7 @@ import paths from '../../configs';
 
 function Searchbar() {
     const { searchText } = useSelector((state) => state.music);
+    const { screenWidthRedux } = useSelector((state) => state.app);
     const inputRef = useRef('');
 
     const dispatch = useDispatch();
@@ -79,7 +80,11 @@ function Searchbar() {
                             onBlur={() => dispatch(setIsTyping(false))}
                             ref={inputRef}
                             className="outline-none px-1 bg-primary-color-5 py-2 w-full caret-white h-10 placeholder-[#dbd0d9] rounded-r-[20px]"
-                            placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát..."
+                            placeholder={
+                                screenWidthRedux > 800
+                                    ? `Tìm kiếm bài hát, nghệ sĩ, lời bài hát...`
+                                    : 'Tìm kiếm...'
+                            }
                         />
                         {!!searchText && (
                             <button onClick={handleClearSearch} className="mr-4 mb-1">

@@ -8,7 +8,7 @@ import { SongItem } from '../Home';
 import paths from '../../configs';
 
 function NewRelease() {
-    const { newRelease } = useSelector((state) => state.app);
+    const { newRelease, screenWidthRedux } = useSelector((state) => state.app);
 
     const [songType, setSongType] = useState(0);
     const [songContent, setSongContent] = useState([]);
@@ -24,7 +24,11 @@ function NewRelease() {
     }, [songType, newRelease]);
 
     return (
-        <div className="w-full overflow-hidden px-[59px] mt-12 flex flex-col">
+        <div
+            className={`w-full overflow-hidden mt-12 flex flex-col ${
+                screenWidthRedux > 1022 ? 'px-[59px]' : 'px-[29px]'
+            }`}
+        >
             <h3 className="text-text-color-2 mb-5 text-left font-bold text-xl capitalize">
                 {newRelease?.title}
             </h3>

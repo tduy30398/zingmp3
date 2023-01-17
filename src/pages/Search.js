@@ -11,6 +11,7 @@ const activeStyle =
 
 function Search({ children }) {
     const { isSearching, searchParams } = useSelector((state) => state.music);
+    const { screenWidthRedux } = useSelector((state) => state.app);
 
     return (
         <div className="w-full relative flex flex-col mt-[70px] h-[calc(100vh-160px)] overflow-x-hidden overflow-y-auto overflow-y-overlay scrollbar">
@@ -22,8 +23,16 @@ function Search({ children }) {
                 </div>
             )}
             <div className="border-b-[1px] border-border-color-1 mb-7">
-                <div className="w-full flex h-[50px] px-[59px] items-center">
-                    <h3 className="hidden xl:block pr-5 text-2xl font-bold border-r-[1px] border-border-color-1">
+                <div
+                    className={`w-full flex h-[50px] items-center ${
+                        screenWidthRedux > 1022 ? 'px-[59px]' : 'px-[29px]'
+                    }`}
+                >
+                    <h3
+                        className={`pr-5 text-2xl font-bold border-r-[1px] border-border-color-1 ${
+                            screenWidthRedux > 1390 ? 'block' : 'hidden'
+                        }`}
+                    >
                         Kết Quả Tìm Kiếm
                     </h3>
                     <div className="flex items-center">

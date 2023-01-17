@@ -8,7 +8,11 @@ function PlaylistSection({ content }) {
     const { screenWidthRedux } = useSelector((state) => state.app);
 
     return (
-        <div className="w-full overflow-hidden px-[59px] mt-12">
+        <div
+            className={`w-full overflow-hidden mt-12 ${
+                screenWidthRedux > 1022 ? 'px-[59px]' : 'px-[29px]'
+            }`}
+        >
             <div className="flex flex-col">
                 <div className="flex justify-between items-center">
                     {content?.title && (

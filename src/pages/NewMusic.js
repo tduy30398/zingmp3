@@ -9,7 +9,7 @@ import { RotatingLinesLoading } from '../assets/icons/dynamicIcons';
 import { ZingChartSong } from '../components/ZingChart';
 
 function NewMusic() {
-    const { newReleaseData } = useSelector((state) => state.app);
+    const { newReleaseData, screenWidthRedux } = useSelector((state) => state.app);
 
     const dispatch = useDispatch();
 
@@ -33,7 +33,13 @@ function NewMusic() {
                 <div className="absolute top-0 bottom-2/3 left-[59px] right-[59px] flex items-end">
                     <h3 className="text-[40px] font-bold cursor-context-menu">Nhạc Mới</h3>
                 </div>
-                <div className="mt-5 absolute top-1/3 bottom-0 left-[59px] right-[59px] bg-gradient-to-t from-[rgb(65,22,54)] to-transparent">
+                <div
+                    className={`mt-5 absolute top-1/3 bottom-0 bg-gradient-to-t from-[rgb(65,22,54)] to-transparent ${
+                        screenWidthRedux > 1022
+                            ? 'left-[59px] right-[59px]'
+                            : 'left-[29px] right-[29px]'
+                    } `}
+                >
                     <div className="pb-[50px]">
                         {newReleaseData?.items?.map((item, index) => (
                             <ZingChartSong songInfo={item} key={item?.encodeId} index={index} />
