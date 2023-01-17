@@ -27,8 +27,8 @@ import { AiOutlineStar, AiOutlineHeart, AiOutlineUserAdd } from 'react-icons/ai'
 import { RiVipDiamondLine } from 'react-icons/ri';
 import { CiRepeat } from 'react-icons/ci';
 import { FaPlay } from 'react-icons/fa';
-import { TbMicrophone2 } from 'react-icons/tb';
-import { SlScreenDesktop } from 'react-icons/sl';
+import { TbPictureInPicture } from 'react-icons/tb';
+import { GiMicrophone } from 'react-icons/gi';
 
 export {
     MdOutlineLibraryMusic,
@@ -62,9 +62,9 @@ export {
     MdOutlineQueueMusic,
     BiVolumeFull,
     BiVolumeMute,
-    TbMicrophone2,
-    SlScreenDesktop,
     BiTrashAlt,
     AiOutlineUserAdd,
-    BsFillPlayFill
+    BsFillPlayFill,
+    TbPictureInPicture,
+    GiMicrophone
 };

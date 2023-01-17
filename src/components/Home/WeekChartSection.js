@@ -19,7 +19,7 @@ function WeekChartSection({ data }) {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             key={data?.link}
-            className="w-full overflow-hidden rounded-[5px]"
+            className="w-full overflow-hidden rounded-[5px] mb-5 md:mb-0"
         >
             <Link to={data?.link} key={data?.link} className="flex-auto">
                 <img ref={imgRef} src={data?.cover} alt="banner" className="object-cover w-full" />

@@ -1,12 +1,18 @@
 import { memo } from 'react';
 import moment from 'moment';
+import { useSelector } from 'react-redux';
 
 import AlbumSong from './AlbumSong';
 import { BsSortDownAlt } from '../../assets/icons/staticIcons';
 
 function AlbumPlaylist({ songs }) {
+    const { screenWidthRedux } = useSelector((state) => state.app);
     return (
-        <div className="w-full flex flex-col text-text-color-3">
+        <div
+            className={`w-full flex flex-col text-text-color-3 ${
+                screenWidthRedux > 1200 ? '' : 'mt-4'
+            }`}
+        >
             {songs && (
                 <div className="flex p-[10px] border-b-[1px] border-border-color-2">
                     <div className="flex flex-5">
@@ -15,7 +21,9 @@ function AlbumPlaylist({ songs }) {
                         </span>
                         <span className="text-xs font-medium leading-5 select-none">BÀI HÁT</span>
                     </div>
-                    <span className="text-xs font-medium leading-5 select-none flex-4">ALBUM</span>
+                    <span className="text-xs font-medium leading-5 select-none flex-4 hidden md:block">
+                        ALBUM
+                    </span>
                     <span className="text-xs font-medium leading-5 select-none flex-1 flex justify-end">
                         THỜI GIAN
                     </span>

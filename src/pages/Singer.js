@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { TabTitle } from '../utils';
 import { getSingerAPI } from '../APIs';
@@ -17,6 +17,7 @@ import { SongItemSearchSmall, Artist } from '../components/Search/AllSearch';
 import { PlaylistSectionSinger } from '../components/Singer';
 
 function Singer() {
+    const { screenWidthRedux } = useSelector((state) => state.app);
     const { singerName } = useParams();
     const dispatch = useDispatch();
     const imgRef = useRef('');
@@ -174,7 +175,17 @@ function Singer() {
                         <h3 className="text-xl font-bold mb-5">Có Thể Bạn Sẽ Thích</h3>
                         <div className="flex items-start gap-7">
                             {suggestions?.items
-                                ?.filter((item, index) => index < 5)
+                                ?.filter(
+                                    (item, index) =>
+                                        index <
+                                        (screenWidthRedux >= 1280
+                                            ? 5
+                                            : screenWidthRedux >= 1024
+                                            ? 4
+                                            : screenWidthRedux >= 768
+                                            ? 3
+                                            : 2)
+                                )
                                 ?.map((item) => (
                                     <Artist key={item?.id} item={item} />
                                 ))}

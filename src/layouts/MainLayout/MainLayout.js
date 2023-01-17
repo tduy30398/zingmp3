@@ -13,7 +13,7 @@ function MainLayout({ children }) {
                 </div>
                 <div className="flex-auto">
                     <div
-                        className={`h-[70px] px-[59px] flex items-center fixed top-0 left-0 right-0 ml-[240px] z-50  ${
+                        className={`h-[70px] px-[59px] flex items-center fixed top-0 left-0 right-0 ml-[70px] lg:ml-[240px] z-50 ${
                             isShowRightSidebar ? '2xl:mr-[330px]' : ''
                         }`}
                     >
@@ -22,12 +22,12 @@ function MainLayout({ children }) {
                     <div>{children}</div>
                 </div>
                 {isShowRightSidebar && (
-                    <div className="w-[330px] z-30 flex-none border-l-[1px] border-border-color-1 animate-slide-left">
+                    <div className="w-[330px] z-[60] flex-none border-l-[1px] border-border-color-1 animate-slide-left">
                         <RightSidebarPlaylist />
                     </div>
                 )}
             </div>
-            <div className="fixed bottom-0 left-0 right-0 h-[90px] border-t-[1px] border-border-color-1 z-40">
+            <div className="fixed bottom-0 left-0 right-0 h-[90px] border-t-[1px] border-border-color-1 z-[70]">
                 <MusicPlayer
                     setIsShowRightSidebar={setIsShowRightSidebar}
                     isShowRightSidebar={isShowRightSidebar}

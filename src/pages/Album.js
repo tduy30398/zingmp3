@@ -13,6 +13,7 @@ import { setAlbumSongs, setIsLoading, setPlaylistId } from '../redux/actions';
 
 function Album() {
     const { isPlaying, isLoading } = useSelector((state) => state.music);
+    const { screenWidthRedux } = useSelector((state) => state.app);
     const dispatch = useDispatch();
     const { playlistId } = useParams();
     const [playlistDetail, setPlaylistDetail] = useState({});
@@ -49,7 +50,11 @@ function Album() {
     const artistsLength = playlistDetail?.artists?.length;
 
     return (
-        <div className="flex relative gap-8 px-[59px] mt-[70px] w-full h-[calc(100vh-160px)] overflow-x-hidden overflow-y-auto overflow-y-overlay scrollbar">
+        <div
+            className={`${
+                screenWidthRedux > 1200 ? 'flex' : 'flex-col'
+            } relative gap-8 px-[59px] pt-10 mt-[70px] w-full h-[calc(100vh-160px)] overflow-x-hidden overflow-y-auto overflow-y-overlay scrollbar`}
+        >
             {isLoading && (
                 <div className="absolute left-0 right-0 top-0 bottom-0 bg-primary-color-2 z-20">
                     <div className="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%]">
@@ -58,25 +63,39 @@ function Album() {
                 </div>
             )}
             {playlistDetail.artistsNames && (
-                <div className="flex-none w-[29.5%] flex flex-col">
+                <div
+                    className={`flex-none ${screenWidthRedux > 1200 ? 'max-w-[300px]' : 'w-full'} ${
+                        screenWidthRedux > 1200 ? 'flex-col' : 'flex'
+                    }`}
+                >
                     <div
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
-                        className="w-full relative overflow-hidden rounded-lg"
+                        className={`${
+                            screenWidthRedux > 1200 ? 'w-full' : 'w-[200px]'
+                        } relative overflow-hidden rounded-lg`}
                     >
-                        <img
-                            ref={imgRef}
-                            className={`w-full object-cover shadow-lg cursor-pointer ${
-                                isPlaying
-                                    ? `rounded-full animate-rotate-center`
-                                    : `animate-rotate-center-pause`
-                            }`}
-                            src={
-                                playlistDetail?.thumbnailM ||
-                                `https://avatar.talk.zdn.vn/default.jpg`
-                            }
-                            alt={playlistDetail?.artistsNames}
-                        />
+                        <div
+                            className={`${
+                                screenWidthRedux > 1200
+                                    ? 'w-[300px] h-[300px]'
+                                    : 'w-[200px] h-[200px]'
+                            } `}
+                        >
+                            <img
+                                ref={imgRef}
+                                className={`w-full h-full object-cover shadow-lg cursor-pointer ${
+                                    isPlaying
+                                        ? `rounded-full animate-rotate-center`
+                                        : `animate-rotate-center-pause`
+                                }`}
+                                src={
+                                    playlistDetail?.thumbnailM ||
+                                    `https://avatar.talk.zdn.vn/default.jpg`
+                                }
+                                alt={playlistDetail?.artistsNames}
+                            />
+                        </div>
                         <div
                             className={`absolute top-0 bottom-0 left-0 right-0 cursor-pointer group ${
                                 !isPlaying ? 'hover:bg-overlay-40' : ''
@@ -98,7 +117,11 @@ function Album() {
                             </div>
                         </div>
                     </div>
-                    <div className="mt-3 text-center flex flex-col">
+                    <div
+                        className={`flex flex-col ${
+                            screenWidthRedux > 1200 ? 'text-center mt-3' : 'text-start mt-1 ml-5'
+                        }`}
+                    >
                         <h3 className="text-text-color-2 text-xl font-bold select-none">
                             {playlistDetail?.title}
                         </h3>
@@ -128,10 +151,16 @@ function Album() {
                 <div className="flex-auto flex flex-col">
                     {playlistDetail?.sortDescription && (
                         <div className="mb-[10px]">
-                            <span className="text-text-color-3 text-sm leading-5">Lời tựa </span>
-                            <span className="text-text-color-2 text-sm leading-5 font-medium">
-                                {playlistDetail?.sortDescription}
-                            </span>
+                            {screenWidthRedux > 1200 && (
+                                <>
+                                    <span className="text-text-color-3 text-sm leading-5">
+                                        Lời tựa{' '}
+                                    </span>
+                                    <span className="text-text-color-2 text-sm leading-5 font-medium">
+                                        {playlistDetail?.sortDescription}
+                                    </span>
+                                </>
+                            )}
                         </div>
                     )}
                     <AlbumPlaylist songs={playlistDetail?.song} />

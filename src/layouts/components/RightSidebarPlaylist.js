@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { TfiAlarmClock, BiTrashAlt } from '../../assets/icons/staticIcons';
 import { SongItemSmall } from '../../components/Home';
@@ -62,10 +63,14 @@ function RightSidebarPlaylist() {
                     </span>
                 </div>
                 <div className="flex gap-2">
-                    <span className="p-2 bg-primary-color-8 hover:text-text-color-1 rounded-full cursor-pointer">
+                    <span
+                        onClick={() => toast.warn('Tính năng đang được phát triển...')}
+                        className="p-2 bg-primary-color-8 hover:text-text-color-1 rounded-full cursor-pointer"
+                    >
                         <TfiAlarmClock size={18} />
                     </span>
                     <span
+                        onClick={() => toast.warn('Tính năng đang được phát triển...')}
                         title="Xóa danh sách nghe gần đây"
                         className="p-2 bg-primary-color-8 hover:text-text-color-1 rounded-full cursor-pointer"
                     >

@@ -18,7 +18,8 @@ const initState = {
     top100_4: null,
     top100_5: null,
     chartPageData: null,
-    newReleaseData: null
+    newReleaseData: null,
+    screenWidthRedux: null
 };
 
 const appReducer = (state = initState, action) => {
@@ -47,6 +48,11 @@ const appReducer = (state = initState, action) => {
             return {
                 ...state,
                 newReleaseData: action.newReleaseAPI
+            };
+        case actionTypes.SET_SCREEN_WIDTH:
+            return {
+                ...state,
+                screenWidthRedux: action.screenWidth
             };
         case actionTypes.SET_TOP_100:
             return {

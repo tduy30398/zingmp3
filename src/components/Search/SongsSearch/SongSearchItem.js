@@ -29,14 +29,18 @@ function SongSearchItem({ songInfo }) {
         >
             <div className="flex items-center flex-5">
                 <div className="relative cursor-pointer mr-[10px]" onClick={handleClickSong}>
-                    <img
-                        className="w-10 h-10 rounded-[4px] object-cover group-hover:opacity-30"
-                        src={songInfo.thumbnail}
-                        alt={songInfo.title}
-                    />
-                    <span className="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] text-text-color-2 cursor-pointer hidden group-hover:block">
-                        <FaPlay size={16} />
-                    </span>
+                    <div className="w-10 h-10">
+                        <img
+                            className="w-full h-full rounded-[4px] object-cover group-hover:opacity-30"
+                            src={songInfo.thumbnail}
+                            alt={songInfo.title}
+                        />
+                    </div>
+                    {songInfo?.encodeId !== currentSongId && (
+                        <span className="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] text-text-color-2 cursor-pointer hidden group-hover:block">
+                            <FaPlay size={16} />
+                        </span>
+                    )}
                     {songInfo?.encodeId === currentSongId ? (
                         <span className="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] text-text-color-2 cursor-pointer">
                             {isPlaying ? (
@@ -70,7 +74,7 @@ function SongSearchItem({ songInfo }) {
                     </h3>
                 </div>
             </div>
-            <span className="text-xs font-medium leading-5 flex-4 flex items-center">
+            <span className="text-xs font-medium leading-5 flex-4 hidden md:flex items-center">
                 <Link
                     to={songInfo?.album?.link}
                     className="cursor-pointer hover:underline hover:text-text-color-primary-2"

@@ -1,9 +1,12 @@
 import { PlaylistSectionItem } from '../Home';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { BsChevronRight } from '../../assets/icons/staticIcons';
 
 function PlaylistSection({ content }) {
+    const { screenWidthRedux } = useSelector((state) => state.app);
+
     return (
         <div className="w-full overflow-hidden px-[59px] mt-12">
             <div className="flex flex-col">
@@ -27,9 +30,19 @@ function PlaylistSection({ content }) {
                         </div>
                     )}
                 </div>
-                <div className="flex items-start mx-[-14px]">
+                <div className="flex mx-[-14px]">
                     {content?.items
-                        ?.filter((item, index) => index < 5)
+                        ?.filter(
+                            (item, index) =>
+                                index <
+                                (screenWidthRedux >= 1280
+                                    ? 5
+                                    : screenWidthRedux >= 1024
+                                    ? 4
+                                    : screenWidthRedux >= 768
+                                    ? 3
+                                    : 2)
+                        )
                         ?.map((item) => (
                             <PlaylistSectionItem key={item?.encodeId} item={item} />
                         ))}

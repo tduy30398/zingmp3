@@ -31,11 +31,13 @@ function SongItemSmall({ data }) {
                     src={data?.thumbnail}
                     alt={data?.artistsNames}
                 />
-                <div className="absolute top-0 bottom-0 left-0 right-0 rounded-[4px] bg-overlay-40 cursor-pointer hidden group-hover:block">
-                    <span className="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] text-text-color-2">
-                        <FaPlay size={14} />
-                    </span>
-                </div>
+                {data?.encodeId !== currentSongId && (
+                    <div className="absolute top-0 bottom-0 left-0 right-0 rounded-[4px] bg-overlay-40 cursor-pointer hidden group-hover:block">
+                        <span className="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] text-text-color-2">
+                            <FaPlay size={14} />
+                        </span>
+                    </div>
+                )}
                 {data?.encodeId === currentSongId ? (
                     <div className="absolute top-0 bottom-0 left-0 right-0 rounded-[4px] cursor-pointer bg-overlay-40">
                         <span className="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] text-text-color-2">

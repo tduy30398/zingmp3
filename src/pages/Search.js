@@ -5,9 +5,9 @@ import { RotatingLinesLoading } from '../assets/icons/dynamicIcons';
 import paths from '../configs';
 
 const nonActiveStyle =
-    'mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2';
+    'mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 truncate hover:text-text-color-2';
 const activeStyle =
-    'mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 hover:text-text-color-2 border-b-[1px] border-border-color-3';
+    'mx-5 py-[15px] cursor-pointer text-sm font-medium text-text-color-1 truncate hover:text-text-color-2 border-b-[1px] border-border-color-3';
 
 function Search({ children }) {
     const { isSearching, searchParams } = useSelector((state) => state.music);
@@ -23,7 +23,7 @@ function Search({ children }) {
             )}
             <div className="border-b-[1px] border-border-color-1 mb-7">
                 <div className="w-full flex h-[50px] px-[59px] items-center">
-                    <h3 className="hidden lg:block pr-5 text-2xl font-bold border-r-[1px] border-border-color-1">
+                    <h3 className="hidden xl:block pr-5 text-2xl font-bold border-r-[1px] border-border-color-1">
                         Kết Quả Tìm Kiếm
                     </h3>
                     <div className="flex items-center">

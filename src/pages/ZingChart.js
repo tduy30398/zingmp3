@@ -16,7 +16,7 @@ import { RotatingLinesLoading } from '../assets/icons/dynamicIcons';
 import { setSearchText } from '../redux/actions';
 
 function ZingChart() {
-    const { chart, rank, chartPageData } = useSelector((state) => state.app);
+    const { chart, rank, chartPageData, screenWidthRedux } = useSelector((state) => state.app);
     const [chartData, setChartData] = useState(null);
     const [tooltipState, setTooltipState] = useState({
         opacity: 0,
@@ -159,7 +159,7 @@ function ZingChart() {
                 <div className="absolute top-0 bottom-2/3 left-[59px] right-[59px] flex items-end">
                     <h3 className="mb-5 text-[40px] font-extrabold">#zingchart</h3>
                 </div>
-                <div className="absolute top-1/3 bottom-0 left-0 right-[59px] bg-gradient-to-t from-[rgb(65,22,54)] to-transparent">
+                <div className="absolute top-1/3 bottom-0 left-0 right-[10px] md:right-[59px] bg-gradient-to-t from-[rgb(65,22,54)] to-transparent">
                     <div className="w-full h-[90%] relative">
                         {chartData && <Line data={chartData} options={options} ref={chartRef} />}
                         <div
@@ -206,7 +206,13 @@ function ZingChart() {
             </div>
             {chartPageData && (
                 <div className="relative mt-7">
-                    <img src={bgChart2} alt="cover" className="object-cover w-full h-[615px]" />
+                    <img
+                        src={bgChart2}
+                        alt="cover"
+                        className={`object-cover w-full ${
+                            screenWidthRedux > 1224 ? 'h-[615px]' : 'h-[1620px]'
+                        }`}
+                    />
                     <div className="absolute top-0 bottom-0 left-0 right-0 bg-[rgba(139,57,121,0.9)]"></div>
                     <div className="absolute top-0 bottom-0 left-[59px] right-[59px]">
                         <div className="mt-8 mb-5">
@@ -217,8 +223,16 @@ function ZingChart() {
                                 Bảng Xếp Hạng Tuần
                             </Link>
                         </div>
-                        <div className="flex justify-between gap-7">
-                            <div className="flex flex-col w-1/3 py-5 px-[10px] bg-[hsla(0,0%,100%,0.05)] rounded-2xl">
+                        <div
+                            className={`justify-between gap-7 ${
+                                screenWidthRedux > 1224 ? 'flex' : 'flex-col'
+                            }`}
+                        >
+                            <div
+                                className={`flex flex-col py-5 px-[10px] bg-[hsla(0,0%,100%,0.05)] rounded-2xl ${
+                                    screenWidthRedux > 1224 ? 'w-1/3' : 'w-full mb-8'
+                                }`}
+                            >
                                 <div className="w-full pl-10 pb-[10px]">
                                     <Link
                                         className="text-2xl font-bold hover:text-text-color-primary-1"
@@ -247,7 +261,11 @@ function ZingChart() {
                                     </Link>
                                 </div>
                             </div>
-                            <div className="flex flex-col w-1/3 py-5 px-[10px] bg-[hsla(0,0%,100%,0.05)] rounded-2xl">
+                            <div
+                                className={`flex flex-col py-5 px-[10px] bg-[hsla(0,0%,100%,0.05)] rounded-2xl ${
+                                    screenWidthRedux > 1224 ? 'w-1/3' : 'w-full mb-8'
+                                }`}
+                            >
                                 <div className="w-full pl-10 pb-[10px]">
                                     <Link
                                         className="text-2xl font-bold hover:text-text-color-primary-1"
@@ -276,7 +294,11 @@ function ZingChart() {
                                     </Link>
                                 </div>
                             </div>
-                            <div className="flex flex-col w-1/3 py-5 px-[10px] bg-[hsla(0,0%,100%,0.05)] rounded-2xl">
+                            <div
+                                className={`flex flex-col py-5 px-[10px] bg-[hsla(0,0%,100%,0.05)] rounded-2xl ${
+                                    screenWidthRedux > 1224 ? 'w-1/3' : 'w-full mb-8'
+                                }`}
+                            >
                                 <div className="w-full pl-10 pb-[10px]">
                                     <Link
                                         className="text-2xl font-bold hover:text-text-color-primary-1"

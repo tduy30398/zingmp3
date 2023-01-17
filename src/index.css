@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+    * {
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+    }
     html {
         font-family: Inter, sans-serif;
         scroll-behavior: smooth;

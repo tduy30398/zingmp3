@@ -2,6 +2,7 @@
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, createSearchParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import {
     BsArrowLeft,
@@ -102,13 +103,17 @@ function Searchbar() {
                 </button>
                 <button className="w-[38px] h-[38px] bg-primary-color-5 rounded-full hover:opacity-80 mr-3">
                     <span
+                        onClick={() => toast.warn('Tính năng đang được phát triển...')}
                         title="Cài đặt"
                         className="text-text-color-2 flex items-center justify-center"
                     >
                         <TfiSettings size={20} />
                     </span>
                 </button>
-                <button className="w-[38px] h-[38px] hover:opacity-80">
+                <button
+                    onClick={() => toast.warn('Tính năng đang được phát triển...')}
+                    className="w-[38px] h-[38px] hover:opacity-80"
+                >
                     <img
                         className="rounded-full"
                         src="https://avatar.talk.zdn.vn/default.jpg"

@@ -159,7 +159,7 @@ function ChartSection() {
     }, [chart]);
 
     return (
-        <div className="w-full overflow-hidden px-[59px] mt-12 max-h-[415px] relative">
+        <div className="w-full overflow-hidden px-[59px] mt-12 max-h-[415px] relative hidden 2xl:block">
             {rank?.length === 0 ? (
                 ''
             ) : (

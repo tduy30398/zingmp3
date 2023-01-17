@@ -8,7 +8,7 @@ import {
     SingerSearchItem,
     SongItemSearchSmall,
     PlaylistSectionSearchItem,
-    Artist,
+    Artist
 } from '../AllSearch';
 import { setIsSearching, setSearchResult, setSearchParams } from '../../../redux/actions';
 import { searchAPI } from '../../../APIs';
@@ -17,6 +17,7 @@ import paths from '../../../configs';
 
 function AllSearch() {
     const { searchResult } = useSelector((state) => state.music);
+    const { screenWidthRedux } = useSelector((state) => state.app);
     const [queryParams] = useSearchParams();
     const dispatch = useDispatch();
     const searchParams = queryParams.get('q');
@@ -101,9 +102,19 @@ function AllSearch() {
                             </span>
                         </Link>
                     </div>
-                    <div className="flex justify-between items-start gap-7">
+                    <div className="flex mx-[-14px]">
                         {searchResult?.playlists
-                            ?.filter((item, index) => index < 5)
+                            ?.filter(
+                                (item, index) =>
+                                    index <
+                                    (screenWidthRedux >= 1280
+                                        ? 5
+                                        : screenWidthRedux >= 1024
+                                        ? 4
+                                        : screenWidthRedux >= 768
+                                        ? 3
+                                        : 2)
+                            )
                             ?.map((item) => (
                                 <PlaylistSectionSearchItem key={item?.encodeId} item={item} />
                             ))}
@@ -126,7 +137,17 @@ function AllSearch() {
                     </div>
                     <div className="flex items-start gap-7">
                         {searchResult?.artists
-                            ?.filter((item, index) => index < 5)
+                            ?.filter(
+                                (item, index) =>
+                                    index <
+                                    (screenWidthRedux >= 1280
+                                        ? 5
+                                        : screenWidthRedux >= 1024
+                                        ? 4
+                                        : screenWidthRedux >= 768
+                                        ? 3
+                                        : 2)
+                            )
                             ?.map((item) => (
                                 <Artist key={item?.id} item={item} />
                             ))}

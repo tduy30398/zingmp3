@@ -17,8 +17,8 @@ import {
     MdOutlineQueueMusic,
     BiVolumeFull,
     BiVolumeMute,
-    TbMicrophone2,
-    SlScreenDesktop
+    GiMicrophone,
+    TbPictureInPicture
 } from '../../assets/icons/staticIcons';
 import {
     setIsPlaying,
@@ -185,14 +185,17 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
     return (
         <div className="bg-primary-color-3 px-5 h-full flex cursor-pointer">
             <div className="w-[30%] flex-auto flex items-center">
-                <div className="w-full flex-auto flex items-center">
+                <div className="w-full flex items-center">
                     <img
                         src={songInfo?.thumbnail || `https://avatar.talk.zdn.vn/default.jpg`}
-                        className="w-16 h-16 object-cover rounded-md mr-[10px]"
+                        className="w-16 h-16 object-cover rounded-md mr-[10px] z-20"
                         alt="thumbnail"
                     />
                     <div className="flex flex-col">
-                        <span className="text-text-color-2 text-sm font-semibold text-clip overflow-visible">
+                        <span
+                            title={songInfo?.title}
+                            className="text-text-color-2 truncate max-w-[120px] md:max-w-[150px] lg:max-w-[200px] xl:max-w-[300px] text-sm font-semibold text-clip overflow-hidden whitespace-nowrap"
+                        >
                             {songInfo?.title}
                         </span>
                         <span className="text-text-color-3 text-xs font-semibold overflow-ellipsis-2-line">
@@ -211,12 +214,14 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
                     </div>
                     <div className="text-text-color-2 flex gap-2 items-center ml-4">
                         <span
+                            onClick={() => toast.warn('Tính năng đang được phát triển...')}
                             title="Thêm vào thư viện"
                             className="mx-0.5 p-1 hover:bg-opacity-color-1 rounded-full"
                         >
                             <AiOutlineHeart size={18} />
                         </span>
                         <span
+                            onClick={() => toast.warn('Tính năng đang được phát triển...')}
                             title="Xem thêm"
                             className="mx-0.5 p-1 hover:bg-opacity-color-1 rounded-full"
                         >
@@ -291,16 +296,18 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
                 <div className="flex">
                     <div className="flex items-center pr-5 gap-1 border-r-[1px] border-border-color-1">
                         <span
+                            onClick={() => toast.warn('Tính năng đang được phát triển...')}
                             title="Xem lời bài hát"
                             className="text-text-color-2 p-1 mx-[1px] hover:bg-opacity-color-1 rounded-full"
                         >
-                            <TbMicrophone2 size={18} />
+                            <GiMicrophone size={20} />
                         </span>
                         <span
+                            onClick={() => toast.warn('Tính năng đang được phát triển...')}
                             title="Chế độ cửa sổ"
                             className="text-text-color-2 p-1 mx-[1px] hover:bg-opacity-color-1 rounded-full"
                         >
-                            <SlScreenDesktop size={18} />
+                            <TbPictureInPicture size={18} />
                         </span>
                         <span
                             onClick={handleToggleVolume}
@@ -318,7 +325,7 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
                             className="w-full hidden lg:flex items-center"
                         >
                             <input
-                                className={`ml-[5px] mr-[-1px] h-1.5 w-[72px] outline-none rounded-full cursor-pointer ${
+                                className={`ml-[5px] mr-[-1px] w-[72px] outline-none rounded-full cursor-pointer ${
                                     isHoverVolume ? 'block' : 'hidden'
                                 }`}
                                 ref={sliderRef}

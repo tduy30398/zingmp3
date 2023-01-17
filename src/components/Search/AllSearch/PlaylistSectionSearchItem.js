@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { BsPlayCircle } from '../../../assets/icons/staticIcons';
 
-function PlaylistSectionItem({ item }) {
+function PlaylistSectionSearchItem({ item }) {
     const imgRef = useRef('');
 
     const handleMouseEnter = () => {
@@ -16,8 +16,10 @@ function PlaylistSectionItem({ item }) {
         imgRef.current.classList.add('animate-scale-down-image');
     };
 
+    const artistsLength = item?.artists?.length;
+
     return (
-        <div className="w-1/5 flex flex-col gap-1 flex-auto">
+        <div className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex flex-col gap-1 px-[14px] select-none">
             <Link
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
@@ -51,11 +53,19 @@ function PlaylistSectionItem({ item }) {
                     {item?.title?.length > 22 ? `${item?.title?.slice(0, 22)}...` : item?.title}
                 </Link>
             )}
-            <span className="text-text-color-3 text-sm font-medium overflow-ellipsis-2-line select-none">
-                {item?.artistsNames}
+            <span className="text-text-color-3 text-xs font-semibold overflow-ellipsis-2-line">
+                {item?.artists?.map((artist, index) => (
+                    <Link
+                        key={artist?.link}
+                        to={artist?.link}
+                        className="cursor-pointer hover:underline hover:text-text-color-primary-2"
+                    >
+                        {index === artistsLength - 1 ? `${artist?.name}` : `${artist?.name}, `}
+                    </Link>
+                ))}
             </span>
         </div>
     );
 }
 
-export default memo(PlaylistSectionItem);
+export default memo(PlaylistSectionSearchItem);

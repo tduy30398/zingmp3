@@ -19,7 +19,7 @@ function PlaylistSectionItem({ item }) {
     const artistsLength = item?.artists?.length;
 
     return (
-        <div className="flex flex-col gap-1 w-1/5 px-[14px]">
+        <div className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex flex-col gap-1 px-[14px]">
             <Link
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
@@ -29,8 +29,8 @@ function PlaylistSectionItem({ item }) {
                 <img
                     ref={imgRef}
                     className="w-full h-auto object-cover mb-1"
-                    src={item.thumbnail}
-                    alt={item.title}
+                    src={item?.thumbnail}
+                    alt={item?.title}
                 />
                 <div className="absolute top-0 bottom-0 left-0 right-0 cursor-pointer group hover:bg-overlay-50">
                     <div
@@ -47,7 +47,7 @@ function PlaylistSectionItem({ item }) {
             {item.title && (
                 <Link
                     to={item?.link}
-                    title={item.title}
+                    title={item?.title}
                     className="text-text-color-2 text-sm font-bold cursor-pointer hover:text-text-color-primary-1"
                 >
                     {item.title.length > 20 ? `${item.title.slice(0, 20)}...` : item.title}

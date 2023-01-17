@@ -14,8 +14,17 @@ import { setSearchText, setSearchResult } from '../redux/actions';
 import { RotatingLinesLoading } from '../assets/icons/dynamicIcons';
 
 function Home() {
-    const { newRelease, hArtistTheme, hAutoTheme1, hAutoTheme2, weekChart, h100, hXone, hAlbum } =
-        useSelector((state) => state.app);
+    const {
+        newRelease,
+        hArtistTheme,
+        hAutoTheme1,
+        hAutoTheme2,
+        weekChart,
+        h100,
+        hXone,
+        hAlbum,
+        screenWidthRedux
+    } = useSelector((state) => state.app);
 
     const dispatch = useDispatch();
 
@@ -42,7 +51,11 @@ function Home() {
             <PlaylistSection content={hAutoTheme1} />
             <PlaylistSection content={hAutoTheme2} />
             <ChartSection />
-            <div className="w-full px-[59px] mt-12 flex items-center gap-7">
+            <div
+                className={`w-full px-[59px] mt-12 ${
+                    screenWidthRedux > 768 ? 'flex' : 'flex-col'
+                } items-center gap-7`}
+            >
                 {weekChart?.map((item) => (
                     <WeekChartSection data={item} key={item.link} />
                 ))}

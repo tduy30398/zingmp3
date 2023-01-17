@@ -7,23 +7,30 @@ var intervalId;
 function PlayerProgressBar({ audio, songInfo }) {
     const { isPlaying } = useSelector((state) => state.music);
     const [second, setSecond] = useState(0);
+    const [percent, setPercent] = useState(0);
+    const [isHoverProgressBar, setIsHoverProgressBar] = useState(false);
 
-    // thumb là thanh chạy ở trên
-    const thumbRef = useRef();
-    // track là thanh nằm yên ở dưới
-    const trackRef = useRef();
+    const sliderRef = useRef('');
+    const thumbRef = useRef('');
 
     useEffect(() => {
         audio.load();
+
         if (isPlaying) {
             audio.play();
         }
+
         intervalId = setInterval(() => {
             // lấy ra phần trăm đã chạy được của bài hát và set tỉ lệ vào thumb bar
-            let percent = Math.round((audio.currentTime * 10000) / songInfo?.duration) / 100;
+            let percent = Math.round((audio.currentTime / songInfo?.duration) * 100);
             // Do đang set position là right, và đang muốn thumb bar chạy từ trái sang phải
             // => phần trăm phải chạy từ 100 về 0
-            thumbRef.current.style.cssText = `right: ${100 - percent}%`;
+            if (thumbRef.current) {
+                thumbRef.current.style.cssText = `right: ${100 - percent}%`;
+            }
+            if (sliderRef.current) {
+                sliderRef.current.style.background = `linear-gradient(to right, #ffffff ${percent}%, #825F79 ${percent}%)`;
+            }
             setSecond(Math.round(audio.currentTime));
         }, 200);
 
@@ -32,24 +39,21 @@ function PlayerProgressBar({ audio, songInfo }) {
         };
     }, [audio]);
 
-    // Handle when click on progress bar
-    const handleClickProgress = (e) => {
-        const trackRect = trackRef.current.getBoundingClientRect();
-        // e.clientX là tọa độ theo chiều x tại vị trí click của trackbar
-        // trackRect.left là tọa độ vị trí tận cùng bên trái của trackbar
-        // trackRect.width là width của trackbar
-        // Ý tưởng: lấy e.clientX trừ đi trackRect.left => ra khoảng cách từ
-        // điểm click đến vị trí left và chia cho trackRect.width => sẽ ra tỉ
-        // lệ: khoảng cách từ điểm click đến vị trí left so với width của trackbar
-        const percent = Math.round(((e.clientX - trackRect.left) * 10000) / trackRect.width) / 100;
-        // set percent vào thumb bar
-        thumbRef.current.style.cssText = `right: ${100 - percent}%`;
-        // ở trên , ta lấy ra percent bằng công thức: percent = (time * 100) / duration
-        // ở đây, ta lấy lại time (s) bằng công thức: time = (percent * duration) / 100
+    useEffect(() => {
+        setPercent(Math.round((audio.currentTime / songInfo?.duration) * 100) || 0);
+    }, [audio.currentTime]);
+
+    const handleProgressChange = (e) => {
         const time = (percent * songInfo.duration) / 100;
-        // sau khi có time (s), ta set lại cho audio.currentTime và second
         audio.currentTime = time;
+        setPercent(+e.target.value);
         setSecond(Math.round(time));
+        if (thumbRef.current) {
+            thumbRef.current.style.cssText = `right: ${100 - percent}%`;
+        }
+        if (sliderRef.current) {
+            sliderRef.current.style.background = `linear-gradient(to right, #ffffff ${percent}%, #825F79 ${percent}%)`;
+        }
     };
 
     return (
@@ -58,14 +62,33 @@ function PlayerProgressBar({ audio, songInfo }) {
                 {moment.utc(second * 1000).format('mm:ss')}
             </span>
             <div
-                onClick={handleClickProgress}
-                ref={trackRef}
-                className="w-4/5 h-1 rounded-full bg-primary-color-6 relative hover:h-1.5 group"
+                onMouseEnter={() => setIsHoverProgressBar(true)}
+                onMouseLeave={() => setIsHoverProgressBar(false)}
+                className="w-full flex items-center"
             >
+                <input
+                    className={`w-full outline-none rounded-full cursor-pointer ${
+                        isHoverProgressBar ? 'block' : 'hidden'
+                    }`}
+                    ref={sliderRef}
+                    type="range"
+                    step={1}
+                    min={0}
+                    max={100}
+                    value={percent || 0}
+                    onChange={handleProgressChange}
+                />
+
                 <div
-                    ref={thumbRef}
-                    className="absolute top-0 left-0 h-1 rounded-full bg-primary-color-7 hover:h-1.5 group-hover:h-1.5"
-                ></div>
+                    className={`h-1 w-full outline-none rounded-full bg-primary-color-6 relative ${
+                        isHoverProgressBar ? 'hidden' : 'block'
+                    }`}
+                >
+                    <div
+                        ref={thumbRef}
+                        className="absolute top-0 bottom-0 left-0 rounded-full bg-primary-color-7"
+                    ></div>
+                </div>
             </div>
             <span className="text-text-color-2 text-xs font-medium">
                 {songInfo ? moment.utc(songInfo?.duration * 1000).format('mm:ss') : '00:00'}

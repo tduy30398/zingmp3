@@ -72,7 +72,7 @@ function NewRelease() {
                 </div>
                 <Link
                     to={paths.NEW}
-                    className="flex items-center text-text-color-3 gap-1 cursor-pointer hover:text-text-color-primary-2"
+                    className="text-text-color-3 gap-1 cursor-pointer hover:text-text-color-primary-2 hidden md:flex items-center"
                 >
                     <span className="text-xs font-medium mr-0.5">TẤT CẢ</span>
                     <span className="mb-1">
@@ -80,7 +80,7 @@ function NewRelease() {
                     </span>
                 </Link>
             </div>
-            <div className="flex w-full flex-wrap gap-x-7">
+            <div className="flex w-full flex-wrap mx-[-15px]">
                 {songContent
                     ?.filter((item, index) => index < 12)
                     ?.map((item) => (

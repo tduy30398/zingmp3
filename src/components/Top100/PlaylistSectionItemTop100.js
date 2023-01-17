@@ -19,7 +19,7 @@ function PlaylistSectionItemTop100({ item }) {
     const artistsLength = item?.artists?.length;
 
     return (
-        <div className="w-1/2 lg:w-1/4 xl:w-1/5 flex flex-col mb-[30px] gap-1 px-[14px]">
+        <div className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex flex-col mb-[30px] gap-1 px-[14px]">
             <Link
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
