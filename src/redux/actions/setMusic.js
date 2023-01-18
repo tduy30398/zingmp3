@@ -30,6 +30,11 @@ export const setIsTyping = (flag) => ({
     flag
 });
 
+export const setIsShowRightSidebar = (flag) => ({
+    type: actionTypes.IS_SHOW_RIGHT_SIDEBAR,
+    flag
+});
+
 export const setIsSearching = (flag) => ({
     type: actionTypes.IS_SEARCHING,
     flag

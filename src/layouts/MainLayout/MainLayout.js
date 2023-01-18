@@ -1,11 +1,10 @@
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Sidebar, MusicPlayer, RightSidebarPlaylist, Searchbar } from '../components';
 
 function MainLayout({ children }) {
     const { screenWidthRedux } = useSelector((state) => state.app);
-    const [isShowRightSidebar, setIsShowRightSidebar] = useState(true);
+    const { isShowRightSidebar } = useSelector((state) => state.music);
 
     return (
         <div className="w-full relative h-screen flex flex-col bg-primary-color-2">
@@ -23,7 +22,7 @@ function MainLayout({ children }) {
                     >
                         <Searchbar />
                     </div>
-                    <div>{children}</div>
+                    <>{children}</>
                 </div>
                 {isShowRightSidebar && (
                     <div className="w-[330px] z-[60] flex-none border-l-[1px] border-border-color-1 animate-slide-left">
@@ -32,10 +31,7 @@ function MainLayout({ children }) {
                 )}
             </div>
             <div className="fixed bottom-0 left-0 right-0 h-[90px] border-t-[1px] border-border-color-1 z-[70]">
-                <MusicPlayer
-                    setIsShowRightSidebar={setIsShowRightSidebar}
-                    isShowRightSidebar={isShowRightSidebar}
-                />
+                <MusicPlayer />
             </div>
         </div>
     );

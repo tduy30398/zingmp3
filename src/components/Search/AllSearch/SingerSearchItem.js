@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { FaPlay } from '../../../assets/icons/staticIcons';
 import { AudioLoading } from '../../../assets/icons/dynamicIcons';
 
-function SongSearchItem({ data }) {
+function SingerSearchItem({ data }) {
     const { currentSongId, isPlaying } = useSelector((state) => state.music);
     const imgRef = useRef('');
 
@@ -27,12 +27,14 @@ function SongSearchItem({ data }) {
             className="w-[90%] mb-2 md:w-[45%] md:mb-2 lg:w-[30%] lg:mb-0 flex-auto p-[10px] gap-4 flex rounded-[4px] cursor-pointer group bg-primary-color-8 hover:bg-primary-color-9"
         >
             <div className="relative rounded-full overflow-hidden">
-                <img
-                    ref={imgRef}
-                    className="w-[84px] h-[84px] rounded-full object-cover"
-                    src={data?.thumbnail}
-                    alt={data?.artistsNames}
-                />
+                <div className="w-[84px] h-[84px]">
+                    <img
+                        ref={imgRef}
+                        className="w-full h-full rounded-full object-cover"
+                        src={data?.thumbnail}
+                        alt={data?.artistsNames}
+                    />
+                </div>
                 {data?.encodeId !== currentSongId && (
                     <div className="absolute top-0 bottom-0 left-0 right-0 rounded-full bg-overlay-40 hidden group-hover:block">
                         <span className="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] text-text-color-2">
@@ -75,4 +77,4 @@ function SongSearchItem({ data }) {
     );
 }
 
-export default memo(SongSearchItem);
+export default memo(SingerSearchItem);

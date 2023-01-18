@@ -25,6 +25,7 @@ function Home() {
         hAlbum,
         screenWidthRedux
     } = useSelector((state) => state.app);
+    const { isShowRightSidebar } = useSelector((state) => state.music);
 
     const dispatch = useDispatch();
 
@@ -50,7 +51,7 @@ function Home() {
             <PlaylistSection content={hArtistTheme} />
             <PlaylistSection content={hAutoTheme1} />
             <PlaylistSection content={hAutoTheme2} />
-            <ChartSection />
+            {!isShowRightSidebar && <ChartSection />}
             <div
                 className={`w-full ${
                     screenWidthRedux > 1022 ? 'px-[59px]' : 'px-[29px]'

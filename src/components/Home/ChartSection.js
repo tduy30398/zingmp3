@@ -181,9 +181,9 @@ function ChartSection() {
                 >
                     #zingchart
                 </Link>
-                <div className="flex mx-[-14px] h-full">
-                    <div className="flex flex-col">
-                        <div className="flex-44 px-[14px] flex flex-col">
+                <div className="flex h-full">
+                    <div className="flex-4 flex-col">
+                        <div className="flex flex-col">
                             {rank
                                 ?.filter((item, index) => index < 3)
                                 ?.map((item, index) => (
@@ -198,13 +198,13 @@ function ChartSection() {
                         <div className="flex justify-center">
                             <Link
                                 to={paths.ZINGCHART}
-                                className="py-[5px] px-[25px] outline-none text-center rounded-full border leading-[14px] text-text-color-2 text-sm hover:bg-opacity-color-4"
+                                className="py-[10px] px-[25px] outline-none text-center rounded-full border leading-[14px] text-text-color-2 text-sm hover:bg-opacity-color-4"
                             >
                                 Xem thêm
                             </Link>
                         </div>
                     </div>
-                    <div className="flex-66 px-[14px] h-[90%] relative">
+                    <div className="flex-6 h-[90%] relative">
                         {chartData && <Line data={chartData} options={options} ref={chartRef} />}
                         <div
                             className="tooltip"

@@ -22,6 +22,7 @@ import {
 } from '../../assets/icons/staticIcons';
 import {
     setIsPlaying,
+    setIsShowRightSidebar,
     setCurrentSongId,
     setCurrentSongDetail,
     setRecentSongsList
@@ -29,8 +30,10 @@ import {
 import { PlayerProgressBar } from '../components';
 import { RotatingLinesLoading } from '../../assets/icons/dynamicIcons';
 
-function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
-    const { currentSongId, isPlaying, isTyping, albumSongs } = useSelector((state) => state.music);
+function MusicPlayer() {
+    const { currentSongId, isPlaying, isTyping, albumSongs, isShowRightSidebar } = useSelector(
+        (state) => state.music
+    );
     const [songInfo, setSongInfo] = useState(null);
     const [isShuffle, setIsShuffle] = useState(false);
     const [isRepeat, setIsRepeat] = useState(false);
@@ -178,6 +181,10 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
 
     const handleToggleVolume = () => {
         setVolume((prev) => (+prev === 0 ? 50 : 0));
+    };
+
+    const handleShowRightSidebar = () => {
+        dispatch(setIsShowRightSidebar(!isShowRightSidebar));
     };
 
     const artistsLength = songInfo?.artists?.length;
@@ -351,7 +358,7 @@ function MusicPlayer({ setIsShowRightSidebar, isShowRightSidebar }) {
                     </div>
 
                     <span
-                        onClick={() => setIsShowRightSidebar((prev) => !prev)}
+                        onClick={handleShowRightSidebar}
                         title="Danh sách phát"
                         className={`text-text-color-2 p-1 rounded-[4px] hover:text-text-color-3 ml-5 ${
                             isShowRightSidebar ? 'bg-primary-color-1' : 'bg-[#5E3153]'

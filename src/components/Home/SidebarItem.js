@@ -11,7 +11,7 @@ function SidebarItem({ to, icon, title }) {
             className={({ isActive }) => (isActive ? activeStyle : nonActiveStyle)}
             to={to}
         >
-            <span className="mr-[10px]">{icon}</span>
+            <span className="mr-0 lg:mr-[10px]">{icon}</span>
             <span className="hidden lg:inline">{title}</span>
         </NavLink>
     );

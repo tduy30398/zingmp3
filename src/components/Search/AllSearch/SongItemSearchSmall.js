@@ -7,7 +7,7 @@ import { FaPlay } from '../../../assets/icons/staticIcons';
 import { setCurrentSongId, setIsPlaying } from '../../../redux/actions';
 import { AudioLoading } from '../../../assets/icons/dynamicIcons';
 
-function SongItemSmall({ data }) {
+function SongItemSearchSmall({ data }) {
     const { currentSongId, isPlaying } = useSelector((state) => state.music);
     const dispatch = useDispatch();
 
@@ -26,11 +26,13 @@ function SongItemSmall({ data }) {
             }`}
         >
             <div onClick={handleClickSong} className="relative">
-                <img
-                    className="w-[40px] h-[40px] rounded object-cover"
-                    src={data?.thumbnail}
-                    alt={data?.artistsNames}
-                />
+                <div className="w-[40px] h-[40px]">
+                    <img
+                        className="w-full h-full rounded object-cover"
+                        src={data?.thumbnail}
+                        alt={data?.artistsNames}
+                    />
+                </div>
                 {data?.encodeId !== currentSongId && (
                     <div className="absolute top-0 bottom-0 left-0 right-0 rounded-[4px] bg-overlay-40 cursor-pointer hidden group-hover:block">
                         <span className="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] text-text-color-2">
@@ -79,4 +81,4 @@ function SongItemSmall({ data }) {
     );
 }
 
-export default memo(SongItemSmall);
+export default memo(SongItemSearchSmall);

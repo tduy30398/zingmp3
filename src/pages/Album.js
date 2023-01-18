@@ -64,9 +64,11 @@ function Album() {
             )}
             {playlistDetail.artistsNames && (
                 <div
-                    className={`flex-none ${screenWidthRedux > 1200 ? 'max-w-[300px]' : 'w-full'} ${
-                        screenWidthRedux > 1200 ? 'flex-col' : 'flex'
-                    }`}
+                    className={`flex-none ${
+                        screenWidthRedux > 1200
+                            ? 'max-w-[300px] flex-col'
+                            : 'w-full min-w-[650px] flex'
+                    } `}
                 >
                     <div
                         onMouseEnter={handleMouseEnter}
@@ -122,7 +124,7 @@ function Album() {
                             screenWidthRedux > 1200 ? 'text-center mt-3' : 'text-start mt-1 ml-5'
                         }`}
                     >
-                        <h3 className="text-text-color-2 text-xl font-bold select-none">
+                        <h3 className="text-text-color-2 text-xl font-bold select-none truncate">
                             {playlistDetail?.title}
                         </h3>
                         <span className="text-text-color-3 text-xs leading-5 select-none">{`Cập nhật: ${moment

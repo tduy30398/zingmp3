@@ -12,6 +12,7 @@ const initState = {
     isLoading: false,
     isTyping: false,
     isSearching: false,
+    isShowRightSidebar: false,
     albumSongs: null
 };
 
@@ -51,6 +52,11 @@ const musicReducer = (state = initState, action) => {
             return {
                 ...state,
                 isSearching: action.flag
+            };
+        case actionTypes.IS_SHOW_RIGHT_SIDEBAR:
+            return {
+                ...state,
+                isShowRightSidebar: action.flag
             };
         case actionTypes.SET_PLAYLIST:
             return {

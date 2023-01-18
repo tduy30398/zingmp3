@@ -83,7 +83,9 @@ function Singer() {
                         }`}
                     >
                         <div className="flex items-center mb-4">
-                            <span className="text-6xl font-bold">{singerDetail?.name}</span>
+                            <span className="text-6xl font-bold truncate leading-[70px]">
+                                {singerDetail?.name}
+                            </span>
                             <span className="ml-5 p-1 rounded-full cursor-pointer bg-primary-color-7 text-text-color-primary-1 hover:bg-primary-color-1 hover:text-text-color-2">
                                 <BsFillPlayFill className="pl-1" size={44} />
                             </span>
@@ -111,7 +113,11 @@ function Singer() {
                     screenWidthRedux > 1022 ? 'px-[59px]' : 'px-[29px]'
                 }`}
             >
-                <div className="flex mt-[30px] mx-[-14px]">
+                <div
+                    className={`mt-[30px] mx-[-14px] ${
+                        screenWidthRedux > 1280 ? 'flex' : 'flex-col'
+                    }`}
+                >
                     {singerDetail?.topAlbum?.thumbnail && (
                         <div className="flex flex-col flex-1 px-[14px]">
                             <h3 className="text-xl font-bold mb-5">Mới Phát Hành</h3>
@@ -154,7 +160,13 @@ function Singer() {
                         </div>
                     )}
                     {singerDetail?.sections && (
-                        <div className="flex flex-col flex-2 px-[14px]">
+                        <div
+                            className={`flex flex-col flex-2 px-[14px] ${
+                                screenWidthRedux < 1280 && singerDetail?.topAlbum?.thumbnail
+                                    ? 'mt-5'
+                                    : ''
+                            }`}
+                        >
                             <span className="flex items-center justify-between mb-5">
                                 <h3 className="text-xl font-bold">Bài Hát</h3>
                                 <span className="flex items-center text-text-color-3 gap-1 cursor-pointer hover:text-text-color-primary-2">

@@ -1,6 +1,6 @@
 import { memo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { FaPlay } from '../../assets/icons/staticIcons';
@@ -9,6 +9,7 @@ import { setCurrentSongId, setIsPlaying } from '../../redux/actions';
 
 function ZingChartSongSmall({ songInfo, index }) {
     const { currentSongId, isPlaying } = useSelector((state) => state.music);
+    const { screenWidthRedux } = useSelector((state) => state.app);
     const dispatch = useDispatch();
 
     const handleClickSong = () => {
@@ -17,6 +18,7 @@ function ZingChartSongSmall({ songInfo, index }) {
     };
 
     const artistsLength = songInfo?.artists?.length;
+    const titleLength = screenWidthRedux > 1224 ? 10 : 35;
 
     return (
         <div
@@ -58,8 +60,8 @@ function ZingChartSongSmall({ songInfo, index }) {
                 </div>
                 <div className="flex flex-col">
                     <span className="text-sm font-semibold leading-5 text-text-color-2">
-                        {songInfo?.title.length > 10
-                            ? `${songInfo?.title.slice(0, 10)}...`
+                        {songInfo?.title.length > titleLength
+                            ? `${songInfo?.title.slice(0, titleLength)}...`
                             : songInfo?.title}
                     </span>
                     <h3 className="text-xs font-medium leading-5 text-text-color-3 truncate max-w-[125px] overflow-ellipsis-2-line">

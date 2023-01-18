@@ -23,11 +23,13 @@ function SongSearchItem({ data }) {
             className="w-[90%] mb-2 md:w-[45%] md:mb-2 lg:w-[30%] lg:mb-0 select-none flex-auto p-[10px] gap-4 flex rounded-[4px] group bg-primary-color-8 hover:bg-primary-color-9"
         >
             <div onClick={handleClickSong} className="relative">
-                <img
-                    className="w-[84px] h-[84px] rounded object-cover"
-                    src={data?.thumbnail}
-                    alt={data?.artistsNames}
-                />
+                <div className="w-[84px] h-[84px]">
+                    <img
+                        className=" w-full h-full rounded object-cover"
+                        src={data?.thumbnail}
+                        alt={data?.artistsNames}
+                    />
+                </div>
                 {data?.encodeId !== currentSongId && (
                     <div className="absolute top-0 bottom-0 left-0 right-0 rounded-[4px] bg-overlay-40 cursor-pointer hidden group-hover:block">
                         <span className="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] text-text-color-2">

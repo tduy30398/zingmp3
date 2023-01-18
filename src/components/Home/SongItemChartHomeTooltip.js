@@ -4,9 +4,9 @@ function SongItemChartHomeTooltip({ data, totalScore }) {
     return (
         <div className="w-full select-none p-1 bg-[#4A90E2] gap-[10px] flex items-center justify-between rounded-[4px] bg-opacity-color-2 mb-[10px]">
             <div className="flex items-center">
-                <div className="relative w-[40px] h-[40px] ">
+                <div className="relative w-[40px] h-[40px] mr-[10px]">
                     <img
-                        className="w-full h-full rounded-[4px] object-cover mr-[10px]"
+                        className="w-full h-full rounded-[4px] object-cover"
                         src={data?.thumbnail}
                         alt={data?.artistsNames}
                     />

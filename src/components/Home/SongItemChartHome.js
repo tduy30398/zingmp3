@@ -26,7 +26,7 @@ function SongItemChartHome({ data, index, totalScore }) {
         >
             <div className="flex items-center">
                 <span
-                    className={`mr-[15px] text-[32px] text-[rgba(172,52,147,0.9)] ${
+                    className={`w-[40px] flex items-center justify-center text-[32px] text-[rgba(172,52,147,0.9)] ${
                         index === 0
                             ? 'text-shadow-1'
                             : index === 1
@@ -37,9 +37,9 @@ function SongItemChartHome({ data, index, totalScore }) {
                     {index + 1}
                 </span>
                 <div onClick={handleClickSong} className="relative">
-                    <div className="w-[60px] h-[60px]">
+                    <div className="w-[60px] h-[60px] mr-[10px]">
                         <img
-                            className="w-full h-full rounded-[4px] object-cover mr-[10px]"
+                            className="w-full h-full rounded-[4px] object-cover"
                             src={data?.thumbnail}
                             alt={data?.artistsNames}
                         />
@@ -67,7 +67,7 @@ function SongItemChartHome({ data, index, totalScore }) {
                 </div>
                 <div className="flex flex-col justify-between">
                     <span className="text-text-color-2 mb-1 text-sm font-semibold">
-                        {data?.title?.length > 24 ? `${data?.title.slice(0, 24)}...` : data?.title}
+                        {data?.title?.length > 30 ? `${data?.title.slice(0, 30)}...` : data?.title}
                     </span>
                     <span className="text-text-color-3 text-xs font-semibold overflow-ellipsis-2-line">
                         {data?.artists?.map((artist, index) => (
