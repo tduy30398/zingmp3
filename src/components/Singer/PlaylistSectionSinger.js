@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { BsChevronRight } from '../../assets/icons/staticIcons';
 
-function PlaylistSection({ content }) {
+function PlaylistSectionSinger({ content }) {
     const { screenWidthRedux } = useSelector((state) => state.app);
     return (
         <div className="w-full overflow-hidden mt-12">
@@ -51,4 +51,4 @@ function PlaylistSection({ content }) {
     );
 }
 
-export default PlaylistSection;
+export default PlaylistSectionSinger;
