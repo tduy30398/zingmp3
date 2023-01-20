@@ -6,7 +6,7 @@ import moment from 'moment';
 
 import { getDetailPlaylistAPI } from '../APIs';
 import { TabTitle } from '../utils';
-import { AlbumPlaylist } from '../components/Home';
+import { AlbumPlaylist } from '../components/Album';
 import { AudioLoading, RotatingLinesLoading } from '../assets/icons/dynamicIcons';
 import { BsPlayCircle } from '../assets/icons/staticIcons';
 import { setAlbumSongs, setIsLoading, setPlaylistId } from '../redux/actions';

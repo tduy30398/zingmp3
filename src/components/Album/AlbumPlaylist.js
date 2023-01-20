@@ -2,7 +2,7 @@ import { memo } from 'react';
 import moment from 'moment';
 import { useSelector } from 'react-redux';
 
-import AlbumSong from './AlbumSong';
+import { AlbumSong } from '../Album';
 import { BsSortDownAlt } from '../../assets/icons/staticIcons';
 
 function AlbumPlaylist({ songs }) {

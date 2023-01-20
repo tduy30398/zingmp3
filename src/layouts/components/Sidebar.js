@@ -4,7 +4,7 @@ import mainLogo from '../../assets/images/logos/main-logo.svg';
 import smallLogo from '../../assets/images/logos/small-logo.svg';
 import { SongIcon, PlaylistIcon, HistoryIcon } from '../../assets/images/svgIcons';
 import paths from '../../configs';
-import { SidebarItem } from '../../components/Home';
+import { SidebarItem } from '../components';
 import {
     MdOutlineLibraryMusic,
     TfiPieChart,
