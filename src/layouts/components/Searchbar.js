@@ -95,26 +95,30 @@ function Searchbar() {
                 </div>
             </div>
             <div className="flex items-center">
-                <button className="w-[38px] h-[38px] bg-primary-color-5 rounded-full hover:opacity-80 mr-3">
-                    <a
-                        title="Nâng cấp VIP"
-                        href="https://zingmp3.vn/vip?utm_source=desktop&utm_campaign=VIP&utm_medium=icon-header"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-text-color-2 flex items-center justify-center"
-                    >
-                        <RiVipDiamondLine size={20} />
-                    </a>
-                </button>
-                <button className="w-[38px] h-[38px] bg-primary-color-5 rounded-full hover:opacity-80 mr-3">
-                    <span
-                        onClick={() => toast.warn('Tính năng đang được phát triển...')}
-                        title="Cài đặt"
-                        className="text-text-color-2 flex items-center justify-center"
-                    >
-                        <TfiSettings size={20} />
-                    </span>
-                </button>
+                {screenWidthRedux > 480 && (
+                    <button className="w-[38px] h-[38px] bg-primary-color-5 rounded-full hover:opacity-80 mr-3">
+                        <a
+                            title="Nâng cấp VIP"
+                            href="https://zingmp3.vn/vip?utm_source=desktop&utm_campaign=VIP&utm_medium=icon-header"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-text-color-2 flex items-center justify-center"
+                        >
+                            <RiVipDiamondLine size={20} />
+                        </a>
+                    </button>
+                )}
+                {screenWidthRedux > 480 && (
+                    <button className="w-[38px] h-[38px] bg-primary-color-5 rounded-full hover:opacity-80 mr-3">
+                        <span
+                            onClick={() => toast.warn('Tính năng đang được phát triển...')}
+                            title="Cài đặt"
+                            className="text-text-color-2 flex items-center justify-center"
+                        >
+                            <TfiSettings size={20} />
+                        </span>
+                    </button>
+                )}
                 <button
                     onClick={() => toast.warn('Tính năng đang được phát triển...')}
                     className="w-[38px] h-[38px] hover:opacity-80"

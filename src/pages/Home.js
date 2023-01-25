@@ -46,7 +46,7 @@ function Home() {
             ) : (
                 ''
             )}
-            <Slider />
+            {screenWidthRedux > 480 && <Slider />}
             <NewRelease />
             <PlaylistSection content={hArtistTheme} />
             <PlaylistSection content={hAutoTheme1} />

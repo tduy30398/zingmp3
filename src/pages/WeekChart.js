@@ -9,15 +9,19 @@ import bgChart2 from '../assets/images/imgs/bg-chart-2.jpg';
 import { RotatingLinesLoading } from '../assets/icons/dynamicIcons';
 import { WeekChartSong } from '../components/ZingChart';
 
-const nonActiveStyle =
-    'mr-10 py-[15px] cursor-pointer text-2xl font-bold text-text-color-1 hover:text-text-color-2 border-b-[3px] border-transparent';
-const activeStyle =
-    'mr-10 py-[15px] cursor-pointer text-2xl font-bold text-text-color-1 hover:text-text-color-2 border-b-[3px] border-border-color-3';
-
 function WeekChart() {
     const { chartPageData, screenWidthRedux } = useSelector((state) => state.app);
     const { title } = useParams();
     const [chartType, setChartType] = useState([]);
+
+    const nonActiveStyle =
+        screenWidthRedux > 480
+            ? 'mr-10 py-[15px] cursor-pointer text-2xl font-bold text-text-color-1 hover:text-text-color-2 border-b-[3px] border-transparent'
+            : 'mr-5 py-[15px] cursor-pointer text-2xl font-bold text-text-color-1 hover:text-text-color-2 border-b-[3px] border-transparent';
+    const activeStyle =
+        screenWidthRedux > 480
+            ? 'mr-10 py-[15px] cursor-pointer text-2xl font-bold text-text-color-1 hover:text-text-color-2 border-b-[3px] border-border-color-3'
+            : 'mr-5 py-[15px] cursor-pointer text-2xl font-bold text-text-color-1 hover:text-text-color-2 border-b-[3px] border-border-color-3';
 
     const dispatch = useDispatch();
 

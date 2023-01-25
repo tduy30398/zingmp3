@@ -34,6 +34,7 @@ function MusicPlayer() {
     const { currentSongId, isPlaying, isTyping, albumSongs, isShowRightSidebar } = useSelector(
         (state) => state.music
     );
+    const { screenWidthRedux } = useSelector((state) => state.app);
     const [songInfo, setSongInfo] = useState(null);
     const [isShuffle, setIsShuffle] = useState(false);
     const [isRepeat, setIsRepeat] = useState(false);
@@ -191,52 +192,54 @@ function MusicPlayer() {
 
     return (
         <div className="bg-primary-color-3 px-5 h-full flex cursor-pointer">
-            <div className="w-[30%] flex-auto flex items-center">
-                <div className="w-full flex items-center">
-                    <img
-                        src={songInfo?.thumbnail || `https://avatar.talk.zdn.vn/default.jpg`}
-                        className="w-16 h-16 object-cover rounded-md mr-[10px] z-20"
-                        alt="thumbnail"
-                    />
-                    <div className="flex flex-col">
-                        <span
-                            title={songInfo?.title}
-                            className="text-text-color-2 truncate max-w-[120px] md:max-w-[150px] lg:max-w-[200px] xl:max-w-[300px] text-sm font-semibold text-clip overflow-hidden whitespace-nowrap"
-                        >
-                            {songInfo?.title}
-                        </span>
-                        <span className="text-text-color-3 text-xs font-semibold overflow-ellipsis-2-line">
-                            {songInfo?.artists?.map((artist, index) => (
-                                <Link
-                                    key={artist?.link}
-                                    to={artist?.link}
-                                    className="cursor-pointer hover:underline hover:text-text-color-primary-2"
-                                >
-                                    {index === artistsLength - 1
-                                        ? `${artist?.name}`
-                                        : `${artist?.name}, `}
-                                </Link>
-                            ))}
-                        </span>
-                    </div>
-                    <div className="text-text-color-2 flex gap-2 items-center ml-4">
-                        <span
-                            onClick={() => toast.warn('Tính năng đang được phát triển...')}
-                            title="Thêm vào thư viện"
-                            className="mx-0.5 p-1 hover:bg-opacity-color-1 rounded-full"
-                        >
-                            <AiOutlineHeart size={18} />
-                        </span>
-                        <span
-                            onClick={() => toast.warn('Tính năng đang được phát triển...')}
-                            title="Xem thêm"
-                            className="mx-0.5 p-1 hover:bg-opacity-color-1 rounded-full"
-                        >
-                            <BsThreeDots size={18} />
-                        </span>
+            {screenWidthRedux > 480 && (
+                <div className="w-[30%] flex-auto flex items-center">
+                    <div className="w-full flex items-center">
+                        <img
+                            src={songInfo?.thumbnail || `https://avatar.talk.zdn.vn/default.jpg`}
+                            className="w-16 h-16 object-cover rounded-md mr-[10px] z-20"
+                            alt="thumbnail"
+                        />
+                        <div className="flex flex-col">
+                            <span
+                                title={songInfo?.title}
+                                className="text-text-color-2 truncate max-w-[120px] md:max-w-[150px] lg:max-w-[200px] xl:max-w-[300px] text-sm font-semibold text-clip overflow-hidden whitespace-nowrap"
+                            >
+                                {songInfo?.title}
+                            </span>
+                            <span className="text-text-color-3 text-xs font-semibold overflow-ellipsis-2-line">
+                                {songInfo?.artists?.map((artist, index) => (
+                                    <Link
+                                        key={artist?.link}
+                                        to={artist?.link}
+                                        className="cursor-pointer hover:underline hover:text-text-color-primary-2"
+                                    >
+                                        {index === artistsLength - 1
+                                            ? `${artist?.name}`
+                                            : `${artist?.name}, `}
+                                    </Link>
+                                ))}
+                            </span>
+                        </div>
+                        <div className="text-text-color-2 flex gap-2 items-center ml-4">
+                            <span
+                                onClick={() => toast.warn('Tính năng đang được phát triển...')}
+                                title="Thêm vào thư viện"
+                                className="mx-0.5 p-1 hover:bg-opacity-color-1 rounded-full"
+                            >
+                                <AiOutlineHeart size={18} />
+                            </span>
+                            <span
+                                onClick={() => toast.warn('Tính năng đang được phát triển...')}
+                                title="Xem thêm"
+                                className="mx-0.5 p-1 hover:bg-opacity-color-1 rounded-full"
+                            >
+                                <BsThreeDots size={18} />
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </div>
+            )}
 
             <div className="w-[40%] flex-auto flex flex-col items-center justify-center gap-4">
                 <div className="flex items-center justify-center text-text-color-2 gap-7">

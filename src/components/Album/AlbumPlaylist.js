@@ -24,7 +24,7 @@ function AlbumPlaylist({ songs }) {
                     <span className="text-xs font-medium leading-5 select-none flex-4 hidden md:block">
                         ALBUM
                     </span>
-                    <span className="text-xs font-medium leading-5 select-none flex-1 flex justify-end">
+                    <span className="text-xs font-medium text-end truncate leading-5 select-none flex-1 flex justify-end">
                         THỜI GIAN
                     </span>
                 </div>

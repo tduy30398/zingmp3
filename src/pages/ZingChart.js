@@ -193,21 +193,12 @@ function ZingChart() {
                     ))}
                 </div>
                 <div className="w-full flex items-center justify-center">
-                    {isShowFull ? (
-                        <button
-                            onClick={() => setIsShowFull((prev) => !prev)}
-                            className="py-2 px-[25px] border-[1px] border-[#ffffff] rounded-full font-medium text-sm hover:bg-opacity-color-4"
-                        >
-                            Ẩn bớt
-                        </button>
-                    ) : (
-                        <button
-                            onClick={() => setIsShowFull((prev) => !prev)}
-                            className="py-2 px-[25px] border-[1px] border-[#ffffff] rounded-full font-medium text-sm hover:bg-opacity-color-4"
-                        >
-                            Xem top 100
-                        </button>
-                    )}
+                    <button
+                        onClick={() => setIsShowFull((prev) => !prev)}
+                        className="py-2 px-[25px] border-[1px] border-[#ffffff] rounded-full font-medium text-sm hover:bg-opacity-color-4"
+                    >
+                        {isShowFull ? 'Ẩn bớt' : 'Xem top 100'}
+                    </button>
                 </div>
             </div>
             {chartPageData && (

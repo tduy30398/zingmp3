@@ -9,16 +9,24 @@ function MainLayout({ children }) {
     return (
         <div className="w-full relative h-screen flex flex-col bg-primary-color-2">
             <div className="w-full h-full flex flex-auto">
-                <div className="w-[70px] lg:w-[240px] h-full flex-none">
+                <div
+                    className={`${
+                        screenWidthRedux > 1024
+                            ? 'w-[240px]'
+                            : screenWidthRedux > 480
+                            ? 'w-[70px]'
+                            : 'hidden'
+                    } h-full flex-none`}
+                >
                     <Sidebar />
                 </div>
                 <div className="flex-auto">
                     <div
                         className={`h-[70px] ${
                             screenWidthRedux > 1022 ? 'px-[59px]' : 'px-[29px]'
-                        } flex items-center fixed top-0 left-0 right-0 ml-[70px] lg:ml-[240px] z-50 ${
-                            isShowRightSidebar ? '2xl:mr-[330px]' : ''
-                        }`}
+                        } flex items-center fixed top-0 left-0 right-0 ${
+                            screenWidthRedux > 480 ? 'ml-[70px]' : `max-w-[${screenWidthRedux}px]`
+                        } lg:ml-[240px] z-50 ${isShowRightSidebar ? '2xl:mr-[330px]' : ''}`}
                     >
                         <Searchbar />
                     </div>
