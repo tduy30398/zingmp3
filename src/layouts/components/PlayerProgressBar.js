@@ -3,7 +3,6 @@ import { useState, useEffect, useRef, memo } from 'react';
 import moment from 'moment';
 import { useSelector } from 'react-redux';
 
-var intervalId;
 function PlayerProgressBar({ audio, songInfo }) {
     const { isPlaying } = useSelector((state) => state.music);
     const [second, setSecond] = useState(0);
@@ -12,6 +11,7 @@ function PlayerProgressBar({ audio, songInfo }) {
 
     const sliderRef = useRef('');
     const thumbRef = useRef('');
+    const intervalId = useRef('');
 
     useEffect(() => {
         audio.load();
@@ -20,7 +20,7 @@ function PlayerProgressBar({ audio, songInfo }) {
             audio.play();
         }
 
-        intervalId = setInterval(() => {
+        intervalId.current = setInterval(() => {
             // lấy ra phần trăm đã chạy được của bài hát và set tỉ lệ vào thumb bar
             let percent = Math.round((audio.currentTime / songInfo?.duration) * 100);
             // Do đang set position là right, và đang muốn thumb bar chạy từ trái sang phải
@@ -35,7 +35,7 @@ function PlayerProgressBar({ audio, songInfo }) {
         }, 200);
 
         return () => {
-            intervalId && clearInterval(intervalId);
+            intervalId.current && clearInterval(intervalId.current);
         };
     }, [audio]);
 

@@ -1,17 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { BsChevronLeft, BsChevronRight } from '../../assets/icons/staticIcons';
 import { setCurrentSongId, setIsPlaying, setAlbumSongs } from '../../redux/actions';
 
-var intervalId;
 function Slider() {
     const { banners, screenWidthRedux } = useSelector((state) => state.app);
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(2);
     const [isAuto, setIsAuto] = useState(true);
+
+    const intervalId = useRef('');
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -35,12 +36,12 @@ function Slider() {
         // Ở lần đầu hoặc sau khi leave chuột khỏi các banner, các banner sẽ
         // slide theo chiều tăng dần
         if (isAuto) {
-            intervalId = setInterval(() => {
+            intervalId.current = setInterval(() => {
                 slideNextBanner();
             }, 4000);
         }
         return () => {
-            intervalId && clearInterval(intervalId);
+            intervalId.current && clearInterval(intervalId.current);
         };
     }, [min, max, isAuto]);
 
