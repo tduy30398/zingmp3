@@ -1,14 +1,13 @@
 import { httpRequest } from '../utils';
 
-export const getNewReleaseAPI = () =>
-    new Promise(async (resolve, reject) => {
-        try {
-            const response = await httpRequest({
-                url: 'newreleasechart',
-                method: 'get'
-            });
-            resolve(response);
-        } catch (error) {
-            reject(error);
-        }
-    });
+export const getNewReleaseAPI = async () => {
+    try {
+        const response = await httpRequest({
+            url: 'newreleasechart',
+            method: 'get'
+        });
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+};

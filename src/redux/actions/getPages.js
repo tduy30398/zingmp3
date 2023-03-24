@@ -1,5 +1,5 @@
 import actionTypes from './actionTypes';
-import { getHomeAPI, getChartHomeAPI, getNewReleaseAPI } from '../../APIs';
+import { getHomeAPI, getChartHomeAPI, getNewReleaseAPI, getTop100API } from '../../APIs';
 
 export const getHome = () => async (dispatch) => {
     try {
@@ -20,6 +20,29 @@ export const getHome = () => async (dispatch) => {
         dispatch({
             type: actionTypes.GET_HOME,
             homeAPI: null
+        });
+    }
+};
+
+export const getTop100 = () => async (dispatch) => {
+    try {
+        const response = await getTop100API();
+
+        if (response?.data.err === 0) {
+            dispatch({
+                type: actionTypes.GET_TOP_100,
+                top100API: response.data.data
+            });
+        } else {
+            dispatch({
+                type: actionTypes.GET_TOP_100,
+                top100API: null
+            });
+        }
+    } catch (error) {
+        dispatch({
+            type: actionTypes.GET_TOP_100,
+            top100API: null
         });
     }
 };

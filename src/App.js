@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
@@ -11,31 +11,25 @@ import {
     getHome,
     getChartPage,
     getNewRelease,
-    setTop100,
+    getTop100,
     setScreenWidthRedux
 } from './redux/actions';
 import { EmptyComponent } from './pages';
-import { getTop100API } from './APIs';
 
 function App() {
     const dispatch = useDispatch();
-    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
     // Call API
     useEffect(() => {
         dispatch(getHome());
+        dispatch(getTop100());
         dispatch(getChartPage());
         dispatch(getNewRelease());
-        const fetchTop100API = async () => {
-            const response = await getTop100API();
-            dispatch(setTop100(response.data.data));
-        };
-        fetchTop100API();
     }, []);
 
     useEffect(() => {
         const detectKeyDown = (e) => {
-            if (e.keyCode === 32 && e.target === document.body) {
+            if (e.keyCode === 32) {
                 e.preventDefault();
             }
         };
@@ -43,20 +37,15 @@ function App() {
     }, []);
 
     const setWidth = (e) => {
-        setScreenWidth(e.target.innerWidth);
+        dispatch(setScreenWidthRedux(e.target.innerWidth));
     };
 
     useEffect(() => {
         window.addEventListener('resize', setWidth);
-
         return () => {
             window.removeEventListener('resize', setWidth);
         };
     }, []);
-
-    useEffect(() => {
-        dispatch(setScreenWidthRedux(screenWidth));
-    }, [screenWidth]);
 
     return (
         <>

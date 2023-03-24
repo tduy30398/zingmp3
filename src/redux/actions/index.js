@@ -1,5 +1,4 @@
-import { getHome, getChartPage, getNewRelease } from './getPages';
-import { setTop100 } from './setTop100';
+import { getHome, getChartPage, getNewRelease, getTop100 } from './getPages';
 import { setScreenWidthRedux } from './setScreenWidth';
 import {
     setCurrentSongId,
@@ -22,7 +21,7 @@ export {
     getChartPage,
     getNewRelease,
     setScreenWidthRedux,
-    setTop100,
+    getTop100,
     setCurrentSongId,
     setPlaylistId,
     setIsPlaying,
