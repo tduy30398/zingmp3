@@ -1,6 +1,5 @@
-import { getHomeAPI, getChartHomeAPI, getTop100API } from './homeAPI';
+import { getHomeAPI, getChartHomeAPI, getTop100API, getNewReleaseAPI } from './pagesAPI';
 import { getSingerAPI } from './singerAPI';
-import { getNewReleaseAPI } from './newReleaseAPI';
 import { getDetailSongAPI, getSongAPI, getDetailPlaylistAPI, searchAPI } from './musicAPI';
 
 export {

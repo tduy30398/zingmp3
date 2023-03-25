@@ -26,14 +26,15 @@ function Singer() {
 
     singerDetail?.name && TabTitle(`${singerDetail?.name} - Zing MP3 Official Account`);
 
+    const fetchSingerDetail = async () => {
+        setSingerDetail({});
+        const response = await getSingerAPI(singerName);
+        if (response?.data?.err === 0) {
+            setSingerDetail(response.data.data);
+        }
+    };
+
     useEffect(() => {
-        const fetchSingerDetail = async () => {
-            setSingerDetail({});
-            const response = await getSingerAPI(singerName);
-            if (response?.data?.err === 0) {
-                setSingerDetail(response.data.data);
-            }
-        };
         fetchSingerDetail();
     }, [singerName]);
 

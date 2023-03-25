@@ -22,17 +22,18 @@ function AllSearch() {
     const dispatch = useDispatch();
     const searchParams = queryParams.get('q');
 
+    const getSearchAPI = async () => {
+        dispatch(setIsSearching(true));
+        dispatch(setSearchResult({}));
+        dispatch(setSearchParams(searchParams));
+        const response = await searchAPI(searchParams);
+        dispatch(setIsSearching(false));
+        if (response?.data.err === 0) {
+            dispatch(setSearchResult(response.data.data));
+        }
+    };
+
     useEffect(() => {
-        const getSearchAPI = async () => {
-            dispatch(setIsSearching(true));
-            dispatch(setSearchResult({}));
-            dispatch(setSearchParams(searchParams));
-            const response = await searchAPI(searchParams);
-            dispatch(setIsSearching(false));
-            if (response?.data.err === 0) {
-                dispatch(setSearchResult(response.data.data));
-            }
-        };
         getSearchAPI();
     }, [searchParams]);
 

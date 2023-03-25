@@ -21,18 +21,19 @@ function Album() {
 
     playlistDetail.title && TabTitle(`${playlistDetail.title} | Album 320 lossless`);
 
+    const fetchDetailPlaylist = async () => {
+        dispatch(setIsLoading(true));
+        setPlaylistDetail({});
+        const response = await getDetailPlaylistAPI(playlistId);
+        dispatch(setIsLoading(false));
+        if (response?.data.err === 0) {
+            setPlaylistDetail(response.data.data);
+            dispatch(setAlbumSongs(response.data.data.song.items));
+            dispatch(setPlaylistId(playlistId));
+        }
+    };
+
     useEffect(() => {
-        const fetchDetailPlaylist = async () => {
-            dispatch(setIsLoading(true));
-            setPlaylistDetail({});
-            const response = await getDetailPlaylistAPI(playlistId);
-            dispatch(setIsLoading(false));
-            if (response?.data.err === 0) {
-                setPlaylistDetail(response.data.data);
-                dispatch(setAlbumSongs(response.data.data.song.items));
-                dispatch(setPlaylistId(playlistId));
-            }
-        };
         fetchDetailPlaylist();
     }, [playlistId]);
 
