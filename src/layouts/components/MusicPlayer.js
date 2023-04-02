@@ -50,41 +50,42 @@ function MusicPlayer() {
     const dispatch = useDispatch();
 
     // Call API
-    useEffect(() => {
-        const fetchDetailSong = async () => {
-            audio.pause();
-            // Set icon loading tại play button khi bắt đầu gọi API
-            setIsLoadingSong(true);
-            //Promise.all sẽ nhận các Promise làm đầu vào và chỉ thành
-            //công khi tất cả các Promise đầu vào thành công
-            const [res1, res2] = await Promise.all([
-                getDetailSongAPI(currentSongId),
-                getSongAPI(currentSongId)
-            ]);
-            // Ẩn icon loading tại play button khi gọi API xong
-            setIsLoadingSong(false);
+    const fetchDetailSong = async () => {
+        audio.pause();
+        // Set icon loading tại play button khi bắt đầu gọi API
+        setIsLoadingSong(true);
+        //Promise.all sẽ nhận các Promise làm đầu vào và chỉ thành
+        //công khi tất cả các Promise đầu vào thành công
+        const [res1, res2] = await Promise.all([
+            getDetailSongAPI(currentSongId),
+            getSongAPI(currentSongId)
+        ]);
+        // Ẩn icon loading tại play button khi gọi API xong
+        setIsLoadingSong(false);
 
-            if (res2.data.err === 0) {
-                audio.pause();
-                setAudio(new Audio(res2.data.data['128']));
-                setSongInfo(res1.data.data);
-                setVolume(50);
-                dispatch(setCurrentSongDetail(res1.data.data));
-                dispatch(
-                    setRecentSongsList({
-                        encodeId: res1.data.data.encodeId,
-                        thumbnail: res1.data.data.thumbnail,
-                        artists: res1.data.data.artists,
-                        title: res1.data.data.title
-                    })
-                );
-            } else {
-                audio.pause();
-                setAudio(new Audio());
-                dispatch(setIsPlaying(false));
-                toast.warn(res2.data.msg);
-            }
-        };
+        if (res2.data.err === 0) {
+            audio.pause();
+            setAudio(new Audio(res2.data.data['128']));
+            setSongInfo(res1.data.data);
+            setVolume(50);
+            dispatch(setCurrentSongDetail(res1.data.data));
+            dispatch(
+                setRecentSongsList({
+                    encodeId: res1.data.data.encodeId,
+                    thumbnail: res1.data.data.thumbnail,
+                    artists: res1.data.data.artists,
+                    title: res1.data.data.title
+                })
+            );
+        } else {
+            audio.pause();
+            setAudio(new Audio());
+            dispatch(setIsPlaying(false));
+            toast.warn(res2.data.msg);
+        }
+    };
+
+    useEffect(() => {
         fetchDetailSong();
     }, [currentSongId]);
 

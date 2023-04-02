@@ -1,4 +1,4 @@
-import { memo, useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Line } from 'react-chartjs-2';
@@ -228,4 +228,4 @@ function ChartSection() {
     );
 }
 
-export default memo(ChartSection);
+export default ChartSection;
