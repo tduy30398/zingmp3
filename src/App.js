@@ -33,7 +33,11 @@ function App() {
                 e.preventDefault();
             }
         };
-        document.addEventListener('keydown', detectKeyDown);
+        window.addEventListener('keydown', detectKeyDown);
+
+        return () => {
+            window.removeEventListener('keydown', detectKeyDown);
+        };
     }, []);
 
     const setWidth = (e) => {
@@ -42,6 +46,7 @@ function App() {
 
     useEffect(() => {
         window.addEventListener('resize', setWidth);
+
         return () => {
             window.removeEventListener('resize', setWidth);
         };
